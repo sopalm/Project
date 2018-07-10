@@ -21,6 +21,7 @@
           <?php
             include('function.php');
                 if(isset($_GET['cs_no'])){
+                  //$get=$_GET['cs_no'];
                   $sqlcp = "SELECT c.comp_name,cs.cs_date
                             FROM company as c  LEFT JOIN company_address as ca ON c.comp_id=ca.comp_id 
                                                 LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 
@@ -118,10 +119,11 @@
                               <h4 class="modal-title">ลงทะเบียน จุดตรวจ</h4>
                             </div>
                             <div class="modal-body">
-                              <form method='POST' action="">
+                              <form method='POST' action="user_update.php">
                                     <input type="text" id="supID" name="supID" style="width: 30px;border: none;">
+                                    <input hidden name="cs" value="24">
                                     <input type="text" id="supName" name="supName" style="width: 50px;border: none;">
-                                    <SELECT>
+                                    <SELECT name="cst">
                                       <option value="" selected>--เลือก--</option>
                                       <?php 
                                         while($row=mysqli_fetch_array($resulttag,MYSQLI_ASSOC)){
