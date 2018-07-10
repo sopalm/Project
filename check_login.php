@@ -10,16 +10,20 @@
 		&& $_POST['username']!='' &&$_POST['password']!='' )
 	{
 		if ($row['user_status']=='admin') {
-			$_SESSION['user_status']=$row['user_status'];
+			$_SESSION['user_name']=$row['user_name'];
+			$_SESSION['login']= '1';
+			$_SESSION['status']= '1';
 			echo "<script language=\"JavaScript\">";
-			echo "alert('you are ".$_SESSION['user_status']."');";
+			echo "alert('you are ".$row['user_status']."');";
 			echo "window.location='home.php';";
 			echo "</script>";
 		}
 		else{
-			$_SESSION['user_status']=$row['user_status'];
+			$_SESSION['user_name']=$row['user_name'];
+			$_SESSION['login']= '1';
+			$_SESSION['status']= '2';
 			echo "<script language=\"JavaScript\">";
-			echo "alert('you are ".$_SESSION['user_status']."');";
+			echo "alert('you are ".$row['user_status']."');";
 			echo "window.location='home.php';";
 			echo "</script>";
 		}

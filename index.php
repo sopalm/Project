@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=0.75">
-	<title>ระบบจัดการ การตรวจสุขภาพนอกสถานที่ รพใยันฮี</title>
+	<title >ระบบจัดการ การตรวจสุขภาพนอกสถานที่ รพใยันฮี</title>
 
 	<!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
@@ -19,8 +19,8 @@
 
 <body>
 	<div class="container">
-		<div class="">
-			<h1 id="title" class="hidden"><span id="logo">test </span></h1>
+		<div class="" style="padding-top: 20px;">
+			<center><font style="color: black;" size="20" id="title" class="hidden"><span id="logo" >ระบบจัดการ การตรวจสุขภาพนอกสถานที่ </span></font></center>
 		</div>
 		<div class="login-box animated fadeInUp">
 			<div class="box-header">

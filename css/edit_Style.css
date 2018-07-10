@@ -1,0 +1,25 @@
+<style>
+
+
+
+table.list {
+    border-collapse: collapse;
+    width: 100%;
+}
+.search{
+	text-align: center;
+}
+th.list,td.list {
+
+    padding: 5px;
+}
+
+tr.list:nth-child(even){background-color: #c2d6d6}
+
+th.list {
+    background-color: #008fb3;
+    color: white;
+}
+/*---------------------------*/
+
+</style>

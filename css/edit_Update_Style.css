@@ -1,0 +1,22 @@
+<style>
+
+table{
+	border-collapse: collapse;
+}
+table,th,td{
+	border: 0px solid black;
+}
+th, td {
+
+    padding: 8px;
+}
+textarea {
+  resize: none;
+}
+
+.fieldset-auto-width {
+	display: inline-block;
+}
+
+
+</style>

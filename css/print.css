@@ -1,0 +1,29 @@
+@media print {
+    @page {
+         size: A5;
+    }
+    div.row > div {
+      display: inline-block;  
+      border: solid 1px #ccc;
+      margin: 0.2cm;
+    }
+    div.row {
+      display: block;
+    }
+}
+.A5{
+  size: A5;
+}
+
+table {
+    display: table;
+    border: 1px;
+}
+.row {
+    display: table-row;
+}
+.row > div {
+    display: table-cell;
+    border: solid 1px #ccc;
+    padding: 2px;
+}

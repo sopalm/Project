@@ -1,4 +1,6 @@
 <?php
+     include_once('connection.php');
+     
 /** PHPExcel */
     if(isset($_POST["submitfile"])&&$_FILES["file"]["name"]!=null)
     {
@@ -15,7 +17,7 @@
         $highestRow = $objWorksheet->getHighestRow();
         $highestColumn = $objWorksheet->getHighestColumn();
 
-        $r = -1;
+        $r = 0;
         $namedDataArray = array();
         for ($row = 0; $row <= $highestRow; ++$row) {
             $dataRow = $objWorksheet->rangeToArray('A'.$row.':'.$highestColumn.$row,null, true, true, true);
@@ -24,44 +26,113 @@
                 $namedDataArray[$r] = $dataRow[$row];
             }
         }
-
 ?>
+<style type="text/css">
+    table.excel td input{
+            border: none;
+            display: inline;
+            font-family: inherit;
+            font-size: inherit;
+            padding: none;
+            width: auto;
+            background-color: #ecf0f5;
+    }
+    table.excel th{
+        background-color: #3c8dbc;
+        color: white;
+    }
+</style>
+<table class='excel'  border="1">
+<thead>
+    <tr>
+        <th align="center">ลำดับ</th>
+        <th align="center">H.N</th>
+        <th align="center">V.N</th>
+        <th>คำนำหน้า</th>
+        <th>ชื่อ</th>
+        <th>นามสกุล</th>
+        <th>วัน/เดือน/ปีเกิด</th>
+        <th>อายุ</th>
+        <th>แผนก</th>
+        <th>โปรแกรม</th>
+    </tr>
+</thead>
 
-<table width="500" border="1">
-<tr>
-<td>เลขบัตรประชาชน</td>
-<td>คำนำหน้า</td>
-<td>ชื่อ</td>
-<td>นามสกุล</td>
-<td>วัน/เดือน/ปีเกิด</td>
-<td>อายุ</td>
-</tr>
-<?php
 
+<form method='POST' action="add_employee.php">
+    <?php
+        
+        $nub = 0;
         foreach ($namedDataArray as $result) {
             echo "<tr>";
-            echo "<td>"."<input type='text' name='a' value='".$result["A"]."' minlength='13' maxlength='13'>"."</td>";
-            echo "<td>"."<input type='text' name='b' value='".$result["B"]."'>"."</td>";
-            echo "<td>"."<input type='text' name='c' value='".$result["C"]."'>"."</td>";
-            echo "<td>"."<input type='text' name='d' value='".$result["D"]."'>"."</td>";
-            if (strpos($result["E"], '/') || strpos($result["E"], '-') ) {
-                $date = $result["E"];
+            echo "<td>"."<input style='max-width: 50px; ' type='number' name='a".$nub."' value='".$result["A"]."' required >"."</td>";
+            echo "<td>"."<input style='max-width: 110px; ' type='text' name='b".$nub."' value='".$result["B"]."' maxlength='13' required >"."</td>";
+            echo "<td>"."<input style='max-width: 80px; ' type='text' name='c".$nub."' value='".$result["C"]."' maxlength='13' required >"."</td>";
+            echo "<td>"."<input style='max-width: 50px; ' type='text' name='d".$nub."' value='".$result["D"]."' required >"."</td>";
+            echo "<td>"."<input type='text' name='e".$nub."' value='".$result["E"]."' required >"."</td>";
+            echo "<td>"."<input type='text' name='f".$nub."' value='".$result["F"]."' required >"."</td>";
+            if (strpos($result["G"], '/') || strpos($result["G"], '-') ) {
+                $time = explode("/", $result["G"]);
+                $y = $time['2']-543;
+                $m = $time['1'];
+                $d = $time['0']; 
+                $time2 = $y."-".$m."-".$d;
+                $time3 = strtotime($time2);
+                $date = date('Y-m-d',$time3);
             }
             else{
-                $unix_date = ($result["E"] - 25569) * 86400;
-                $excel_date = 25569 + ($unix_date / 86400);
-                $unix_date = ($excel_date - 25569) * 86400;
-                $date = date('Y-m-d',$unix_date);
+                if ($result["G"] > 100000) {
+                    $unix_date = (($result["G"] - 25569) * 86400) - (86400*365.25*543);
+                }
+                else{
+                    $unix_date = ($result["G"] - 25569) * 86400;
+                }
+                //$date = date('Y-m-d',$unix_date);
+                //echo date("Y",$unix_date)." ";
             }
-            echo "<td>"."<input type='date' name='e' value='".$date."'>"."</td>";
-            echo "<td>"."<input type='number' min='18' max='70' id='age' name='f' value='".$result["F"]."'>"."</td>";
-            echo "</tr>";
-
+            echo "<td>"."<input style='max-width: 120px; ' type='date' name='g".$nub."' value='".$date."' required >"."</td>";
+            echo "<td>"."<input style='max-width: 30px; ' type='number' min='18' max='70' id='age' name='h".$nub."' value='".$result["H"]."'required >"."</td>";
+            echo "<td>"."<input style='max-width: 110px; ' type='text' name='emp_dep".$nub."' value='".$result["I"]."'>"."</td>";
+            echo "<td>"."<input style='max-width: 180px; ' type='text' name='emp_pro".$nub."' value='".$result["J"]."' required >"."</td>";
+            $nub++;
         }
-        echo "</table>";
-    } 
-    if (isset($_POST["clear"])) {
-        system('clear');
-    }
+        echo "</table>"."</br>";
+    ?>
+    
+       
+            <br/>
+            <br/>
+            <?php 
+                if(isset($_POST["cs_no"])){
+            ?>
+            <input type="hidden" required name='emp_check_no' value="<?php echo $_POST['cs_no']; ?>">
+            <?php 
+                }else{
+            ?>
+            <label >วันที่ออกตรวจ</label>
+            <select name='emp_check_no' required>
+                <option value="">--- Pleaser Select ---</option>
+                <?php
+                    $sqlCommand = "SELECT check_service.cs_no,check_service.cs_date,company.comp_name
+                    FROM check_service  LEFT JOIN company_address ON check_service.ca_id = company_address.ca_id
+                                        LEFT JOIN company ON company_address.comp_id = company.comp_id";
+                    $result=mysqli_query($con,$sqlCommand);
+                    while ($row3=mysqli_fetch_array($result)) {
+                        echo "<option value='".$row3[0]."'>".$row3[1]." ".$row3[2]."</option>";
+                    }
+                    
+                ?>
+            </select>
+            <?php 
+                }
 
-?>
+                echo "</select>"."&emsp;";
+                echo "<input type='submit' value='submit' name='submit_excel' >";
+                echo "<input type='hidden' value='$nub' name='nub' >";
+                echo "</form>";
+                } 
+                if (isset($_POST["clear"])) {
+                    system('clear');
+                }
+
+            ?>
