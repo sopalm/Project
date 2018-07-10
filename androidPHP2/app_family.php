@@ -12,7 +12,7 @@
     
     $result = mysqli_query($con, "
         SELECT * 
-        from personal_family_information 
+        from personal_information 
         where emp_id = '$id_card' AND csd_no = '$csd_no' "
     ) or die("Failed db".mysqli_error());
     $row = mysqli_fetch_array($result);	 
