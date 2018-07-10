@@ -19,9 +19,25 @@
          
 
           <?php
-            include('function.php');
+            include('function.php');   
                 if(isset($_GET['cs_no'])){
-                  //$get=$_GET['cs_no'];
+                  $get=$_GET['cs_no'];
+                  //////////////////////////////
+                  $sqldel="DELETE FROM check_service_tag WHERE cs_no=$get";
+                  $del=mysqli_query($con,$sqldel);
+                  
+                  $sqlputtag="SELECT DISTINCT `checklist_name_tag` 
+                              FROM `program_check_detail`as pcd JOIN program_check_u as pcu ON pcd.checklist_id = pcu.checklist_id
+                                                      JOIN check_service_detail as csd ON csd.pro_id = pcu.pro_id
+                              WHERE csd.cs_no = $get";
+                  $puttag=mysqli_query($con,$sqlputtag);
+                  while ($row=mysqli_fetch_array($puttag)) {
+                    $sqlputdata ="INSERT INTO `check_service_tag`(`cst_id`,`cs_no`, `tag`,`date_modify`, `user`) 
+                                  VALUES (NULL,'$get','$row[0]','$_SESSION[date]','$_SESSION[user_name]') ";
+                    //echo $get;
+                    $putdata=mysqli_query($con,$sqlputdata);
+                  }
+                  //////////////////////////////
                   $sqlcp = "SELECT c.comp_name,cs.cs_date
                             FROM company as c  LEFT JOIN company_address as ca ON c.comp_id=ca.comp_id 
                                                 LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 
@@ -33,8 +49,8 @@
                     echo("Error description: " . mysqli_error($con));
                   }
                 }       
-                $query = "SELECT user.*,cst.tag,cst.cs_no 
-                          FROM user JOIN check_service_tag as cst ON cst.cst_id=user.cst_id
+                $query = "SELECT user.*
+                          FROM user
                           
                           ORDER BY user.user_id ";
 
@@ -75,11 +91,19 @@
                         <td ><div align="center"><?php echo $row["user_id"];?></div></td>
                         <td ><?php echo $row["user_name"];?></td>
                         <td align="center">
-                          <?php if($row["cs_no"]==$_GET["cs_no"]){
-                                  echo $row["tag"];
-                                }else{
-                                  echo "ยังไม่กำหนด";
-                                  } ?>
+                          <?php 
+                            $sql="SELECT * FROM check_service_tag as cst WHERE cst.cs_no=$_GET[cs_no]";
+                            $tag=mysqli_query($con,$sql);
+                            while ( $row2=mysqli_fetch_array($tag,MYSQLI_ASSOC)) {
+                                  
+                              if($row2["cst_id"]==$row["cst_id"]){
+                                echo $row2["tag"];
+                              }
+                              if ($row["cst_id"]==0) {
+                                echo "";break;
+                              }
+                            }
+ ?>
                         </td>
                         <td ><center><?php echo $row["user_status"];?></center></td>
                         <td ><center><?php echo $row["date_modify"];?></center></td>
@@ -121,7 +145,7 @@
                             <div class="modal-body">
                               <form method='POST' action="user_update.php">
                                     <input type="text" id="supID" name="supID" style="width: 30px;border: none;">
-                                    <input hidden name="cs" value="24">
+                                    <input hidden name="cs" value="<?php echo $get; ?>">
                                     <input type="text" id="supName" name="supName" style="width: 50px;border: none;">
                                     <SELECT name="cst">
                                       <option value="" selected>--เลือก--</option>
