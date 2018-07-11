@@ -20,13 +20,6 @@
                 findSomeThing('blood_pressure_extra',0) => $rows['blood_pressure_extra'],
                 'pulsation' => $rows['pulsation'],
                 'pulsation_extra' => $rows['pulsation_extra'],
-                findSomeThing('underlying_disease',1) => $rows['underlying_disease'],
-                findSomeThing('medicines',1) => $rows['medicines'],
-                findSomeThing('medicines_history',1) => $rows['medicines_history'],
-                findSomeThing('herbal_bolus',1) => $rows['herbal_bolus'],
-                findSomeThing('operate',1) => $rows['operate'],
-                findSomeThing('alcohol',1) => $rows['alcohol'],
-                findSomeThing('smoke',1) => $rows['smoke']
             );
     array_push($response, $arr);
 
