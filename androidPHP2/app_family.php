@@ -12,17 +12,19 @@
     
     $result = mysqli_query($con, "
         SELECT * 
-        from personal_information 
-        where emp_id = '$id_card' AND csd_no = '$csd_no' "
+        from personal_family_information 
+        where emp_id = '$emp_id' AND csd_no = '$csd_no' "
     ) or die("Failed db".mysqli_error());
     $row = mysqli_fetch_array($result);	 
-    if($row['emp_id']){
-        $sqlCommand = "UPDATE `personal_family_information` SET `heart`='$x1',`hypertension`='$x2',`dyslipidemia`='$x3',`diabetes_mellitus`='$x4',`cancer`='$x5',`date_modify`='$_SESSION[date]',`user`='$user' WHERE emp_id = '$emp_id' AND csd_no = '$csd_no')";
+    if($row['emp_id']&&$row['csd_no']){
+        $sqlCommand = "UPDATE `personal_family_information` SET`heart`= '$x1',`hypertension`= '$x2',`dyslipidemia`= '$x3',`diabetes_mellitus`= '$x4',`cancer`= '$x5',`date_modify`='$_SESSION[date]',`user`='$user' WHERE emp_id = '$emp_id' AND csd_no = '$csd_no' ";
+        echo $sqlCommand;
             $result=mysqli_query($con,$sqlCommand)
                 or die("Failed db".mysqli_error());
     }  
     else{
         $sqlCommand2 = "INSERT INTO `personal_family_information`(`pfi_id`, `emp_id`, `csd_no`, `heart`, `hypertension`, `dyslipidemia`, `diabetes_mellitus`, `cancer`, `date_modify`, `user`) VALUES (NULL,'$emp_id','$csd_no','$x1','$x2,'$x3','$x4','$x5','$_SESSION[date]','$user')";
+        echo $sqlCommand2;
             $result=mysqli_query($con,$sqlCommand2)
                 or die("Failed db".mysqli_error());
     }
