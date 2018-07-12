@@ -15,7 +15,7 @@
         where emp_id = '$id_card' AND csd_no = '$csd_no' "
     ) or die("Failed db".mysqli_error());
     $row = mysqli_fetch_array($result);	 
-    if($row['emp_id']){
+    if($row['emp_id'] && $row['csd_no']){
         $sqlCommand = "UPDATE `personal_information` SET `weight`='$weight',`height`='$height',`bmi`='$bmi',`blood_pressure`='$bp',`blood_pressure_extra`='$bp2',`date_modify`='$_SESSION[date]',`user`='$user' WHERE emp_id = '$emp_id' AND csd_no = '$csd_no')";
             $result=mysqli_query($con,$sqlCommand)
                 or die("Failed db".mysqli_error());
