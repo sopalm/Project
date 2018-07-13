@@ -1,5 +1,5 @@
 ﻿<?php
-	$con= mysqli_connect("localhost","root","","pro_test") or die("Error: " . mysqli_error($con));
+	$con= mysqli_connect("localhost","root","","YHDB") or die("Error: " . mysqli_error($con));
 	if ($con->connect_error) {
     die("Connection failed: " . $con->connect_error);
     } 
