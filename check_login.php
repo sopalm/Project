@@ -13,6 +13,7 @@
 			$_SESSION['user_name']=$row['user_name'];
 			$_SESSION['login']= '1';
 			$_SESSION['status']= '1';
+			// $_SESSION['alert']='loginSuccess';
 			echo "<script language=\"JavaScript\">";
 			echo "alert('you are ".$row['user_status']."');";
 			echo "window.location='home.php';";
