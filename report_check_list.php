@@ -21,7 +21,7 @@
 
           <?php if (isset($_POST['submit_emp_list'])||isset($_GET['cs_no'])) { 
              if(isset($_POST['submit_emp_list']))
-             {$sqlcp = "SELECT cp.comp_name,cs.cs_date
+             {$sqlcp = "SELECT cp.comp_name,cs.cs_date,cs.cs_total_people
                                          FROM company as cp  LEFT JOIN company_address as ca ON ca.comp_id=cp.comp_id
                                                              LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 
                                          WHERE cs.cs_no = $_POST[check_service]";
@@ -29,7 +29,7 @@
                          $cp=mysqli_fetch_array($querycp);
               }
               else
-              {$sqlcp = "SELECT cp.comp_name,cs.cs_date
+              {$sqlcp = "SELECT cp.comp_name,cs.cs_date,cs.cs_total_people
                                          FROM company as cp  LEFT JOIN company_address as ca ON ca.comp_id=cp.comp_id
                                                              LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 
                                          WHERE cs.cs_no = $_GET[cs_no]";
@@ -46,17 +46,19 @@
         <?php
             include('connection.php');
             if(isset($_POST['submit_emp_list']))
-            {$sqllist = "SELECT DISTINCT `checklist_name_tag` 
+            {
+
+              $sqllist = "SELECT DISTINCT `checklist_name_tag` 
                           FROM `program_check_detail`as pcd JOIN program_check_u as pcu ON pcd.checklist_id = pcu.checklist_id
                                                             JOIN check_service_detail as csd ON csd.pro_id = pcu.pro_id
                           WHERE csd.cs_no = '$_POST[check_service]'";
-                        $querylist=mysqli_query($con,$sqllist);
+              $querylist=mysqli_query($con,$sqllist);
               $sqlemp ="SELECT emp.*,pc.pro_id,csd.cs_no 
                         FROM employee as emp JOIN check_list as cl ON emp.emp_id = cl.emp_id
                                               JOIN check_service_detail as csd ON cl.csd_no = csd.csd_no
                                               JOIN program_check as pc ON csd.pro_id = pc.pro_id
                         WHERE csd.cs_no = '$_POST[check_service]'";
-                        $queryemp=mysqli_query($con,$sqlemp);
+              $queryemp=mysqli_query($con,$sqlemp);
 
             }
             else
@@ -99,6 +101,16 @@
                 </thead>
                 <tbody>
             <?php
+              $querylist=mysqli_query($con,$sqllist);
+              $column=mysqli_num_rows($querylist);//echo $column;
+              $keb=$column;
+              $tagsum = array();
+              while ($row=mysqli_fetch_array($querylist,MYSQLI_ASSOC)) {
+                  $tagsum[] = array(
+                      'tag'=> $row['checklist_name_tag'],
+                      'sum'=> 0
+                  );
+              }
             while($row=mysqli_fetch_array($queryemp))
                 { ?>
               <tr>
@@ -126,17 +138,15 @@
                             $nub2++;
                         }
 
-            
-
-
                       $status=0;
                      for($j=0;$j<$nub2;$j++) {
                             for ($i=0;$i<$nub;$i++) 
                             { 
-                              if($tag[$i]==$tagemp[$j]['tag']){
+                              if($tagsum[$i]['tag']==$tagemp[$j]['tag']){
 
                                 if($tagemp[$j]['status']==1){
-                                  echo "<td align='center'>&#10004</td>";
+                                  echo "<td align='center'>&#10004</td>";//check true
+                                  $tagsum[$i]['sum']++;
                                   $status++;
                                 }else{
                                   echo "<td align='center'></td> ";
@@ -151,7 +161,7 @@
 
                               }
                               else{
-                                echo "<td align='center'>&#10008</i></td>";
+                                echo "<td align='center'>&#10008</i></td>";//check false
                               }
                             }
 
@@ -176,11 +186,40 @@
              echo "</table>";
              echo "</div>";       
         }
-        if (isset($_POST["clear"])) {
-        system('clear');
-        }
-    ?>            
-
+        /*for ($i=0; $i <$keb ; $i++) { 
+          echo $tagsum[$i]['tag'];
+          echo $tagsum[$i]['sum'];
+          echo "<br>";
+        }*/
+    ?>   
+        <div class="row">
+          <div class="column">
+          <h3>จำนวนผู้เข้ารับการตรวจทั้งหมด <?php echo $cp["cs_total_people"]; ?> คน</h3>
+            <table id="tablepage-page" width="100%" class="display">
+            <thead>
+              <th ><div align="center">จุดตรวจ</div></th>
+              <th ><div align="center">จำนวนคนที่ตรวจไปแล้ว</div></th>
+            </thead>
+            <tbody>
+              <?php 
+                for ($i=0; $i <$keb ; $i++) {
+                  $column++;
+              ?>
+                  <tr>
+                    <td align="center"><?php echo $tagsum[$i]['tag']; ?></td><td align="center"><?php echo $tagsum[$i]['sum']; ?> คน</td>
+                  </tr>
+                  
+              <?php    
+                }
+              ?>
+              </tbody>
+            </table> 
+          </div>
+          <div class="column">
+            
+          </div> 
+        </div>    
+        
         </div>
      </div>
     </div>

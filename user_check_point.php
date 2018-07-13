@@ -23,7 +23,7 @@
                 if(isset($_GET['cs_no'])){
                   $get=$_GET['cs_no'];
                   //////////////////////////////
-                  $sqldel="DELETE FROM check_service_tag WHERE cs_no=$get";
+                  /*$sqldel="DELETE FROM check_service_tag WHERE cs_no=$get";
                   $del=mysqli_query($con,$sqldel);
                   
                   $sqlputtag="SELECT DISTINCT `checklist_name_tag` 
@@ -36,7 +36,7 @@
                                   VALUES (NULL,'$get','$row[0]','$_SESSION[date]','$_SESSION[user_name]') ";
                     //echo $get;
                     $putdata=mysqli_query($con,$sqlputdata);
-                  }
+                  }*/
                   //////////////////////////////
                   $sqlcp = "SELECT c.comp_name,cs.cs_date
                             FROM company as c  LEFT JOIN company_address as ca ON c.comp_id=ca.comp_id 
@@ -144,7 +144,7 @@
                             </div>
                             <div class="modal-body">
                               <form method='POST' action="user_update.php">
-                                    <input type="text" id="supID" name="supID" style="width: 30px;border: none;">
+                                    <input hidden type="text" id="supID" name="supID" style="width: 30px;border: none;">
                                     <input hidden name="cs" value="<?php echo $get; ?>">
                                     <input type="text" id="supName" name="supName" style="width: 50px;border: none;">
                                     <SELECT name="cst">

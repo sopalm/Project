@@ -68,7 +68,6 @@
                  <thead style="background-color: #47d147">
                   <tr align="center">
                       <th align="center">ชื่อ-สกุล</th>
-                      <th>ค่าbmi</th>
 
                       <th>bmi</th><th>ตรวจร่างกาย</th>
                       <th>ความดันโลหิต</th><th>x-ray</th>
@@ -143,7 +142,6 @@
                         ?>
                         <tr>
                           <td><?php echo $row["emp_title"]; ?><?php echo $row["emp_name"]; ?>&nbsp;<?php echo $row["emp_surname"]; ?></td>
-                          <td><?php echo $row["bmi"]; ?></td>
                           <?php 
                             for($i=10;$i<45;$i++){
                               if($i==10){

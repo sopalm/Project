@@ -63,7 +63,7 @@
                                 <label >เลข H.N</label>
                                 <input type="text" id="emp_id" name="emp_id"  maxlength="13" required>
                                 <label >เลข V.N</label>
-                                <input type="text" id="vn" name="vn"  maxlength="13" >
+                                <input type="text" id="vn" name="vn"  maxlength="13" required >
                                 </br></br>
                                 <label >คำนำหน้า</label>
                                 <select name="title">

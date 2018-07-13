@@ -145,7 +145,7 @@
                     ?>
                   </tbody>
                 </table>
-                <?php unset($_POST['pro']);}?>
+                <?php }?>
                 </div>
 
                 </div>

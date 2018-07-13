@@ -152,7 +152,13 @@
                         { ?>
                           <td align="center"><?php echo DateThaietc($row["date_modify"]);?></td>
                           <td align="center"><?php echo $row["user"];?></td>
-                          <td align="center"><a href="edit_employee_update.php?id=<?php echo $row["ca_id"];?>">แก้ไข</a></td>
+                          <td align="center">
+                          <a data-toggle="modal" href="#editsup" class="edit-sup"
+                              data-supID="<?php echo $row["ca_id"];?>"
+                              data-supName="<?php echo $row["address"];?>"
+                              data-tag="<?php echo $get;?>"
+                              
+                              ><button name="edit" type="button" class="btn btn-primary">แก้ไข</button></a></td>
                         <?php 
                         } 
                         ?>
@@ -163,8 +169,66 @@
                 </tbody>
 
               </table>
-            </div>
+              <center>
+                    <!-- Modal -->
+                      <div class="modal fade" id="editsup" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">แก้ไข สถานที่</h4>
+                            </div>
+                            <div class="modal-body">
+                              <form method='POST' action="edit_address.php">
+                                    <input hidden type="text" id="supID" name="supID" style="width: 30px;border: none;">
+                                    <input hidden type="text" id="tag" name="tag" style="width: 30px;border: none;">
+                                    <textarea id="supName" name="supName" required></textarea>
 
+                            </div>
+                            <div class="modal-footer">
+                                <center><button class="btn btn-default" type="submit">ยืนยัน</button></center>
+                                
+                            </form>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </center>
+              <br>
+                <button style="height: 30px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">เพิ่มสถานที่</button>
+            </div>
+            <center>
+                    <!-- Modal -->
+                      <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                        
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">ลงทะเบียน สถานที่ตรวจสุขภาพ</h4>
+                            </div>
+                            <div class="modal-body">
+                              <form method='POST' action="add_address.php">
+                                    <label >สถานที่ตรวจสุขภาพ</label>
+                                    <br/>
+                                    <textarea id="comp_add" name="comp_add" required></textarea>
+                                    <input hidden type="text" name="comp_id" value="<?php echo $get; ?>">
+
+                            </div>
+                            <div class="modal-footer">
+                                <center><button class="btn btn-default" type="submit">ยืนยัน</button></center>
+                                
+                            </form>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </center>
 
 
                        

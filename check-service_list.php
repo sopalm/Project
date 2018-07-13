@@ -46,7 +46,7 @@
                 <a href="report_check_list.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary">สถานะการตรวจสุขภาพ</a>
                 <a href="regis_lab.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary"  >เพิ่มผลการตรวจจากห้องปฏิบัติการ</a>
                 <a href="report_list.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary"  >ผลการตรวจภาพรวม</a>
-                <a href="user_check_point.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary"  >จัดการเจ้าหน้าที่</a>
+                <a href="check_point.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary"  >จัดการเจ้าหน้าที่</a>
                 <?php if($company[2]>0){ ?>
                         <table id="tablepage-span" class="display" width="100%" border="0">
                         <thead>

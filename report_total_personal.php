@@ -157,14 +157,87 @@
                                                 ?>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td>ยาสมุนไพร/ยาลูกลอน :</td>
+                                            <td>
+                                                <?php 
+                                                    if($row["herbal_bolus"]!=NULL){
+                                                        echo $row["herbal_bolus"];
+                                                    }
+                                                    else{
+                                                        echo "-";
+                                                    }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>การผ่าตัด :</td>
+                                            <td>
+                                                <?php 
+                                                    if($row["operate"]!=NULL){
+                                                        echo $row["operate"];
+                                                    }
+                                                    else{
+                                                        echo "-";
+                                                    }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>การดื่มสุรา :</td>
+                                            <td>
+                                                <?php 
+                                                    if($row["alcohol"]!=NULL){
+                                                        echo $row["alcohol"];
+                                                    }
+                                                    else{
+                                                        echo "-";
+                                                    }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>การสูบบุหรี่ :</td>
+                                            <td>
+                                                <?php 
+                                                    if($row["smoke"]!=NULL){
+                                                        echo $row["smoke"];
+                                                    }
+                                                    else{
+                                                        echo "-";
+                                                    }
+                                                ?>
+                                            </td>
+                                        </tr>
                                     </table>
                                     <hr>
                                     </br>
-                                    <h4>ผลการตรวจสุขภาพจากหน้างาน</h4>
-                                    <?php 
-                                        echo "</br>";
-                                        echo "เสียงหัวใจ: ".$row["heartbeat"]."</br>";
-                                    ?>
+                                    <h4>สภาพร่างกายทั่วไป</h4>
+                                    <table>
+                                        <tr>
+                                            <th>รูปร่าง/ความสมบูรณ์ของร่างกาย</th> <td><?php echo $row["general_appearance"]; ?></td>
+                                            <th>ภาวซีด เหลือง บวม</th> <td><?php echo $row["anemia"]; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>ศรีษะ คอ ต่อมน้ำเหลือง</th> <td><?php echo $row["head_cervival_nodes"]; ?></td>
+                                            <th>ตา หู จมูก ปาก ช่องคอ</th> <td><?php echo $row["eyes_ear_throat_nose_mouth"]; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>ช่องปาก ฟัน เหงือก</th> <td><?php echo $row["oral_teeth"]; ?></td>
+                                            <th>เสียงปอด รูปทรงทรวงอก</th> <td><?php echo $row["breath_sound"]; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>เสียงหัวใจ</th> <td><?php echo $row["heartbeat"]; ?></td>
+                                            <th>ช่องท้อง ตับ ม้าม</th> <td><?php echo $row["abdomen"]; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>แขนขา</th> <td><?php echo $row["arm_leg"]; ?></td>
+                                            <th>กระดูกสันหลัง หล้ามเนื้อ</th> <td><?php echo $row["back_bone"]; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <th>ผิวหนัง</th> <td><?php echo $row["skin"]; ?></td>
+                                        </tr>
+                                    </table>
                                     <hr>
                                     </br>
 

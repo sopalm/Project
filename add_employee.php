@@ -35,7 +35,7 @@
             	$dep_comp = $row[0];
             }
 	    	
-	    	$sqlCommand = "INSERT INTO `employee`(`emp_id`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_age`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user`) VALUES ('$_POST[emp_id]','$_POST[title]','$_POST[emp_name]','$_POST[emp_surname]','$date','$_POST[age]','$path_qr','$dep_comp','$_POST[emp_num]','$_SESSION[date]','$_SESSION[user_name]')";
+	    	$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_age`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user`) VALUES ('$_POST[emp_id]','$_POST[vn]','$_POST[title]','$_POST[emp_name]','$_POST[emp_surname]','$date','$_POST[age]','$path_qr','$dep_comp','$_POST[emp_num]','$_SESSION[date]','$_SESSION[user_name]')";
 			$result=mysqli_query($con,$sqlCommand)
 				or die("Failed db".mysqli_error());
 				

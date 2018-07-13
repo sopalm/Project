@@ -12,7 +12,17 @@
           $('#tablepage').dataTable( {
               searching: false
           } );
-
+          $(document).ready(function() {
+              $('#tablepage-doctor').DataTable();
+          } );
+          var tableexcel = $('#tablepage-doctor').dataTable( {
+              dom: 'lBrtip',
+                buttons: [
+                    'print',
+                    'excel'
+                ]
+              
+          } );
           $(document).ready(function() {
               $('#tablepage-page').DataTable();
           } );
@@ -31,6 +41,7 @@
               ordering: true,
               info:     false
           } );
+          
           $(document).ready(function() {
               // Setup - add a text input to each footer cell
               $('#example tfoot th').each( function () {
@@ -137,17 +148,6 @@
               } );
           } );
 
-          $(document).ready(function() {
-              $('#tablepage-doctor').DataTable();
-          } );
-          var tableexcel = $('#tablepage-doctor').dataTable( {
-              dom: 'lBrtip',
-                buttons: [
-                    'print',
-                    'excel'
-                ]
-              
-          } );
 
           $(document).ready(function() {
             $('.edit-sup').click(function(){
