@@ -19,4 +19,3 @@
 	echo "window.location='edit_company.php';";
 	echo "</script>";
 ?>
-  
