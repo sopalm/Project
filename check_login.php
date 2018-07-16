@@ -1,13 +1,15 @@
 <?php
 	session_start();
 	include('connection.php');
-
-	$result=mysqli_query($con,"SELECT * from user where user_name='$_POST[username]' and user_pass = '$_POST[password]'")
+	$uname = mysqli_real_escape_string($con,$_POST['username']);
+	$upass = mysqli_real_escape_string($con,$_POST['password']);
+	
+	$result=mysqli_query($con,"SELECT * from user where user_name ='$uname' and user_pass = '$upass'")
 		or die("Failed db".mysqli_error());
 	$row=mysqli_fetch_array($result);
 
-	if($row['user_name']==$_POST['username'] && $row['user_pass']==$_POST['password'] 
-		&& $_POST['username']!='' &&$_POST['password']!='' )
+	if($row['user_name']==$uname && $row['user_pass']==$upass 
+		&& $uname!='' &&$upass!='' )
 	{
 		if ($row['user_status']=='admin') {
 			$_SESSION['user_name']=$row['user_name'];
@@ -16,7 +18,7 @@
 			// $_SESSION['alert']='loginSuccess';
 			echo "<script language=\"JavaScript\">";
 			echo "alert('you are ".$row['user_status']."');";
-			echo "window.location='home.php';";
+			echo "window.location='edit_check-service.php';";
 			echo "</script>";
 			// header("location: home.php");
 			$_SESSION['alert']='loginSuccess';
@@ -24,7 +26,7 @@
 			// echo "alert('you are ".$row['user_status']."');";
 			// echo "window.location='home.php';";
 			// echo "</script>";
-			header('Location: home.php');
+			header('Location: edit_check-service.php');
 			exit;
 		}
 		else{
@@ -33,7 +35,7 @@
 			$_SESSION['status']= '2';
 			echo "<script language=\"JavaScript\">";
 			echo "alert('you are ".$row['user_status']."');";
-			echo "window.location='home.php';";
+			echo "window.location='edit_check-service.php';";
 			echo "</script>";
 		}
 		

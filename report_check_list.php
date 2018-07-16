@@ -21,15 +21,18 @@
 
           <?php if (isset($_POST['submit_emp_list'])||isset($_GET['cs_no'])) { 
              if(isset($_POST['submit_emp_list']))
-             {$sqlcp = "SELECT cp.comp_name,cs.cs_date,cs.cs_total_people
+             {
+              $cs = mysqli_real_escape_string($con,$_POST['check_service']);
+               $sqlcp = "SELECT cp.comp_name,cs.cs_date,cs.cs_total_people
                                          FROM company as cp  LEFT JOIN company_address as ca ON ca.comp_id=cp.comp_id
                                                              LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 
-                                         WHERE cs.cs_no = $_POST[check_service]";
+                                         WHERE cs.cs_no = $cs";
                          $querycp=mysqli_query($con,$sqlcp);
                          $cp=mysqli_fetch_array($querycp);
               }
               else
-              {$sqlcp = "SELECT cp.comp_name,cs.cs_date,cs.cs_total_people
+              {
+                $sqlcp = "SELECT cp.comp_name,cs.cs_date,cs.cs_total_people
                                          FROM company as cp  LEFT JOIN company_address as ca ON ca.comp_id=cp.comp_id
                                                              LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 
                                          WHERE cs.cs_no = $_GET[cs_no]";
@@ -51,13 +54,13 @@
               $sqllist = "SELECT DISTINCT `checklist_name_tag` 
                           FROM `program_check_detail`as pcd JOIN program_check_u as pcu ON pcd.checklist_id = pcu.checklist_id
                                                             JOIN check_service_detail as csd ON csd.pro_id = pcu.pro_id
-                          WHERE csd.cs_no = '$_POST[check_service]'";
+                          WHERE csd.cs_no = '$cs'";
               $querylist=mysqli_query($con,$sqllist);
               $sqlemp ="SELECT emp.*,pc.pro_id,csd.cs_no 
                         FROM employee as emp JOIN check_list as cl ON emp.emp_id = cl.emp_id
                                               JOIN check_service_detail as csd ON cl.csd_no = csd.csd_no
                                               JOIN program_check as pc ON csd.pro_id = pc.pro_id
-                        WHERE csd.cs_no = '$_POST[check_service]'";
+                        WHERE csd.cs_no = '$cs'";
               $queryemp=mysqli_query($con,$sqlemp);
 
             }

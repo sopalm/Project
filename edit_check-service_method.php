@@ -1,13 +1,16 @@
 <?php
 	session_start();
 	include('connection.php');
-
+	$add = mysqli_real_escape_string($con,$_POST['add']);
+	$txtdate = mysqli_real_escape_string($con,$_POST['txtDate']);
+	$txtid = mysqli_real_escape_string($con,$_POST['txtID']);
+	
 	$sql = "UPDATE check_service SET 
-			ca_id = '".$_POST["add"]."' ,
-			cs_date = '".$_POST["txtDate"]."',
+			ca_id = '".$add."' ,
+			cs_date = '".$txtdate."',
 			date_modify ='$_SESSION[date]',
 			user ='$_SESSION[user_name]'
-			WHERE cs_no = '".$_POST["txtID"]."' ";
+			WHERE cs_no = '".$txtid."' ";
 
 	$query = mysqli_query($con,$sql);
 

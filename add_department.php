@@ -12,8 +12,11 @@
         }
     if($check==0)    
 	{
-		$sqlCommand = "INSERT INTO `department`(`dep_name`,`date_modify`, `user`) VALUES ('$_POST[dep_name]','$_SESSION[date]','$_SESSION[user_name]')";
-		echo $sqlCommand ;
+		
+		$dname = mysqli_real_escape_string($con,$_POST['dep_name']);
+
+		$sqlCommand = "INSERT INTO `department`(`dep_name`,`date_modify`, `user`) VALUES ('$dname','$_SESSION[date]','$_SESSION[user_name]')";
+		//echo $sqlCommand ;
 		$result=mysqli_query($con,$sqlCommand)
 			or die("Failed db".mysqli_error());
 	
@@ -23,13 +26,17 @@
 	        	$last_id = $row["dep_id"];
 	        }
 		
-		$sqlCommand2 = "INSERT INTO `dep_comp`(`dep_comp_no`,`comp_id`, `dep_id`,`date_modify`, `user`) VALUES (NULL,'$_POST[dep_comp]','$last_id','$_SESSION[date]','$_SESSION[user_name]')";
+		$dc = mysqli_real_escape_string($con,$_POST['dep_comp']);
+
+		$sqlCommand2 = "INSERT INTO `dep_comp`(`dep_comp_no`,`comp_id`, `dep_id`,`date_modify`, `user`) VALUES (NULL,'$dc','$last_id','$_SESSION[date]','$_SESSION[user_name]')";
 		$result2=mysqli_query($con,$sqlCommand2)
 			or die("Failed db".mysqli_error());
 	}
 	else
 	{
-		$sqlCommand3 = "INSERT INTO `dep_comp`(`dep_comp_no`,`comp_id`, `dep_id`,`date_modify`, `user`) VALUES (NULL,'$_POST[dep_comp]','$check','$_SESSION[date]','$_SESSION[user_name]')";
+		$dc = mysqli_real_escape_string($con,$_POST['dep_comp']);
+
+		$sqlCommand3 = "INSERT INTO `dep_comp`(`dep_comp_no`,`comp_id`, `dep_id`,`date_modify`, `user`) VALUES (NULL,'$dc','$check','$_SESSION[date]','$_SESSION[user_name]')";
 		$result3=mysqli_query($con,$sqlCommand3)
 			or die("Failed db".mysqli_error());
 	}

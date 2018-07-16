@@ -21,43 +21,7 @@
               <a style="color: black;text-decoration-line: none;" href="">/ รายชื่อบริษัทที่เข้ารับการตรวจ</a>
 
             </div>
-                <?php
-                    ini_set('display_errors', 1);
-                    error_reporting(~0);
 
-                    $strKeyID = null;
-
-                    if(isset($_POST["txtKeyid"]))
-                    {
-                        $strKeyID = $_POST["txtKeyid"];
-                    }
-                    $strKeyName = null;
-
-                    if(isset($_POST["txtKeyname"]))
-                    {
-                        $strKeyName = $_POST["txtKeyname"];
-                    }
-                    $strKeyAddress = null;
-
-                    if(isset($_POST["txtKeyaddress"]))
-                    {
-                        $strKeyAddress = $_POST["txtKeyaddress"];
-                    }
-                    /////////////////////////////
-                    $strKeyNamedep = null;
-
-                    if(isset($_POST["comp"]))
-                    {
-                        $strKeyNamedep = $_POST["comp"];
-                    }
-                    $strKeyDep = null;
-
-                    if(isset($_POST["dep"]))
-                    {
-                        $strKeyDep = $_POST["dep"];
-                    }
-
-                ?>
                 <div class="row">
                   <div class="column" name="1">
                   <h2 style="margin-top: 0px;">บริษัท</h2>

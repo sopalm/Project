@@ -1,13 +1,15 @@
 <?php
 	session_start();
 	include('connection.php');
+	$name = mysqli_real_escape_string($con,$_POST['pro_name_edit']);
+	$id = mysqli_real_escape_string($con,$_POST['pro_id_edit']);
 
 	if (isset($_POST['submit_pro'])) {
 		$sql = "UPDATE program_check SET 
-				pro_name = '".$_POST["pro_name_edit"]."',
+				pro_name = '".$name."',
 				date_modify ='$_SESSION[date]',
 				user ='$_SESSION[user_name]'
-				WHERE pro_id = '".$_POST["pro_id_edit"]."' ";
+				WHERE pro_id = '".$id."' ";
 
 		$query = mysqli_query($con,$sql);
 

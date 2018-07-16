@@ -88,7 +88,7 @@
                         { ?>
                           <td align="center"><?php echo DateThaietc($row["date_modify"]);?></td>
                           <td align="center"><?php echo $row["user"];?></td>
-                          <td align="center"><a href="edit_employee_update.php?emp_id=<?php echo $row["emp_id"];?>">แก้ไข</a></td>
+                          <td align="center"><a href="edit_employee_update.php?emp_id=<?php echo $row["emp_id"];?>&id=<?php echo $get;?>">แก้ไข</a></td>
                         <?php 
                         } 
                         ?>

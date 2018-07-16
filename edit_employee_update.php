@@ -11,8 +11,9 @@
         <!-- Content Header (Page header) -->
          <!-- Main content -->
             <div class="body">
-
-            <div class="box-header"><a class="path" href="edit_employee.php">/ พนักงาน</a><a style="color: black;text-decoration-line: none;" href=""> / แก้ไข</a>
+            <div class="box-header">
+            <a class="path"  href="edit_company.php">/ รายชื่อบริษัทที่เข้ารับการตรวจ</a><a class="path" href="edit_company_data.php?id=<?php echo $_GET["id"];?>">/ ข้อมูลของบริษัท</a><a style="color: black;text-decoration-line: none;" href=""> / แก้ไข</a>
+            </div>
                 <h2>แก้ไข พนักงาน</h2>
             </div>
                 <?php
@@ -35,8 +36,12 @@
 
                 <table width="284" border="0">
                     <tr>
-                        <th width="120">รหัสบัตรประชาชน</th>
+                        <th width="120">หมายเลข H.N</th>
                         <td width="238"><input type="hidden" name="txtID" value="<?php echo $result["emp_id"];?>"><?php echo $result["emp_id"];?></td>
+                    </tr>
+                    <tr>
+                        <th width="120">หมายเลข V.N</th>
+                        <td width="238"><input type="hidden" name="txtVN" value="<?php echo $result["VN"];?>"><?php echo $result["VN"];?></td>
                     </tr>
                     <tr>
                         <th width="120">คำนำหน้า</th>

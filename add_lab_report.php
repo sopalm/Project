@@ -3,7 +3,8 @@
 	include('connection.php');
 
 //excel---------------------------------------------------------------------
-	$check = 1;$cs_date=$_POST["check_no"];
+
+	$check = 1;$cs_date=mysqli_real_escape_string($con,$_POST['check_no']);
 	if (isset($_POST["submit_total_excel"])) {
 		for ($i=0; $i < $_POST['nub2'] ; $i++) {
 			if (check_id($_POST["b$i"]) == 0){
@@ -122,27 +123,29 @@
 				$q = 0;
 			}
 			//ตัวเลข
-			$r = $_POST["r$i"];
-			$s = $_POST["s$i"];
-			$t = $_POST["t$i"];
-			$u = $_POST["u$i"];
-			$v = $_POST["v$i"];
-			$w = $_POST["w$i"];
-			$x = $_POST["x$i"];
-			$y = $_POST["y$i"];
-			$z = $_POST["z$i"];
-			$aa = $_POST["aa$i"];
 			
-			$ab = $_POST["ab$i"];
-			$ac = $_POST["ac$i"];
-			$ad = $_POST["ad$i"];
-			$ae = $_POST["ae$i"];
-			$af = $_POST["af$i"];
-			$ag = $_POST["ag$i"];
-			$ah = $_POST["ah$i"];
-			$ai = $_POST["ai$i"];
-			$aj = $_POST["aj$i"];
-			$ak = $_POST["ak$i"];
+
+			$r = mysqli_real_escape_string($con,$_POST['r$i']);
+			$s = mysqli_real_escape_string($con,$_POST['s$i']);
+			$t = mysqli_real_escape_string($con,$_POST['t$i']);
+			$u = mysqli_real_escape_string($con,$_POST['u$i']);
+			$v = mysqli_real_escape_string($con,$_POST['v$i']);
+			$w = mysqli_real_escape_string($con,$_POST['w$i']);
+			$x = mysqli_real_escape_string($con,$_POST['x$i']);
+			$y = mysqli_real_escape_string($con,$_POST['y$i']);
+			$z = mysqli_real_escape_string($con,$_POST['z$i']);
+			$aa = mysqli_real_escape_string($con,$_POST['aa$i']);
+			
+			$ab = mysqli_real_escape_string($con,$_POST['ab$i']);
+			$ac = mysqli_real_escape_string($con,$_POST['ac$i']);
+			$ad = mysqli_real_escape_string($con,$_POST['ad$i']);
+			$ae = mysqli_real_escape_string($con,$_POST['ae$i']);
+			$af = mysqli_real_escape_string($con,$_POST['af$i']);
+			$ag = mysqli_real_escape_string($con,$_POST['ag$i']);
+			$ah = mysqli_real_escape_string($con,$_POST['ah$i']);
+			$ai = mysqli_real_escape_string($con,$_POST['ai$i']);
+			$aj = mysqli_real_escape_string($con,$_POST['aj$i']);
+			$ak = mysqli_real_escape_string($con,$_POST['ak$i']);
 
 			
 			//echo $cs_date;echo "555555</br>";

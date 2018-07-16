@@ -1,12 +1,14 @@
 <?php
 	session_start();
 	include('connection.php');
+	$cname = mysqli_real_escape_string($con,$_POST['txtName']);
+	$cid = mysqli_real_escape_string($con,$_POST['txtID']);
 
 	$sql = "UPDATE company SET 
-			comp_name = '".$_POST["txtName"]."' ,
+			comp_name = '".$cname."' ,
 			date_modify ='$_SESSION[date]',
 			user ='$_SESSION[user_name]'
-			WHERE comp_id = '".$_POST["txtID"]."' ";
+			WHERE comp_id = '".$cid."' ";
 
 	$query = mysqli_query($con,$sql);
 

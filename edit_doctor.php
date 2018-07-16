@@ -16,43 +16,13 @@
             <div class="box-header"><a style="color: black;text-decoration-line: none;" href="">/ รายชื่อแพทย์</a>
                 <h2>รายชื่อแพทย์ที่ทำหน้าที่ตรวจสุขภาพนอกสถานที่</h2>
             </div>
-                <?php
-                    ini_set('display_errors', 1);
-                    error_reporting(~0);
-
-                    $strKeyTitle = null;
-                    if(isset($_POST["txtKeytitle"]))
-                    {
-                        $strKeyTitle = $_POST["txtKeytitle"];
-                    }
-                    
-                    $strKeyName = null;
-                    if(isset($_POST["txtKeyname"]))
-                    {
-                        $strKeyName = $_POST["txtKeyname"];
-                    }
-                    
-                    $strKeySurname = null;
-                    if(isset($_POST["txtKeysurname"]))
-                    {
-                        $strKeySurname = $_POST["txtKeysurname"];
-                    }
-
-                    $strKeyLicen = null;
-                    if(isset($_POST["txtKeysurname"]))
-                    {
-                        $strKeyLicen = $_POST["txtKeylicen"];
-                    }
-                ?>
                         <button  style="height: 30px;" type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">เพิ่มแพทย์ที่ออกตรวจสุขภาพ</button><br>
 
                 <?php
                 include_once('connection.php');
                 include('function.php');
                 $query = "SELECT * 
-                          FROM doctor 
-                          WHERE doc_title LIKE '%".$strKeyTitle."%' AND doc_name LIKE '%".$strKeyName."%' AND doc_surname LIKE '%".$strKeySurname."%' 
-                          AND doc_license LIKE '%".$strKeyLicen."%' ";
+                          FROM doctor  ";
 
                 $result = mysqli_query($con,$query); 
                 ?>

@@ -1,13 +1,16 @@
 <?php
 	session_start();
 	include('connection.php');
+	$cid = mysqli_real_escape_string($con,$_POST['txtcomp_id']);
+	$did = mysqli_real_escape_string($con,$_POST['txtdep_id']);
+	$dcid = mysqli_real_escape_string($con,$_POST['txtID']);
 
 	$sql = "UPDATE dep_comp SET 
-			comp_id = '".$_POST["txtcomp_id"]."' ,
-			dep_id = '".$_POST["txtdep_id"]."',
+			comp_id = '".$cid."' ,
+			dep_id = '".$did."',
 			date_modify ='$_SESSION[date]',
 			user ='$_SESSION[user_name]'
-			WHERE dep_comp_no = '".$_POST["txtID"]."' ";
+			WHERE dep_comp_no = '".$dcid."' ";
 
 	$query = mysqli_query($con,$sql);
 

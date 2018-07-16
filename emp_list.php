@@ -22,10 +22,12 @@
             include('function.php');
             if (isset($_POST['submit_emp_list'])||isset($_GET['cs_no'])) { 
                     if (isset($_POST['submit_emp_list'])){
+                      $cs = mysqli_real_escape_string($con,$_POST['check_service']);
+                      
                       $sqlcp = "SELECT c.comp_name,cs.cs_date
                             FROM company as c  LEFT JOIN company_address as ca ON c.comp_id=ca.comp_id 
                                                 LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 
-                            WHERE cs.cs_no = $_POST[check_service]";
+                            WHERE cs.cs_no = $cs";
                       $querycp=mysqli_query($con,$sqlcp);
                       $cp=mysqli_fetch_array($querycp);
                     }
@@ -72,7 +74,7 @@
             {
               $c = 0;
               $p = 0;
-              $sqlCommand = "SELECT * FROM `employee` LEFT JOIN check_list ON check_list.emp_id = employee.emp_id LEFT JOIN check_service_detail ON check_list.csd_no = check_service_detail.csd_no LEFT JOIN program_check ON check_service_detail.pro_id = program_check.pro_id WHERE check_service_detail.cs_no = '$_POST[check_service]' ORDER BY employee.emp_no ";
+              $sqlCommand = "SELECT * FROM `employee` LEFT JOIN check_list ON check_list.emp_id = employee.emp_id LEFT JOIN check_service_detail ON check_list.csd_no = check_service_detail.csd_no LEFT JOIN program_check ON check_service_detail.pro_id = program_check.pro_id WHERE check_service_detail.cs_no = '$cs' ORDER BY employee.emp_no ";
             }
             if (isset($_GET['cs_no']))
             {

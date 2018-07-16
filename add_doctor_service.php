@@ -8,8 +8,10 @@
 		// Loop to store and display values of individual checked checkbox.
 			foreach($_POST['check_list'] as $selected) {
 				//echo "<p>".$selected ."</p>";
+			$csno = mysqli_real_escape_string($con,$_POST['cs_no']);
+
 			$sqlCommand = "INSERT INTO `doctor_check_service`(`cs_no`, `doc_id`,`date_modify`, `user`) 
-							VALUES ('$_POST[cs_no]','$selected','$_SESSION[date]','$_SESSION[user_name]')";
+							VALUES ('$csno','$selected','$_SESSION[date]','$_SESSION[user_name]')";
 				$result=mysqli_query($con,$sqlCommand);
 				if (!$result)
 	                  {
@@ -19,12 +21,15 @@
 		}
 		echo "<script language=\"JavaScript\">";
 		echo "alert('success');";
-		echo "window.location='check-service_list.php?cs_no=$_POST[cs_no]'";
+		echo "window.location='check-service_list.php?cs_no=$csno'";
 		echo "</script>";
 	}
 	
 	if(isset($_POST["delete"])){
-		$sqldelete= " DELETE FROM doctor_check_service WHERE cs_no = '$_POST[cs_no]' AND doc_id = '$_POST[delete]' ";
+		$csno = mysqli_real_escape_string($con,$_POST['cs_no']);
+		$del = mysqli_real_escape_string($con,$_POST['delete']);
+
+		$sqldelete= " DELETE FROM doctor_check_service WHERE cs_no = '$csno' AND doc_id = '$del' ";
 		$delete=mysqli_query($con,$sqldelete);
 		if (!$delete)
 	    {
@@ -32,7 +37,7 @@
 	    }
 		echo "<script language=\"JavaScript\">";
 		echo "alert('Delete success');";
-		echo "window.location='check-service_list.php?cs_no=$_POST[cs_no]'";
+		echo "window.location='check-service_list.php?cs_no=$csno'";
 		echo "</script>";
 	}
 

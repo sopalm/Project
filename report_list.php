@@ -20,11 +20,12 @@
           <?php if (isset($_POST['submit_emp_list'])||isset($_GET['cs_no'])) { 
              if (isset($_POST['submit_emp_list']))
              {
+                $cs = mysqli_real_escape_string($con,$_POST['check_service']);
                 $sqlcp = "SELECT comp_name,cs.cs_date
                           FROM company as cp 
                           LEFT JOIN company_address as ca ON ca.comp_id=cp.comp_id
                           LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 
-                          WHERE cs.cs_no = $_POST[check_service]";
+                          WHERE cs.cs_no = $cs";
                 $querycp=mysqli_query($con,$sqlcp);
                 $cp=mysqli_fetch_array($querycp);
               }
@@ -85,11 +86,11 @@
                                                     LEFT JOIN company_address as ca ON cs.ca_id=ca.ca_id
                                                     LEFT JOIN company as cp ON ca.comp_id=cp.comp_id
                                                     LEFT JOIN employee as emp ON emp.emp_id=rt.emp_id
-                            WHERE cs.cs_no = $_POST[check_service] ORDER BY emp.emp_no ASC "; 
+                            WHERE cs.cs_no = $cs ORDER BY emp.emp_no ASC "; 
                         $sqlpro = "SELECT pc.pro_id,pc.pro_name 
                                         FROM check_service as cs LEFT JOIN check_service_detail as csd ON cs.cs_no=csd.cs_no 
                                                                   LEFT JOIN program_check as pc ON csd.pro_id=pc.pro_id
-                                        WHERE cs.cs_no = $_POST[check_service]";
+                                        WHERE cs.cs_no = $cs";
                         $querypro=mysqli_query($con,$sqlpro);
             }
             if (isset($_GET['cs_no']))
