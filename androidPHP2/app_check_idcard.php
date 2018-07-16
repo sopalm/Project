@@ -1,6 +1,5 @@
 <?php
-	// include("connection.php");
-    $con = mysqli_connect("localhost","root","","pro_test") or die("Error: " . mysqli_error($con));
+	include('../connection.php');
     if ($con->connect_error) {
         die("Connection failed: " . $con->connect_error);
     }
