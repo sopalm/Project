@@ -19,6 +19,13 @@
 			echo "window.location='home.php';";
 			echo "</script>";
 			// header("location: home.php");
+			$_SESSION['alert']='loginSuccess';
+			// echo "<script language=\"JavaScript\">";
+			// echo "alert('you are ".$row['user_status']."');";
+			// echo "window.location='home.php';";
+			// echo "</script>";
+			header('Location: home.php');
+			exit;
 		}
 		else{
 			$_SESSION['user_name']=$row['user_name'];
