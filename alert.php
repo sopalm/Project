@@ -1,9 +1,9 @@
 <?php
 
-    if($_SESSION['alert']=='loginSuccess'){
-        echo "<script language=\"JavaScript\">";
-        echo "sweetAlert('123');";
-        echo "</script>"; 
-    }
+    if($_SESSION['alert']=='loginSuccess'){ ?>
+        <script language=\"JavaScript\">
+        window.prompt('123','test');
+        </script> 
+    <?php }
     
 ?>

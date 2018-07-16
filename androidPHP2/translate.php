@@ -11,7 +11,7 @@ function translateData(string $wordEng){
 }
 
 function translatePersonal(string $wordEng){
-	$thai = array("โรคประจำตัว", "ยาที่ใช้ประจำ", "ประวัติการแพ้ยา/สารอื่นๆ", "ยาสมุนไพรฝยาลูกกลอน", "การผ่าตัด", "การดื่มสุรา", "การสูบบุหรี่");
+	$thai = array("โรคประจำตัว", "ยาที่ใช้ประจำ", "ประวัติการแพ้ยา", "ยาสมุนไพร/ยาลูกกลอน", "การผ่าตัด", "การดื่มสุรา", "การสูบบุหรี่");
 	$eng = array("underlying_disease", "medicines", "medicines_history", "herbal_bolus", "operate", "alcohol", "smoke");
 	for ($i=0; $i < count($eng); $i++) { 
 		if ($wordEng == $eng[$i]) {
