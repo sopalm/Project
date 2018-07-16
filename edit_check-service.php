@@ -228,8 +228,6 @@
                             <br/>
                             <input required="" type="Date" min="<?php echo date("Y-m-d"); ?>" id="cs_date" name="cs_date">
                             <br/>
-                             
-                            <label >ชื่อบริษัท</label >
                             <br/>
                             <label >บริษัท</label>
                             <select  id="comp" name="comp" >

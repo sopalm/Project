@@ -37,8 +37,16 @@
                     </tr>
 
                     <tr>
-                        <th width="200">ชื่อรายการตรวจ</th>
-                        <td ><input required="" type="text" name="cl_name_edit" value="<?php echo $result["checklist_name"];?>"></td>
+                        <th width="200">ชื่อรายการตรวจภาษาไทย</th>
+                        <td ><input required="" style="width: 200px;" type="text" name="cl_name_th" value="<?php echo $result["checklist_name_th"];?>"></td>
+                    </tr>
+                    <tr>
+                        <th width="200">ชื่อรายการตรวจภาษาอังกฤษ</th>
+                        <td ><input required="" type="text" name="cl_name_en" value="<?php echo $result["checklist_name_en"];?>"></td>
+                    </tr>
+                    <tr>
+                        <th width="200">ชื่อย่อ</th>
+                        <td ><input required="" type="text" name="cl_name_tag" value="<?php echo $result["checklist_name_tag"];?>"></td>
                     </tr>
                    
                     <th>

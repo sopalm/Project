@@ -28,7 +28,7 @@
         ?>
             <div class="box-header">
                 <a class="path" href="edit_check-service.php">/ กำหนดการออกตรวจ</a><a class="path" href="check-service_list.php?cs_no=<?php echo $_GET['cs_no']; ?>">/ ข้อมูลการออกตรวจ</a><a style="color: black;text-decoration-line: none;" href=""> / เพิ่มผลการตรวจจากห้องปฏิบัติการ</a>
-                <h2>ลงทะเบียน ผลการตรวจสุขภาพจากห้องปฏิบัติการของบริษัท <?php echo $company[0];?> วันที่ <?php echo DateThaiShow($company[1]);?> </h2>
+                <h2>ลงทะเบียน ผลการตรวจสุขภาพจากห้องปฏิบัติการของบริษัท <?php echo $company[0];?> <br>วันที่ <?php echo DateThaiShow($company[1]);?> </h2>
 
             </div>
             
@@ -43,7 +43,6 @@
 
             <?php include('regis_lab_excel.php'); ?>
 
-            <a class="btn btn-danger" href="edit_report_total.php" >ยกเลิก</a> 
         </div>
      </div>
     </div>

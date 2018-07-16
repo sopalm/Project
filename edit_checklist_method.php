@@ -4,7 +4,9 @@
 
 	if (isset($_POST['submit_cl'])) {
 		$sql = "UPDATE program_check_detail SET 
-				checklist_name = '".$_POST["cl_name_edit"]."',
+				checklist_name_th = '$_POST[cl_name_th]',
+				checklist_name_en = '$_POST[cl_name_en]',
+				checklist_name_tag = '$_POST[cl_name_tag]',
 				date_modify ='$_SESSION[date]',
 				user ='$_SESSION[user_name]'
 				WHERE checklist_id = '".$_POST["pcl_id_edit"]."' ";

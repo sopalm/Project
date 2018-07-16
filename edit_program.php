@@ -101,10 +101,10 @@
 
 
                 ?>
-                <table id="tablepage-span" class="display" width="100%">
+                <table id="tablepage-span" class="display nowrap" width="100%">
                   <thead>
                     <tr >
-                      <th > <div align="center">หมายเลขรายการตรวจ</div></th>
+                      <th > <div align="center">หมายเลขรายการ</div></th>
                       <th > <div align="center">ชื่อรายการตรวจ</div></th>
                       <?php
                         if ($_SESSION["status"]== '1')

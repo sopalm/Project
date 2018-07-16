@@ -18,6 +18,7 @@
 			echo "alert('you are ".$row['user_status']."');";
 			echo "window.location='home.php';";
 			echo "</script>";
+			// header("location: home.php");
 		}
 		else{
 			$_SESSION['user_name']=$row['user_name'];

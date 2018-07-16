@@ -22,22 +22,7 @@
             include('function.php');   
                 if(isset($_GET['cs_no'])){
                   $get=$_GET['cs_no'];
-                  //////////////////////////////
-                  /*$sqldel="DELETE FROM check_service_tag WHERE cs_no=$get";
-                  $del=mysqli_query($con,$sqldel);
-                  
-                  $sqlputtag="SELECT DISTINCT `checklist_name_tag` 
-                              FROM `program_check_detail`as pcd JOIN program_check_u as pcu ON pcd.checklist_id = pcu.checklist_id
-                                                      JOIN check_service_detail as csd ON csd.pro_id = pcu.pro_id
-                              WHERE csd.cs_no = $get";
-                  $puttag=mysqli_query($con,$sqlputtag);
-                  while ($row=mysqli_fetch_array($puttag)) {
-                    $sqlputdata ="INSERT INTO `check_service_tag`(`cst_id`,`cs_no`, `tag`,`date_modify`, `user`) 
-                                  VALUES (NULL,'$get','$row[0]','$_SESSION[date]','$_SESSION[user_name]') ";
-                    //echo $get;
-                    $putdata=mysqli_query($con,$sqlputdata);
-                  }*/
-                  //////////////////////////////
+
                   $sqlcp = "SELECT c.comp_name,cs.cs_date
                             FROM company as c  LEFT JOIN company_address as ca ON c.comp_id=ca.comp_id 
                                                 LEFT JOIN check_service as cs ON cs.ca_id=ca.ca_id 

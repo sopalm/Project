@@ -13,7 +13,11 @@
         <!-- Content Header (Page header) -->
          <!-- Main content -->
         HOME NAJA
-
+        <?php if(isset($_SESSION['user_name'])){ ?>
+        <div class="container" style="padding-top: 20%">
+          <div class="alert alert-success"  >Hello </div>
+        </div>
+        <?php  } ?>
 
       </div>
 

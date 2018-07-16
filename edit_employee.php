@@ -18,61 +18,14 @@
             <div class="box-header"><a style="color: black;text-decoration-line: none;" href="">/ รายชื่อพนักงานในระบบ</a>
                 <h2>รายชื่อพนักงานในระบบ</h2>
             </div>
-                <!-- กำหนดตัวแปลใช้ในการค้นหา -->
-                <?php
-                    ini_set('display_errors', 1);
-                    error_reporting(~0);
 
-                    $strKeyID = null;
-                    if(isset($_POST["txtKeyid"]))
-                    {
-                        $strKeyID = $_POST["txtKeyid"];
-                    }
-
-                    $strKeyName = null;
-                    if(isset($_POST["txtKeyname"]))
-                    {
-                        $strKeyName = $_POST["txtKeyname"];
-                    }
-
-                    $strKeySurname = null;
-                    if(isset($_POST["txtKeysurname"]))
-                    {
-                        $strKeySurname = $_POST["txtKeysurname"];
-                    }
-
-                    $strKeyTitle = null;
-                    if(isset($_POST["txtKeytitle"]))
-                    {
-                        $strKeyTitle = $_POST["txtKeytitle"];
-                    }
-
-                    $strKeyBD = null;
-                    if(isset($_POST["txtKeybd"]))
-                    {
-                        $strKeyBD = $_POST["txtKeybd"];
-                    }
-
-                    $strKeyAge = null;
-                    if(isset($_POST["txtKeyage"]))
-                    {
-                        $strKeyAge = $_POST["txtKeyage"];
-                    }
-                    $strKeyCom = null;
-                    if(isset($_POST["txtKeycom"]))
-                    {
-                        $strKeyCom = $_POST["txtKeycom"];
-                    }
-                ?>
-                          <a href="regis_emp.php" style="height: 30px;" class="btn btn-primary"  >เพิ่มพนักที่เข้ารับการตรวจสุขภาพ</a><br>
+                          <a href="regis_emp.php" style="height: 30px;" class="btn btn-primary"  >เพิ่มพนักงานที่เข้ารับการตรวจสุขภาพ</a><br>
                 <?php
                 include('connection.php');
                 include('function.php');
                 $query = "SELECT emp.*,dc.* ,c.*
                           FROM employee as emp LEFT JOIN dep_comp as dc ON emp.dep_comp_no=dc.dep_comp_no
-                                                LEFT JOIN company as c ON dc.comp_id=c.comp_id
-                          WHERE emp_id LIKE '%".$strKeyID."%' AND emp_name LIKE '%".$strKeyName."%' 
-                          AND  emp_surname LIKE '%".$strKeySurname."%' AND  emp_title LIKE '%".$strKeyTitle."' AND   emp_bd LIKE '%".$strKeyBD."%' AND emp_age LIKE '%".$strKeyAge."%' AND  dc.comp_id LIKE '%".$strKeyCom."%'  ";
+                                                LEFT JOIN company as c ON dc.comp_id=c.comp_id ";
 
                 $result = mysqli_query($con,$query); 
                 ?>

@@ -5,7 +5,7 @@
 <body class="skin-blue">
 <?php include("header.php"); ?>
       
-<?php include("slide_menu.php"); 
+<?php include("slide_menu_admin.php"); 
     
 ?>
     

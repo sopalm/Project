@@ -184,7 +184,7 @@
                               <form method='POST' action="edit_address.php">
                                     <input hidden type="text" id="supID" name="supID" style="width: 30px;border: none;">
                                     <input hidden type="text" id="tag" name="tag" style="width: 30px;border: none;">
-                                    <textarea id="supName" name="supName" required></textarea>
+                                    <textarea type="text" id="supName" name="supName" required></textarea>
 
                             </div>
                             <div class="modal-footer">

@@ -33,6 +33,9 @@
                                   WHERE c.comp_id = '$company[3]' ";
                    $resultdep=mysqli_query($con,$sqldep);
 
+                   $sqltitle="SELECT DISTINCT emp_title FROM employee ";
+                   $title=mysqli_query($con,$sqltitle);
+
                    }
                    else{
                     echo "<script language=\"JavaScript\">";
@@ -67,16 +70,18 @@
                                 </br></br>
                                 <label >คำนำหน้า</label>
                                 <select name="title">
-                                  <option value="นาย">นาย</option>
-                                  <option value="นางสาว">นางสาว</option>
-                                  <option value="นาง">นาง</option>
+                                <?php 
+                                    while ($row=mysqli_fetch_array($title)) {
+                                        echo "<option value='".$row[0]."'>".$row[0]."</option>";
+                                    }
+                                ?>
                                 </select>
 
                                 <label >ชื่อ</label>
-                                <input type="text" id="emp_name" name="emp_name" required>
+                                <input type="text" id="emp_name" name="emp_name" style="width: 100px;" required>
 
                                 <label >นามสกุล</label>
-                                <input type="text" id="emp_surname" name="emp_surname" required>
+                                <input type="text" id="emp_surname" name="emp_surname" style="width: 100px;" required>
                                 <br/>
                                 <br/>
                                 <label >วันเกิด</label>
@@ -113,7 +118,7 @@
 
                         </div>
                         <div class="modal-footer">
-                                <input type="submit" name="submit_emp" value="ยืนยัน">
+                                <center><input type="submit" name="submit_emp" value="ยืนยัน"></center>
                             </form>
                         </div>
                       </div>

@@ -65,7 +65,7 @@
 
                     <!-- Trigger the modal with a button -->
                     <button  style="height: 30px;" type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">เพิ่ม</button>
-
+                    <br><br>
                     <?php
                     include('function.php');
                     $query = "SELECT * 
@@ -188,7 +188,8 @@
                   <?php if(isset($_POST["dep_s"])){ ?>
                   <h2 style="margin-top: 0px;">แผนก</h2>
                     <!-- Trigger the modal with a button -->
-                    <button style="height: 30px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">เพิ่ม</button>      
+                    <button style="height: 30px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">เพิ่ม</button>  
+                    <br><br>    
                     <?php
                     $query1 =  "SELECT d.*, c.*,dc.*
                                 FROM department AS d
@@ -283,7 +284,7 @@
                             <div class="modal-body">
                               <form method='POST' action="add_department.php">
                                         
-                                    <table id="tablepage-doctor" class="display" >
+                                    <table id="tablepage-span" class="display" >
                                       <thead>
                                         <tr align="center">
                                           <th><div>เลือก</div></th>

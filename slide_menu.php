@@ -20,14 +20,6 @@
                 <li class="active"><a href="edit_program.php"><i class="fa fa-circle-o"></i> โปรแกรมการตรวจ</a></li>
               </ul>
             </li>
-            <li class="active treeview">
-              <a href="#">
-                <i class=""></i> <span>ผลการตรวจ</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="report_list.php"><i class="fa fa-circle-o"></i> ผลการตรวจภาพรวม</a></li>
-              </ul>
-            </li>
             <?php 
               if ($_SESSION["status"]== '1')
               { ?>

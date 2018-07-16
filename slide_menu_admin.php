@@ -16,7 +16,7 @@
                 <li class="active"><a href="edit_company.php"><i class="fa fa-circle-o"></i> บริษัท</a></li>
                 <li class="active"><a href="edit_check-service.php"><i class="fa fa-circle-o"></i> กำหนดการออกตรวจ</a></li>
                 <li class="active"><a href="edit_employee.php"><i class="fa fa-circle-o"></i> พนักงาน</a></li>
-                <li class="active"><a href="edit_employee.php"><i class="fa fa-circle-o"></i> แพทย์</a></li>
+                <li class="active"><a href="edit_doctor.php"><i class="fa fa-circle-o"></i> แพทย์</a></li>
                 <li class="active"><a href="edit_program.php"><i class="fa fa-circle-o"></i> โปรแกรมการตรวจ</a></li>
               </ul>
             </li>

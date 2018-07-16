@@ -126,7 +126,7 @@
                                 <td ><?php echo $row["doc_surname"];?></td>
                                 <form method="POST" action="add_doctor_service.php">
                                   <input type="hidden" required name="cs_no" value="<?php echo $get; ?>">
-                                  <td><button class="btn btn-danger" type="submit" name="delete" value="<?php echo $row["doc_id"];?>" 
+                                  <td align="center"><button class="btn btn-danger" type="submit" name="delete" value="<?php echo $row["doc_id"];?>" 
                                   onclick="return confirm('ต้องการลบ<?php echo $row["doc_title"];?> <?php echo $row["doc_name"];?> <?php echo $row["doc_surname"];?> ออกจากการตรวจ?')">ลบ</button></td>
                                 </form>
                               </tr>

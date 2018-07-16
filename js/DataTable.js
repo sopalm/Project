@@ -10,7 +10,7 @@
               $('#tablepage').DataTable();
           } );
           $('#tablepage').dataTable( {
-              searching: false
+              searching: true
           } );
           $(document).ready(function() {
               $('#tablepage-doctor').DataTable();

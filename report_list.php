@@ -13,28 +13,9 @@
         <!-- Content Header (Page header) -->
         <div class="body">
          <!-- Main content -->  
-         <div class="box-header"><a style="color: black;text-decoration-line: none;" href="">/ ผลการตรวจแบบภาพรวมของแต่ละบริษํท </a>
+         <div class="box-header"><a class="path" href="edit_check-service.php">/ กำหนดการออกตรวจ</a><a class="path" href="check-service_list.php?cs_no=<?php echo $_GET['cs_no']; ?>">/ ข้อมูลการออกตรวจ</a><a style="color: black;text-decoration-line: none;" href=""> / ผลการตรวจภาพรวมของบริษัท</a>
             </div>
-         <div >
-          <form method='POST' action="" >
-            <label >เลือก กำหนดาการออกตรวจสุขภาพ</label>
-           <select name='check_service' required>
-                <option value="">--- เลือก ---</option>
-                <?php
-                    $sqlCommand = "SELECT cs.cs_no,cs.cs_date,c.comp_name
-                    FROM check_service as cs LEFT JOIN company_address as ca ON cs.ca_id = ca.ca_id
-                                        LEFT JOIN company as c ON ca.comp_id = c.comp_id";
-                    $result=mysqli_query($con,$sqlCommand);
-                    while ($row3=mysqli_fetch_array($result)) {
-                        echo "<option value='".$row3[0]."'>".$row3[1]." ".$row3[2]."</option>";
-                    }
-                    
-                ?>
-            </select>
-            <input style="height: 30px; width: 50px;padding: 3px;" class="btn btn-primary" type="submit" name="submit_emp_list" value="submit">
-             <input name="Search" class="btn btn-secondary" type="submit" name="clear" value="clear">
-          </form>
-          </div>
+
 
           <?php if (isset($_POST['submit_emp_list'])||isset($_GET['cs_no'])) { 
              if (isset($_POST['submit_emp_list']))
