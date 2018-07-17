@@ -6,8 +6,8 @@
 	$surname = mysqli_real_escape_string($con,$_POST['txtSurname']);
 	$licen = mysqli_real_escape_string($con,$_POST['txtLicen']);
 	$id = mysqli_real_escape_string($con,$_POST['txtID']);
-
-	$sql = "UPDATE doctor SET 
+	if(isset($_POST['txtID']))
+	{$sql = "UPDATE doctor SET 
 			doc_title = '".$title."' ,
 			doc_name = '".$name."' ,
 			doc_surname = '".$surname."',
@@ -16,7 +16,7 @@
 			user ='$_SESSION[user_name]'
 			WHERE doc_id = '".$id."' ";
 
-	$query = mysqli_query($con,$sql);
+	$query = mysqli_query($con,$sql);}
 
 	echo "<script language=\"JavaScript\">";
 	//echo "alert('Upload Success');";

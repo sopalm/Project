@@ -52,7 +52,7 @@
     }
 
     echo "<script language=\"JavaScript\">";
-	echo "window.location='user_check_point.php?cs_no=$get'";
+	//echo "window.location='user_check_point.php?cs_no=$get'";
 	echo "</script>";
 	header("Location: user_check_point.php?cs_no=$get");
 ?>

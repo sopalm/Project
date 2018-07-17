@@ -8,8 +8,8 @@
 	$age = mysqli_real_escape_string($con,$_POST['txtAge']);
 	$VN = mysqli_real_escape_string($con,$_POST['txtVN']);
 	$id = mysqli_real_escape_string($con,$_POST['txtID']);
-
-	$sql = "UPDATE employee SET 
+	if(isset($_POST['txtID']))
+	{$sql = "UPDATE employee SET 
 			VN = '".$VN."' ,
 			emp_title = '".$title."' ,
 			emp_name = '".$name."',
@@ -20,7 +20,7 @@
 			user ='$_SESSION[user_name]' 
 			WHERE emp_id = '".$id."' ";
 
-	$query = mysqli_query($con,$sql);
+	$query = mysqli_query($con,$sql);}
 
 	echo "<script language=\"JavaScript\">";
 	//echo "alert('Upload Success');";
