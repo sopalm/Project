@@ -10,11 +10,12 @@
 			if (check_id($_POST["b$i"]) == 0){
 				$check = 0;
 				$warring = $i+1;
-				echo $warring;
+				//echo $warring;
 				echo "<script language=\"JavaScript\">";
-				echo "alert('พนักงานลำดับที่ '+$warring+' ไม่มีข้อมุลอยู่ในระบบ');";
-				echo "window.location='regis_lab.php?cs_no=$cs_date';";
+				//echo "alert('พนักงานลำดับที่ '+$warring+' ไม่มีข้อมุลอยู่ในระบบ');";
+				//echo "window.location='regis_lab.php?cs_no=$cs_date';";
 				echo "</script>";
+				header("Location: regis_lab.php?cs_no=".$cs_date."");
 				break;
 			}
 		}
@@ -162,9 +163,10 @@
 		    	$result=mysqli_query($con,$sqlCommand)
 					or die("Failed db".mysqli_error());
 				echo "<script language=\"JavaScript\">";
-				echo "alert('success');";
-				echo "window.location='check-service_list.php?cs_no=$cs_date';";
+				//echo "alert('success');";
+				//echo "window.location='check-service_list.php?cs_no=$cs_date';";
 				echo "</script>";	
+				header("Location: check-service_list.php?cs_no=".$cs_date."");
 				
 			
 		}

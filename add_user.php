@@ -13,12 +13,14 @@
 			or die("Failed db".mysqli_error());
 
 		echo "<script language=\"JavaScript\">";
-		echo "alert('success');";
-		echo "window.location='edit_user.php';";
+		//echo "alert('success');";
+		//echo "window.location='edit_user.php';";
 		echo "</script>";
+		header("Location: edit_user.php");
 	}
 	echo "<script language=\"JavaScript\">";
-	echo "alert('add fail');";
-	echo "window.location='edit_user.php';";
+	//echo "alert('add fail');";
+	//echo "window.location='edit_user.php';";
 	echo "</script>";
+	header("Location: edit_user.php");
 ?>

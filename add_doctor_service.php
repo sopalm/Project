@@ -20,9 +20,10 @@
 			}
 		}
 		echo "<script language=\"JavaScript\">";
-		echo "alert('success');";
-		echo "window.location='check-service_list.php?cs_no=$csno'";
+		//echo "alert('success');";
+		//echo "window.location='check-service_list.php?cs_no=$csno'";
 		echo "</script>";
+		header("Location: check-service_list.php?cs_no=".$csno."");
 	}
 	
 	if(isset($_POST["delete"])){
@@ -36,9 +37,10 @@
 	        echo("Error description: " . mysqli_error($con));
 	    }
 		echo "<script language=\"JavaScript\">";
-		echo "alert('Delete success');";
-		echo "window.location='check-service_list.php?cs_no=$csno'";
+		//echo "alert('Delete success');";
+		//echo "window.location='check-service_list.php?cs_no=$csno'";
 		echo "</script>";
+		header("Location: check-service_list.php?cs_no=".$csno."");
 	}
 
 ?>

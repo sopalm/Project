@@ -17,7 +17,8 @@
 	$query = mysqli_query($con,$sql);
 
 	echo "<script language=\"JavaScript\">";
-	echo "alert('Upload Success');";
-	echo "window.location='edit_user.php';";
+	//echo "alert('Upload Success');";
+	//echo "window.location='edit_user.php';";
 	echo "</script>";
+	header("Location: edit_user.php");
 ?>

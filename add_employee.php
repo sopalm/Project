@@ -18,9 +18,10 @@
 
 
 	    	echo "<script language=\"JavaScript\">";
-			echo "alert('Failed');";
-			echo "window.location='regis_emp.php?cs_no=$_POST[emp_check_no]';";
+			//echo "alert('Failed');";
+			//echo "window.location='regis_emp.php?cs_no=$_POST[emp_check_no]';";
 			echo "</script>";
+			header("Location: regis_emp.php?cs_no=".$_POST[emp_check_no]."");
 	    }
 	    else{
 			$filename = $PNG_TEMP_DIR.md5($_POST['emp_id'].'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
@@ -93,9 +94,10 @@
             }
 
 			echo "<script language=\"JavaScript\">";
-			echo "alert('success');";
-			echo "window.location='check-service_list.php?cs_no=$ecn';";
+			//echo "alert('success');";
+			//echo "window.location='check-service_list.php?cs_no=$ecn';";
 			echo "</script>";
+			header("Location: check-service_list.php?cs_no=".$ecn."");
 	    }
 		
 		
@@ -196,17 +198,19 @@
 	            }
 				
 				echo "<script language=\"JavaScript\">";
-				echo "alert('success');";
-				echo "window.location='check-service_list.php?cs_no=$ecn';";
+				//echo "alert('success');";
+				//echo "window.location='check-service_list.php?cs_no=$ecn';";
 				echo "</script>";
+				header("Location: check-service_list.php?cs_no=".$ecn."");
 			}
 			else{
 				//echo "step 5////";
 				$r = $i+1;
 				echo "<script language=\"JavaScript\">";
-				echo "alert('พนักงานลำดับที่ ".$r." ถูกเพิ่มในการตรวจครั้งนี้แล้ว กรุณาลองใหม่');";
-				echo "window.location='regis_emp.php?cs_no=$ecn';";
+				//echo "alert('พนักงานลำดับที่ ".$r." ถูกเพิ่มในการตรวจครั้งนี้แล้ว กรุณาลองใหม่');";
+				//echo "window.location='regis_emp.php?cs_no=$ecn';";
 				echo "</script>";
+				header("Location: regis_emp.php?cs_no=".$ecn."");
 			}
 		}
 	}

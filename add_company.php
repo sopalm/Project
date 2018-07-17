@@ -14,7 +14,7 @@
 	}
 	if($check==1){
 		echo "<script language=\"JavaScript\">";
-		echo "alert('เพิ่มข้อมูลไม่สำเร็จ เนื่องจากรหัสบริษัท ".$cid." ซ้ำ');";
+		//echo "alert('เพิ่มข้อมูลไม่สำเร็จ เนื่องจากรหัสบริษัท ".$cid." ซ้ำ');";
 		//echo "window.location='edit_company.php';";
 		echo "</script>";
 		header('Location: edit_company.php');
@@ -30,7 +30,7 @@
 	$result1=mysqli_query($con,$sqlCommand2)
 		or die("Failed db".mysqli_error());
 	echo "<script language=\"JavaScript\">";
-	echo "alert('success');";
+	//echo "alert('success');";
 	//echo "window.location='edit_company.php';";
 	echo "</script>";
 	header('Location: edit_company.php');

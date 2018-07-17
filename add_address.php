@@ -7,9 +7,10 @@
 	$sqlCommand2 = "INSERT INTO `company_address`(`comp_id`, `address`,`date_modify`, `user`) VALUES ('$cid','$cadd','$_SESSION[date]','$_SESSION[user_name]')";
 	$result1=mysqli_query($con,$sqlCommand2)
 		or die("Failed db".mysqli_error());
-	echo "<script language=\"JavaScript\">";
-	echo "alert('success');";
-	echo "window.location='edit_company_data.php?id=$cid';";
-	echo "</script>";
+	//echo "<script language=\"JavaScript\">";
+	//echo "alert('success');";
+	//echo "window.location='edit_company_data.php?id=$cid';";
+	//echo "</script>";
+	header("Location: edit_company_data.php?id=$cid");
 ?>
   

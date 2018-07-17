@@ -15,11 +15,12 @@
 			$_SESSION['user_name']=$row['user_name'];
 			$_SESSION['login']= '1';
 			$_SESSION['status']= '1';
+			$_SESSION['home']='1';
 			// $_SESSION['alert']='loginSuccess';
-			echo "<script language=\"JavaScript\">";
-			echo "alert('you are ".$row['user_status']."');";
-			echo "window.location='edit_check-service.php';";
-			echo "</script>";
+			//echo "<script language=\"JavaScript\">";
+			//echo "alert('you are ".$row['user_status']."');";
+			//echo "window.location='home.php';";
+			//echo "</script>";
 			// header("location: home.php");
 			$_SESSION['alert']='loginSuccess';
 			// echo "<script language=\"JavaScript\">";
@@ -33,19 +34,21 @@
 			$_SESSION['user_name']=$row['user_name'];
 			$_SESSION['login']= '1';
 			$_SESSION['status']= '2';
-			echo "<script language=\"JavaScript\">";
-			echo "alert('you are ".$row['user_status']."');";
-			echo "window.location='edit_check-service.php';";
-			echo "</script>";
+			//echo "<script language=\"JavaScript\">";
+			//echo "alert('you are ".$row['user_status']."');";
+			//echo "window.location='home.php';";
+			//echo "</script>";
+			header('Location: edit_check-service.php');
 		}
 		
 	}
 	else //wrong user or pass
 	{	
 		echo "<script language=\"JavaScript\">";
-		echo "alert('Invalid username or password!!!');";
-		echo "window.location='index.php';";
+		//echo "alert('Invalid username or password!!!');";
+		//echo "window.location='index.php';";
 		echo "</script>";
+		header('Location: index.php');
 	}
 ?>
   

@@ -17,7 +17,9 @@
 
 
 	echo "<script language=\"JavaScript\">";
-	echo "alert('Upload Success');";
-	echo "window.location='edit_check-service.php';";
+	//echo "alert('Upload Success');";
+	//echo "window.location='edit_check-service.php';";
 	echo "</script>";
+	header("Location: edit_check-service.php");
+
 ?>

@@ -37,8 +37,9 @@
 			or die("Failed db".mysqli_error());
 		
 		echo "<script language=\"JavaScript\">";
-		echo "alert('success');";
-		echo "window.location='edit_program.php';";
+		//echo "alert('success');";
+		//echo "window.location='edit_program.php';";
 		echo "</script>";
+		header("Location: edit_program.php");
 	}
 ?>

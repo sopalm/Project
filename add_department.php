@@ -61,8 +61,9 @@
 		}*/
 
 	echo "<script language=\"JavaScript\">";
-	echo "alert('success');";
-	echo "window.location='edit_company.php';";
+	//echo "alert('success');";
+	//echo "window.location='edit_company.php';";
 	echo "</script>";
+	header('Location: edit_company.php');
 ?>
   

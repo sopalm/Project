@@ -17,10 +17,11 @@
 
 	}
 
-	echo "<script language=\"JavaScript\">";
-	echo "alert('success');";
-	echo "window.location='edit_check-service.php'";
-	echo "</script>";
+	//echo "<script language=\"JavaScript\">";
+	//echo "alert('success');";
+	//echo "window.location='edit_check-service.php'";
+	//echo "</script>";
+	header("Location: edit_check-service.php");
 ?>
 
 

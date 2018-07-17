@@ -5,6 +5,7 @@
 	//$_SESSION['login']='0';
 	echo "<script language=\"JavaScript\">";
 	//echo "alert('".$_SESSION['login']."');";
-	echo "window.location='index.php';";
+	//echo "window.location='index.php';";
 	echo "</script>";
+	header("Location: indexr.php");
 ?>

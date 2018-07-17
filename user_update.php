@@ -9,8 +9,9 @@
 	$result=mysqli_query($con,$sqlCommand)
 		or die("Failed db".mysqli_error());
 	echo "<script language=\"JavaScript\">";
-	echo "alert('success');";
-	echo "window.location='user_check_point.php?cs_no=$cs';";
+	//echo "alert('success');";
+	//echo "window.location='user_check_point.php?cs_no=$cs';";
 	echo "</script>";
+	header("Location: 'user_check_point.php?cs_no=$cs");
 ?>
   
