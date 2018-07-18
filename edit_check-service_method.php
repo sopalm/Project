@@ -14,6 +14,7 @@
 			WHERE cs_no = '".$txtid."' ";
 
 		$query = mysqli_query($con,$sql);
+		$_SESSION['alert']='Edit';
 	}
 
 
@@ -22,6 +23,7 @@
 	//echo "alert('Upload Success');";
 	//echo "window.location='edit_check-service.php';";
 	echo "</script>";
+	//$_SESSION['alert']='Edit';
 	header("Location: edit_check-service.php");
 
 ?>

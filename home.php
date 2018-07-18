@@ -11,8 +11,11 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
          <!-- Main content -->
-
-
+        <?php 
+        
+        include('alert.php');
+        
+        ?>
         <!--<div class="container" style="z-index: -1;position: absolute;padding-top: 20%;">
           <div class="alert alert-warning alert-dismissible fade in" data-auto-dismiss role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -22,7 +25,7 @@
         </div>-->
 
         
-        ?>
+        
 
       </div>
 

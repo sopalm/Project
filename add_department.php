@@ -42,6 +42,7 @@
 			$result3=mysqli_query($con,$sqlCommand3)
 				or die("Failed db".mysqli_error());
 		}
+		$_SESSION['alert']='d_add';
 	}
 			/*if(!empty($_POST['check_list'])) {
 		// Counting number of checked checkboxes.
@@ -67,6 +68,7 @@
 	//echo "alert('success');";
 	//echo "window.location='edit_company.php';";
 	echo "</script>";
+	
 	header('Location: edit_company.php');
 ?>
   

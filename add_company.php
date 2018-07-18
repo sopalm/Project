@@ -19,6 +19,7 @@
 			//echo "alert('เพิ่มข้อมูลไม่สำเร็จ เนื่องจากรหัสบริษัท ".$cid." ซ้ำ');";
 			//echo "window.location='edit_company.php';";
 			echo "</script>";
+			$_SESSION['alert']='c_add_false';
 			header('Location: edit_company.php');
 		}
 	
@@ -31,10 +32,13 @@
 		$sqlCommand2 = "INSERT INTO `company_address`(`comp_id`, `address`,`date_modify`, `user`) VALUES ('$cid','$cadd','$_SESSION[date]','$_SESSION[user_name]')";
 		$result1=mysqli_query($con,$sqlCommand2)
 			or die("Failed db".mysqli_error());
+
+		$_SESSION['alert']='c_add';
 	}
 	echo "<script language=\"JavaScript\">";
 	//echo "alert('success');";
 	//echo "window.location='edit_company.php';";
 	echo "</script>";
+	
 	header('Location: edit_company.php');
 ?>

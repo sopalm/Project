@@ -5,7 +5,9 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 <body class="skin-blue">
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+      include('alert.php');
+?>
 
       
 <?php include("slide_menu.php"); ?>

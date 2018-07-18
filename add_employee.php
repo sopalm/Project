@@ -97,6 +97,7 @@
 			//echo "alert('success');";
 			//echo "window.location='check-service_list.php?cs_no=$ecn';";
 			echo "</script>";
+			$_SESSION['alert']='emp_add';
 			header("Location: check-service_list.php?cs_no=".$ecn."");
 	    }
 		
@@ -106,6 +107,7 @@
 //excel---------------------------------------------------------------------
 
 	if (isset($_POST["submit_excel"])) {
+		$ecn = mysqli_real_escape_string($con,$_POST['emp_check_no']);
 		for ($i=0; $i < $_POST['nub'] ; $i++) {
 			$a = mysqli_real_escape_string($con,$_POST['a$i']);
 			$b = mysqli_real_escape_string($con,$_POST['b$i']);
@@ -118,7 +120,7 @@
 			$dep = mysqli_real_escape_string($con,$_POST['emp_dep$i']);
 			$pro = mysqli_real_escape_string($con,$_POST['emp_pro$i']);
 			$date = date("Y-m-d", strtotime($g) );
-			$ecn = mysqli_real_escape_string($con,$_POST['emp_check_no']);
+			
 
 			$sqlcomp="SELECT c.comp_id FROM company as c JOIN company_address as ca ON c.comp_id = ca.comp_id
 														JOIN check_service as cs ON cs.ca_id = ca.ca_id
@@ -201,7 +203,8 @@
 				//echo "alert('success');";
 				//echo "window.location='check-service_list.php?cs_no=$ecn';";
 				echo "</script>";
-				header("Location: check-service_list.php?cs_no=".$ecn."");
+				$_SESSION['alert']='emp_add';
+				//header("Location: check-service_list.php?cs_no=".$ecn."");
 			}
 			else{
 				//echo "step 5////";
@@ -210,9 +213,17 @@
 				//echo "alert('พนักงานลำดับที่ ".$r." ถูกเพิ่มในการตรวจครั้งนี้แล้ว กรุณาลองใหม่');";
 				//echo "window.location='regis_emp.php?cs_no=$ecn';";
 				echo "</script>";
-				header("Location: regis_emp.php?cs_no=".$ecn."");
+				$_SESSION['alert']='emp_add_false';
+				//header("Location: regis_emp.php?cs_no=".$ecn."");
 			}
 		}
+		if($_SESSION['alert']=='emp_add'){
+			header("Location: check-service_list.php?cs_no=".$ecn."");
+		}
+		if($_SESSION['alert']=='emp_add_false'){
+			header("Location: regis_emp.php?cs_no=".$ecn."");
+		}
+
 	}
 
 	//add later from edit_pro_employee.php----------------------------------------------

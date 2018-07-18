@@ -7,5 +7,5 @@
 	//echo "alert('".$_SESSION['login']."');";
 	//echo "window.location='index.php';";
 	echo "</script>";
-	header("Location: indexr.php");
+	header("Location: index.php");
 ?>

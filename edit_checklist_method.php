@@ -21,6 +21,7 @@
 		//echo "alert('Upload Success');";
 		//echo "window.location='edit_program.php';";
 		echo "</script>";
+		$_SESSION['alert']='Edit';
 		header("Location: edit_program.php");
 
 	}
@@ -28,5 +29,6 @@
 	//echo "alert('Upload failed');";
 	//echo "window.location='edit_program.php';";
 	echo "</script>";
+	$_SESSION['alert']='Edit_false';
 	header("Location: edit_program.php");
 ?>

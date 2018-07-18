@@ -15,7 +15,7 @@
 			$_SESSION['user_name']=$row['user_name'];
 			$_SESSION['login']= '1';
 			$_SESSION['status']= '1';
-			$_SESSION['home']='1';
+			//$_SESSION['home']='1';
 			// $_SESSION['alert']='loginSuccess';
 			//echo "<script language=\"JavaScript\">";
 			//echo "alert('you are ".$row['user_status']."');";
@@ -34,6 +34,7 @@
 			$_SESSION['user_name']=$row['user_name'];
 			$_SESSION['login']= '1';
 			$_SESSION['status']= '2';
+			$_SESSION['alert']='loginSuccess';
 			//echo "<script language=\"JavaScript\">";
 			//echo "alert('you are ".$row['user_status']."');";
 			//echo "window.location='home.php';";
@@ -45,10 +46,11 @@
 	else //wrong user or pass
 	{	
 		echo "<script language=\"JavaScript\">";
-		//echo "alert('Invalid username or password!!!');";
-		//echo "window.location='index.php';";
+		echo "alert('Invalid username or password!!!');";
+		echo "window.location='index.php';";
 		echo "</script>";
-		header('Location: index.php');
+		$_SESSION['alert']='loginFalse';
+		//header('Location: index.php');
 	}
 ?>
   

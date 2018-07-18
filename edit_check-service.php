@@ -18,8 +18,7 @@
                 <h2>กำหนดการออกตรวจสุขภาพ</h2>
             </div>
                 <?php
-                    ini_set('display_errors', 1);
-                    error_reporting(~0);
+                    
 
 
                     $query1 = "SELECT * FROM Company";

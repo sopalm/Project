@@ -40,6 +40,7 @@
 		//echo "alert('success');";
 		//echo "window.location='edit_program.php';";
 		echo "</script>";
+		$_SESSION['alert']='pro_add';
 		header("Location: edit_program.php");
 	}
 ?>

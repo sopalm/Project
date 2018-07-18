@@ -14,9 +14,10 @@
 		$query = mysqli_query($con,$sql);
 
 		echo "<script language=\"JavaScript\">";
-		echo "alert('Upload Success');";
-		echo "window.location='edit_program.php';";
+		//echo "alert('Upload Success');";
+		//echo "window.location='edit_program.php';";
 		echo "</script>";
+		$_SESSION['alert']='Edit';
 	}
 	echo "<script language=\"JavaScript\">";
 	//echo "alert('Upload failed');";

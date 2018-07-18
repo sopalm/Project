@@ -17,6 +17,7 @@
 	//echo "alert('success');";
 	//echo "window.location='edit_doctor.php';";
 	echo "</script>";
+	$_SESSION['alert']='doctor_add';
 	header("Location: edit_doctor.php");
 ?>
   

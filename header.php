@@ -9,7 +9,7 @@
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
 
               <?php
-                //include("alert.php"); 
+                include("alert.php"); 
                 include("status_login.php"); 
               ?>
 
