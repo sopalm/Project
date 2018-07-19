@@ -166,6 +166,7 @@
 				//echo "alert('success');";
 				//echo "window.location='check-service_list.php?cs_no=$cs_date';";
 				echo "</script>";	
+				$_SESSION['alert']='lab_add';
 				header("Location: check-service_list.php?cs_no=".$cs_date."");
 				
 			

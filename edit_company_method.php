@@ -12,6 +12,7 @@
 			WHERE comp_id = '".$cid."' ";
 
 		$query = mysqli_query($con,$sql);
+		$_SESSION['alert']='Edit';
 	}
 
 	echo "<script language=\"JavaScript\">";

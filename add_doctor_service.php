@@ -23,6 +23,7 @@
 		//echo "alert('success');";
 		//echo "window.location='check-service_list.php?cs_no=$csno'";
 		echo "</script>";
+		$_SESSION['alert']='ds_add';
 		header("Location: check-service_list.php?cs_no=".$csno."");
 	}
 	
@@ -40,6 +41,7 @@
 		//echo "alert('Delete success');";
 		//echo "window.location='check-service_list.php?cs_no=$csno'";
 		echo "</script>";
+		$_SESSION['alert']='ds_del';
 		header("Location: check-service_list.php?cs_no=".$csno."");
 	}
 

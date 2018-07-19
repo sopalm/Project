@@ -3,8 +3,8 @@
 
     $response = array();
     if(isset($_POST['idCard'])&&isset($_POST['csNo'])) {  
-        $id_card = $_POST['idCard'];
-        $cs_no = $_POST['csNo'];
+        $id_card = mysqli_real_escape_string($con,$_POST['idCard']);
+        $cs_no = mysqli_real_escape_string($con,$_POST['csNo']);
             
         $result = mysqli_query($con, "SELECT emp_id from employee where emp_id = '$id_card' ")
             or die("Failed db".mysqli_error());

@@ -1,8 +1,8 @@
 <?php
 	include("../connection.php");
     
-    $emp_id = $_POST['idCard'];
-    $csd_no = $_POST['csd_no'];
+    $emp_id = mysqli_real_escape_string($con,$_POST['idCard']);
+    $csd_no = mysqli_real_escape_string($con,$_POST['csd_no']);
     
     $result = mysqli_query($con, "SELECT * FROM check_tags JOIN check_list ON check_tags.check_id = check_list.check_id WHERE  check_list.emp_id = '$emp_id' AND check_list.csd_no = '$csd_no' ")
         or die("Failed db".mysqli_error());

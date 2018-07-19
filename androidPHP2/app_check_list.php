@@ -1,10 +1,10 @@
 <?php
 	include("../connection.php");
     
-    $emp_id = $_POST['idCard'];
-    $csd_no = $_POST['csd_no'];
-    $tag_id = $_POST['tag_id'];
-    $user = $_POST['user'];
+    $emp_id = mysqli_real_escape_string($con,$_POST['idCard']);
+    $csd_no = mysqli_real_escape_string($con,$_POST['csd_no']);
+    $tag_id = mysqli_real_escape_string($con,$_POST['tag_id']);
+    $user = mysqli_real_escape_string($con,$_POST['user']);
 
 
     $sqlCommand = "UPDATE `check_tags` SET `tag_status` = '1' ,`date_modify`= '$_SESSION[date]',`user`='$user' WHERE ct_id = '$tag_id' ";

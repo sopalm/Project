@@ -14,13 +14,14 @@
 		$sqllast = "SELECT MAX(cs_no) FROM check_service";
 		$resultlast = mysqli_query($con,$sqllast);
 		$last = mysqli_fetch_array($resultlast);
-
+		$_SESSION['alert']='cs_add';
 	}
 
 	//echo "<script language=\"JavaScript\">";
 	//echo "alert('success');";
 	//echo "window.location='edit_check-service.php'";
 	//echo "</script>";
+	
 	header("Location: edit_check-service.php");
 ?>
 

@@ -15,6 +15,7 @@
 			WHERE user_id = '".$uid."' ";
 
 	$query = mysqli_query($con,$sql);
+	$_SESSION['alert']='Edit';
 	}
 	echo "<script language=\"JavaScript\">";
 	//echo "alert('Upload Success');";

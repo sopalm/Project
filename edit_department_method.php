@@ -14,6 +14,7 @@
 			WHERE dep_comp_no = '".$dcid."' ";
 
 		$query = mysqli_query($con,$sql);
+		$_SESSION['alert']='Edit';
 	}
 
 	echo "<script language=\"JavaScript\">";

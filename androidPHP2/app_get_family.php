@@ -2,8 +2,8 @@
     include("../connection.php");
     include("translate.php");
 
-	$emp_id = $_POST['idCard'];
-    $csd_no = $_POST['csd_no'];
+	$emp_id = mysqli_real_escape_string($con,$_POST['idCard']);
+    $csd_no = mysqli_real_escape_string($con,$_POST['csd_no']);
     $result = mysqli_query($con, "
         SELECT * 
         from personal_family_information 

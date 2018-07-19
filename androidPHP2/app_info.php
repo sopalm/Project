@@ -1,12 +1,12 @@
 <?php
 	include("../connection.php");
     
-    $emp_id = $_POST['idCard'];
-    $csd_no = $_POST['csd_no'];
-    $weight = $_POST['weight'];
-    $height = $_POST['height'];
-    $bp = $_POST['Bp'];
-    $bp2 = $_POST['Bp2'];
+    $emp_id = mysqli_real_escape_string($con,$_POST['idCard']);
+    $csd_no = mysqli_real_escape_string($con,$_POST['csd_no']);
+    $weight = mysqli_real_escape_string($con,$_POST['weight']);
+    $height = mysqli_real_escape_string($con,$_POST['height']);
+    $bp = mysqli_real_escape_string($con,$_POST['Bp']);
+    $bp2 = mysqli_real_escape_string($con,$_POST['Bp2']);
     $bmi = $weight/(pow(($height/100),2));
 	$user = $_POST['user'];
     $result = mysqli_query($con, "

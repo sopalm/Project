@@ -16,6 +16,7 @@
 		//echo "alert('success');";
 		//echo "window.location='edit_user.php';";
 		echo "</script>";
+		$_SESSION['alert']='user_add';
 		header("Location: edit_user.php");
 	}
 	echo "<script language=\"JavaScript\">";
