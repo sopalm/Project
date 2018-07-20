@@ -144,5 +144,45 @@
         //echo $_SESSION['alert'];
         $_SESSION['alert']=NULL;
     }
+    if($_SESSION['alert']=='Edit_Pass'){
+        echo "<script language=\"JavaScript\">";
+        echo "alert('เปลี่ยนรหัสผ่านสำเร็จ');";
+        //echo "window.location='index.php';";
+        echo "</script>";
+        //echo $_SESSION['alert'];
+        $_SESSION['alert']=NULL;
+    }
+    if($_SESSION['alert']=='Edit_Pass_EQ'){
+        echo "<script language=\"JavaScript\">";
+        echo "alert('รหัสผ่านใหม่ห้ามซ้ำกับรหัสผ่านเก่า');";
+        //echo "window.location='index.php';";
+        echo "</script>";
+        //echo $_SESSION['alert'];
+        $_SESSION['alert']=NULL;
+    }
+    if($_SESSION['alert']=='Edit_Pass_Noconfirm'){
+        echo "<script language=\"JavaScript\">";
+        echo "alert('รหัสผ่านใหม่ไม่ถูกต้อง');";
+        //echo "window.location='index.php';";
+        echo "</script>";
+        //echo $_SESSION['alert'];
+        $_SESSION['alert']=NULL;
+    }
+    if($_SESSION['alert']=='Edit_Pass_false'){
+        echo "<script language=\"JavaScript\">";
+        echo "alert('รหัสผ่านเก่าไม่ถูกต้อง');";
+        //echo "window.location='index.php';";
+        echo "</script>";
+        //echo $_SESSION['alert'];
+        $_SESSION['alert']=NULL;
+    }
+    if($_SESSION['alert']=='Edit_Pass_admin_false'){
+        echo "<script language=\"JavaScript\">";
+        echo "alert('รหัสยืนยันสิทธิ์ไม่ถูกต้อง');";
+        //echo "window.location='index.php';";
+        echo "</script>";
+        //echo $_SESSION['alert'];
+        $_SESSION['alert']=NULL;
+    }
     
 ?>

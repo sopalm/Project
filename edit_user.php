@@ -41,6 +41,7 @@
                       <?php
                         if ($_SESSION["status"]== '1')
                         { ?>
+                          <th > <div align="center"><!--Reset--> </div></th>
                           <th > <div align="center"><!--Edit--> </div></th>
                         <?php 
                         } 
@@ -64,7 +65,17 @@
                           if ($_SESSION["status"]== '1')
                           { ?>
                             <td align="center"><a href="edit_user_update.php?user_id=<?php echo $row["user_id"];?>">Edit</a></td>
+                            <?php 
+                              if($info["user_id"]==$row["user_id"]){
+                                echo "<td align='center'>Reset Password</td>";
+                              }else{
+                            ?>
+                                <td align="center"><a   data-toggle="modal" href="#editpass" class="edit-sup"  
+                                                        data-supName="<?php echo $row["user_id"];?>"               
+                                                    >Reset Password</a>
+                                </td>
                           <?php 
+                                    }
                           } 
                           ?>
                       </tr>
@@ -95,12 +106,12 @@
                         <form method='POST' action="add_user.php">
                             <label >ชื่อผู้ใช้</label >
                             <br/>
-                            <input type="text" id="user_name" name="user_name" required >
+                            <input type="text" id="user_name" name="user_name" pattern="[A-Za-z0-9]{6,20}" required >
                             <br/>
                             <br/>
                             <label >รหัสผ่าน</label >
                             <br/>
-                            <input required="" type="password" id="user_pass" name="user_pass" minlength="8" maxlength="16">
+                            <input required="" type="password" id="user_pass" name="user_pass" pattern="[A-Za-z0-9]" minlength="8" maxlength="16">
                             <br/>
                             <br/>
                             <label >สถานะ</label >
@@ -119,6 +130,35 @@
                         </form>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="editpass" role="dialog" data-backdrop="false">
+                  <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">ตั้งค่ารหัสผ่านใหม่</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form method='POST' action="change_password.php">
+                        <input hidden type="text" id="supName" name="supName">
+                        <input hidden type="text" id="admin_id" name="admin_id" value="<?php echo $info["user_id"]; ?>" >
+                        กรอกรหัสผ่านเพื่อยืนยันสิทธิ์ผู้ดูแล<br>
+                        <input type="password" id="pass_admin" name="pass_admin" ><br>
+                        รหัสผ่านใหม่<br>
+                        <input type="password" id="pass_new" name="pass_new" ><br>
+                        ยืนยันรหัสผ่านใหม่<br>
+                        <input type="password" id="pass_confirm" name="pass_confirm" ><br>
+                      </div>
+                      <div class="modal-footer">
+                        <center><button class="btn btn-default" type="submit" name="reset_pass">ยืนยัน</button></center>        
+                        </form>
+                      </div>
+                     </div>             
                   </div>
                 </div>
                 
