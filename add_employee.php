@@ -226,47 +226,6 @@
 
 	}
 
-	//add later from edit_pro_employee.php----------------------------------------------
-
-	/*if (isset($_POST['submit_pro_emp'])) {
-		for ($i=0; $i < $_POST['nub_emp'] ; $i++) { 
-			$emp_pro = $_POST["emp_pro$i"];
-			$emp_id = $_POST["emp_id$i"];
-			$emp_choose = $_POST["emp_choose$i"];
-			if ($emp_pro!= NULL && $emp_choose== 'on') {
-				if (check_csd($_POST['emp_check_no'],$_POST['emp_pro']) == true ) {
-	    			$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user_modify`) VALUES (NULL,'$_POST[emp_check_no]','$emp_pro','1','$_SESSION[date]','$_SESSION[user_name]')";
-	    			$result=mysqli_query($con,$sqlCommand1)
-						or die("Failed db".mysqli_error());
-	    		}
-	    		else{
-	    			$sqlCommand2 = "UPDATE `check_service_detail` SET `csd_pro_people` = csd_pro_people+1,`date_modify`= '$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$_POST[emp_check_no]' AND `pro_id` = '$emp_pro'";
-	    			$result=mysqli_query($con,$sqlCommand2)
-						or die("Failed db".mysqli_error());
-	    		}
-
-	    		$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$_POST[emp_check_no]'";
-	    			$result=mysqli_query($con,$sqlCommand3)
-						or die("Failed db".mysqli_error());
-
-	    		$keb = 0;
-	    		$sqlCommand4 = "SELECT `csd_no` FROM `check_service_detail` WHERE cs_no ='$_POST[emp_check_no]' AND pro_id ='$_POST[emp_pro]'";
-	    		$result=mysqli_query($con,$sqlCommand4);
-            	while ($row=mysqli_fetch_array($result)) {
-            		$keb = $row[0];
-            	}
-
-				$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `date_modify`, `user_modify`) VALUES (NULL,'$emp_id','$keb','$_SESSION[date]','$_SESSION[user_name]')";
-	    		$result=mysqli_query($con,$sqlCommand5)
-					or die("Failed db".mysqli_error());
-			}
-		}
-		echo "<script language=\"JavaScript\">";
-		echo "alert('success');";
-		echo "window.location='home.php';";
-		echo "</script>";
-	}*/
-
 	function check_digit($number){
 		$check = ($number[0]*13)+($number[1]*12)+($number[2]*11)+($number[3]*10)+($number[4]*9)+($number[5]*8)
 					+($number[6]*7)+($number[7]*6)+($number[8]*5)+($number[9]*4)+($number[10]*3)+($number[11]*2);
