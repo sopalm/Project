@@ -106,13 +106,15 @@
                         <form method='POST' action="add_user.php">
                             <label >ชื่อผู้ใช้</label >
                             <br/>
-                            <input type="text" id="user_name" name="user_name" pattern="[A-Za-z0-9]{6,20}" required >
+                            <input type="text" id="user_name" name="user_name" pattern="[A-Za-z0-9]{6,20}" minlength="6" maxlength="20" required >
                             <br/>
+                            <font color="red" size="2">*ตัวเลขและตัวอักษร a-z,A-Z จำนวน 6-20 ตัว</font>
                             <br/>
                             <label >รหัสผ่าน</label >
                             <br/>
-                            <input required="" type="password" id="user_pass" name="user_pass" pattern="[A-Za-z0-9]" minlength="8" maxlength="16">
+                            <input required="" type="password" id="user_pass" name="user_pass" pattern="[A-Za-z0-9]{8,16}"  minlength="8" maxlength="16">
                             <br/>
+                            <font color="red" size="2">*ตัวเลขและตัวอักษร a-z,A-Z จำนวน 8-16 ตัว</font>
                             <br/>
                             <label >สถานะ</label >
                             <br/>
@@ -148,11 +150,15 @@
                         <input hidden type="text" id="supName" name="supName">
                         <input hidden type="text" id="admin_id" name="admin_id" value="<?php echo $info["user_id"]; ?>" >
                         กรอกรหัสผ่านเพื่อยืนยันสิทธิ์ผู้ดูแล<br>
-                        <input type="password" id="pass_admin" name="pass_admin" ><br>
+                        <input type="password" id="pass_admin" name="pass_admin" pattern="[A-Za-z0-9]{8,16}"  minlength="8" maxlength="16" required ><br>
+                        <br>
                         รหัสผ่านใหม่<br>
-                        <input type="password" id="pass_new" name="pass_new" ><br>
+                        <input type="password" id="pass_new" name="pass_new" pattern="[A-Za-z0-9]{8,16}"  minlength="8" maxlength="16" required ><br>
+                        <br>
                         ยืนยันรหัสผ่านใหม่<br>
-                        <input type="password" id="pass_confirm" name="pass_confirm" ><br>
+                        <input type="password" id="pass_confirm" name="pass_confirm" pattern="[A-Za-z0-9]{8,16}"  required ><br>
+                        <br>
+                        <font color="red" size="2">*ตัวเลขและตัวอักษร a-z,A-Z จำนวน 8-16 ตัว</font>
                       </div>
                       <div class="modal-footer">
                         <center><button class="btn btn-default" type="submit" name="reset_pass">ยืนยัน</button></center>        

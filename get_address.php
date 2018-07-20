@@ -3,7 +3,12 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $db = "yhdb";
+    $db = "yhdb"; //localhost
+
+    /*$servername = "203.151.93.42";
+    $username = "kmitnb_sopalm";
+    $password = "30de55e";
+    $db = "kmitnb_sopalm";*/ //yanhee
  
     // Create connection
     $conn = new mysqli($servername, $username, $password,$db);
