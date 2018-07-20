@@ -299,4 +299,18 @@
         }
 	}
 
+	function randEmpID(){
+		include('connection.php');
+		$emp_rand = uniqid();
+		$sqlCommand = "SELECT emp_id FROM employee WHERE emp_id = '$emp_rand' ";
+		$result=mysqli_query($con,$sqlCommand);
+		$row=mysqli_fetch_array($result);
+		if($row['emp_id']){
+			randEmpID();
+		}
+		else{
+			return $emp_rand;
+		}
+	}
+
 ?>
