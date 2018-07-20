@@ -12,7 +12,7 @@
 				checklist_name_en = '$nameen',
 				checklist_name_tag = '$nametag',
 				date_modify ='$_SESSION[date]',
-				user ='$_SESSION[user_name]'
+				user_modify ='$_SESSION[user_name]'
 				WHERE checklist_id = '".$pclid."' ";
 
 		$query = mysqli_query($con,$sql);

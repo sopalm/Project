@@ -10,7 +10,7 @@
 				//echo "<p>".$selected ."</p>";
 			$csno = mysqli_real_escape_string($con,$_POST['cs_no']);
 
-			$sqlCommand = "INSERT INTO `doctor_check_service`(`cs_no`, `doc_id`,`date_modify`, `user`) 
+			$sqlCommand = "INSERT INTO `doctor_check_service`(`cs_no`, `doc_id`,`date_modify`, `user_modify`) 
 							VALUES ('$csno','$selected','$_SESSION[date]','$_SESSION[user_name]')";
 				$result=mysqli_query($con,$sqlCommand);
 				if (!$result)

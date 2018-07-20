@@ -92,7 +92,7 @@
                         </td>
                         <td ><center><?php echo $row["user_status"];?></center></td>
                         <td ><center><?php echo $row["date_modify"];?></center></td>
-                        <td ><center><?php echo $row["user"];?></center></td>
+                        <td ><center><?php echo $row["user_modify"];?></center></td>
      
                         <?php
                           if ($_SESSION["status"]== '1')

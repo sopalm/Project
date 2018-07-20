@@ -14,7 +14,7 @@
 			doc_surname = '".$surname."',
 			doc_license = '".$licen."',
 			date_modify ='$_SESSION[date]',
-			user ='$_SESSION[user_name]'
+			user_modify ='$_SESSION[user_name]'
 			WHERE doc_id = '".$id."' ";
 
 		$query = mysqli_query($con,$sql);

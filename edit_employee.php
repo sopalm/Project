@@ -74,7 +74,7 @@
                           if ($_SESSION["status"]== '1')
                           { ?>
                             <td align="center"><?php echo DateThai($row["date_modify"]);?></td>
-                            <td align="center"><?php echo $row["user"];?></td>
+                            <td align="center"><?php echo $row["user_modify"];?></td>
                             <td align="center"><a href="edit_employee_update.php?emp_id=<?php echo $row["emp_id"];?>">แก้ไข</a></td>
                           <?php 
                           } 

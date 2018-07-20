@@ -11,7 +11,7 @@
 			user_pass = '".$upass."',
 			user_status = '".$ustatus."',
 			date_modify ='$_SESSION[date]',
-			user ='$_SESSION[user_name]'
+			user_modify ='$_SESSION[user_name]'
 			WHERE user_id = '".$uid."' ";
 
 	$query = mysqli_query($con,$sql);

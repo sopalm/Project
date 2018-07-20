@@ -7,7 +7,7 @@
 		$csdate = mysqli_real_escape_string($con,$_POST['cs_date']);
 		$cspp = mysqli_real_escape_string($con,$_POST['cs_pp']);
 
-		$sqlCommand1 = "INSERT INTO `check_service`(`cs_no`, `ca_id`,`cs_date`, `cs_total_people`, `cs_status`,`date_modify`, `user`) 
+		$sqlCommand1 = "INSERT INTO `check_service`(`cs_no`, `ca_id`,`cs_date`, `cs_total_people`, `cs_status`,`date_modify`, `user_modify`) 
 						VALUES (NULL,'$cadd','$csdate','$cspp',0,'$_SESSION[date]','$_SESSION[user_name]')";
 		mysqli_query($con,$sqlCommand1);
 

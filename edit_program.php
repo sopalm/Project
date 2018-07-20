@@ -67,7 +67,7 @@
                           if ($_SESSION["status"]== '1')
                           { ?>
                             <td ><?php echo DateThai($row["date_modify"]);?></td>
-                            <td ><?php echo $row["user"];?></td>
+                            <td ><?php echo $row["user_modify"];?></td>
                             <td ><a href="edit_program_update.php?pro_id=<?php echo $row["pro_id"];?>">แก้ไข</a></td>
                           <?php 
                           } 
@@ -131,7 +131,7 @@
                           if ($_SESSION["status"]== '1')
                           { ?>
                             <td align="center"><?php echo DateThai($row["date_modify"]);?></td>
-                            <td align="center"><?php echo $row["user"];?></td>
+                            <td align="center"><?php echo $row["user_modify"];?></td>
                             <td align="center"><a href="edit_checklist_update.php?checklist_id=<?php echo $row["checklist_id"];?>">แก้ไข</a></td>
                           <?php 
                           } 

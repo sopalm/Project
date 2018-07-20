@@ -8,7 +8,7 @@
 		$sql = "UPDATE program_check SET 
 				pro_name = '".$name."',
 				date_modify ='$_SESSION[date]',
-				user ='$_SESSION[user_name]'
+				user_modify ='$_SESSION[user_name]'
 				WHERE pro_id = '".$id."' ";
 
 		$query = mysqli_query($con,$sql);

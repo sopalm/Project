@@ -10,7 +10,7 @@
 			ca_id = '".$add."' ,
 			cs_date = '".$txtdate."',
 			date_modify ='$_SESSION[date]',
-			user ='$_SESSION[user_name]'
+			user_modify ='$_SESSION[user_name]'
 			WHERE cs_no = '".$txtid."' ";
 
 		$query = mysqli_query($con,$sql);

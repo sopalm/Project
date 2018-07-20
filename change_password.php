@@ -20,7 +20,7 @@
 			{
 				if($passnew!=$passold)
 				{
-					$sqlCommand = "UPDATE `user` SET user_pass = '$passnew' ,date_modify ='$_SESSION[date]',user ='$_SESSION[user_name]' WHERE user_id = $supID ";
+					$sqlCommand = "UPDATE `user` SET user_pass = '$passnew' ,date_modify ='$_SESSION[date]',user_modify ='$_SESSION[user_name]' WHERE user_id = $supID ";
 					$result=mysqli_query($con,$sqlCommand)
 						or die("Failed db".mysqli_error());
 					$_SESSION['alert']='Edit_Pass';
@@ -52,7 +52,7 @@
 		{
 			if($passnew==$passconfirm)
 			{
-				$sqlCommand = "UPDATE `user` SET user_pass = '$passnew',date_modify ='$_SESSION[date]',user ='$_SESSION[user_name]' WHERE user_id = $supName ";
+				$sqlCommand = "UPDATE `user` SET user_pass = '$passnew',date_modify ='$_SESSION[date]',user_modify ='$_SESSION[user_name]' WHERE user_id = $supName ";
 				$result=mysqli_query($con,$sqlCommand)
 					or die("Failed db".mysqli_error());
 				$_SESSION['alert']='Edit_Pass';

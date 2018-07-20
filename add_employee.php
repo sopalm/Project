@@ -50,22 +50,22 @@
 			$ep = mysqli_real_escape_string($con,$_POST['emp_pro']);
 	    	
 
-	    	$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_age`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user`) VALUES ('$empid','$vn','$title','$ename','$esur','$date','$age','$path_qr','$dep_comp','$enum','$_SESSION[date]','$_SESSION[user_name]')";
+	    	$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_age`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user_modify`) VALUES ('$empid','$vn','$title','$ename','$esur','$date','$age','$path_qr','$dep_comp','$enum','$_SESSION[date]','$_SESSION[user_name]')";
 			$result=mysqli_query($con,$sqlCommand)
 				or die("Failed db".mysqli_error());
 				
 			if (check_csd($ecn,$ep) == true ) {
-	    		$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user`) VALUES (NULL,'$ecn','$ep','1','$_SESSION[date]','$_SESSION[user_name]')";
+	    		$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user_modify`) VALUES (NULL,'$ecn','$ep','1','$_SESSION[date]','$_SESSION[user_name]')";
 	    		$result=mysqli_query($con,$sqlCommand1)
 				or die("Failed db".mysqli_error());
 	    	}
 	    	else{
-	    		$sqlCommand2 = "UPDATE `check_service_detail` SET `csd_pro_people` = csd_pro_people+1,`date_modify`= '$_SESSION[date]',`user`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn' AND `pro_id` = '$ep'";
+	    		$sqlCommand2 = "UPDATE `check_service_detail` SET `csd_pro_people` = csd_pro_people+1,`date_modify`= '$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn' AND `pro_id` = '$ep'";
 	    		$result=mysqli_query($con,$sqlCommand2)
 				or die("Failed db".mysqli_error());
 	    	}
 
-	    	$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user`='$_SESSION[user_name]' WHERE `cs_no` = '$ecn'";
+	    	$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user_modify`='$_SESSION[user_name]' WHERE `cs_no` = '$ecn'";
 	    	$result=mysqli_query($con,$sqlCommand3)
 				or die("Failed db".mysqli_error());
 
@@ -77,7 +77,7 @@
             }
 
 
-	    	$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `regis`, `quantity_bf`, `quantity_at`, `date_modify`, `user`) VALUES (NULL,'$empid','$keb',0,0,0,'$_SESSION[date]','$_SESSION[user_name]')";
+	    	$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `regis`, `quantity_bf`, `quantity_at`, `date_modify`, `user_modify`) VALUES (NULL,'$empid','$keb',0,0,0,'$_SESSION[date]','$_SESSION[user_name]')";
 	    	$result=mysqli_query($con,$sqlCommand5)
 				or die("Failed db".mysqli_error());
 			$sqlcl = "SELECT check_id FROM check_list WHERE emp_id = '$_POST[emp_id]' AND csd_no = '$keb' ";
@@ -141,7 +141,7 @@
 			$pro=$proarray[0];
 			//echo "step 1////";
 			if (check_id($b) == false) {
-				$sql = "UPDATE `employee` SET `VN`='$c',`emp_title`='$d',`emp_name`='$e',`emp_surname`='$f',`emp_age`='$h',`dep_comp_no`='$dep,`emp_no`='$a',`date_modify`='$_SESSION[date]',`user`= '$_SESSION[user_name]' WHERE emp_id = '$b' ";
+				$sql = "UPDATE `employee` SET `VN`='$c',`emp_title`='$d',`emp_name`='$e',`emp_surname`='$f',`emp_age`='$h',`dep_comp_no`='$dep,`emp_no`='$a',`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE emp_id = '$b' ";
 	    		$result=mysqli_query($con,$sql);
 			}
 			else{
@@ -150,7 +150,7 @@
 		         
 		    	$path_qr = $PNG_WEB_DIR.basename($filename);
 
-				$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_age`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user`) VALUES ('$b','$c','$d','$e','$f','$date','$h','$path_qr','$dep','$a','$_SESSION[date]','$_SESSION[user_name]')";
+				$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_age`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user_modify`) VALUES ('$b','$c','$d','$e','$f','$date','$h','$path_qr','$dep','$a','$_SESSION[date]','$_SESSION[user_name]')";
 				$result=mysqli_query($con,$sqlCommand)
 					or die("Failed db".mysqli_error());
 					//echo $sqlCommand;
@@ -159,19 +159,19 @@
 			if (check_cs_no($b,$ecn) == true) {
 				//echo "step 3////";
 				if (check_csd($ecn,$pro) == true ) {
-		    		$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user`) VALUES (NULL,'$ecn','$pro','1','$_SESSION[date]','$_SESSION[user_name]')";
+		    		$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user_modify`) VALUES (NULL,'$ecn','$pro','1','$_SESSION[date]','$_SESSION[user_name]')";
 		    			$result=mysqli_query($con,$sqlCommand1)
 							or die("Failed db".mysqli_error());
 							echo "mai som";
 		    	}
 		    	else{
-		    		$sqlCommand2 = "UPDATE `check_service_detail` SET `csd_pro_people` = csd_pro_people+1,`date_modify`= '$_SESSION[date]',`user`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn' AND `pro_id` = '$pro'";
+		    		$sqlCommand2 = "UPDATE `check_service_detail` SET `csd_pro_people` = csd_pro_people+1,`date_modify`= '$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn' AND `pro_id` = '$pro'";
 		    		$result=mysqli_query($con,$sqlCommand2)
 							or die("Failed db".mysqli_error());
 							echo "som";
 		    	}
 		    	//echo "step 4////";
-		    	$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn'";
+		    	$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn'";
 		    	$result=mysqli_query($con,$sqlCommand3)
 							or die("Failed db".mysqli_error());
 
@@ -182,7 +182,7 @@
 	            	$keb = $row[0];
 	            }
 
-				$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `date_modify`, `user`) VALUES (NULL,'$b','$keb','$_SESSION[date]','$_SESSION[user_name]')";
+				$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `date_modify`, `user_modify`) VALUES (NULL,'$b','$keb','$_SESSION[date]','$_SESSION[user_name]')";
 		    	$result=mysqli_query($con,$sqlCommand5)
 						or die("Failed db".mysqli_error());
 
@@ -195,7 +195,7 @@
 							WHERE pcu.pro_id = '$pro' ";
 				$resultTag = mysqli_query($con,$sqlTag);
 				while ($row=mysqli_fetch_array($resultTag)) {
-	            	$sqlct = "INSERT INTO check_tags(ct_id,check_id,tag,quantity,tag_status,date_modify,user) VALUES(NULL,'$cl[check_id]','$row[checklist_name_tag]',NULL,0,'$_SESSION[date]','$_SESSION[user_name]')";
+	            	$sqlct = "INSERT INTO check_tags(ct_id,check_id,tag,quantity,tag_status,date_modify,user_modify) VALUES(NULL,'$cl[check_id]','$row[checklist_name_tag]',NULL,0,'$_SESSION[date]','$_SESSION[user_name]')";
 	            	$resultct = mysqli_query($con,$sqlct);
 	            }
 				
@@ -235,17 +235,17 @@
 			$emp_choose = $_POST["emp_choose$i"];
 			if ($emp_pro!= NULL && $emp_choose== 'on') {
 				if (check_csd($_POST['emp_check_no'],$_POST['emp_pro']) == true ) {
-	    			$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user`) VALUES (NULL,'$_POST[emp_check_no]','$emp_pro','1','$_SESSION[date]','$_SESSION[user_name]')";
+	    			$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user_modify`) VALUES (NULL,'$_POST[emp_check_no]','$emp_pro','1','$_SESSION[date]','$_SESSION[user_name]')";
 	    			$result=mysqli_query($con,$sqlCommand1)
 						or die("Failed db".mysqli_error());
 	    		}
 	    		else{
-	    			$sqlCommand2 = "UPDATE `check_service_detail` SET `csd_pro_people` = csd_pro_people+1,`date_modify`= '$_SESSION[date]',`user`= '$_SESSION[user_name]' WHERE `cs_no` = '$_POST[emp_check_no]' AND `pro_id` = '$emp_pro'";
+	    			$sqlCommand2 = "UPDATE `check_service_detail` SET `csd_pro_people` = csd_pro_people+1,`date_modify`= '$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$_POST[emp_check_no]' AND `pro_id` = '$emp_pro'";
 	    			$result=mysqli_query($con,$sqlCommand2)
 						or die("Failed db".mysqli_error());
 	    		}
 
-	    		$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user`= '$_SESSION[user_name]' WHERE `cs_no` = '$_POST[emp_check_no]'";
+	    		$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$_POST[emp_check_no]'";
 	    			$result=mysqli_query($con,$sqlCommand3)
 						or die("Failed db".mysqli_error());
 
@@ -256,7 +256,7 @@
             		$keb = $row[0];
             	}
 
-				$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `date_modify`, `user`) VALUES (NULL,'$emp_id','$keb','$_SESSION[date]','$_SESSION[user_name]')";
+				$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `date_modify`, `user_modify`) VALUES (NULL,'$emp_id','$keb','$_SESSION[date]','$_SESSION[user_name]')";
 	    		$result=mysqli_query($con,$sqlCommand5)
 					or die("Failed db".mysqli_error());
 			}

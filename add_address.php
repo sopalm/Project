@@ -5,7 +5,7 @@
 	$cadd = mysqli_real_escape_string($con,$_POST['comp_add']);
 	if(isset($_POST['comp_id']))
 	{
-		$sqlCommand2 = "INSERT INTO `company_address`(`comp_id`, `address`,`date_modify`, `user`) VALUES ('$cid','$cadd','$_SESSION[date]','$_SESSION[user_name]')";
+		$sqlCommand2 = "INSERT INTO `company_address`(`comp_id`, `address`,`date_modify`, `user_modify`) VALUES ('$cid','$cadd','$_SESSION[date]','$_SESSION[user_name]')";
 		$result1=mysqli_query($con,$sqlCommand2)
 		or die("Failed db".mysqli_error());
 		$_SESSION['alert']='address_add';

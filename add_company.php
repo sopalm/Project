@@ -23,13 +23,13 @@
 			header('Location: edit_company.php');
 		}
 	
-		$sqlCommand = "INSERT INTO `company`(`comp_id`, `comp_name`,`date_modify`, `user`) VALUES ('$cid','$cname','$_SESSION[date]','$_SESSION[user_name]')";
+		$sqlCommand = "INSERT INTO `company`(`comp_id`, `comp_name`,`date_modify`, `user_modify`) VALUES ('$cid','$cname','$_SESSION[date]','$_SESSION[user_name]')";
 		//    mysqli_real_escape_string();  -- Escape string
 			$result=mysqli_query($con,$sqlCommand)
 			or die("Failed db".mysqli_error());
 
 
-		$sqlCommand2 = "INSERT INTO `company_address`(`comp_id`, `address`,`date_modify`, `user`) VALUES ('$cid','$cadd','$_SESSION[date]','$_SESSION[user_name]')";
+		$sqlCommand2 = "INSERT INTO `company_address`(`comp_id`, `address`,`date_modify`, `user_modify`) VALUES ('$cid','$cadd','$_SESSION[date]','$_SESSION[user_name]')";
 		$result1=mysqli_query($con,$sqlCommand2)
 			or die("Failed db".mysqli_error());
 

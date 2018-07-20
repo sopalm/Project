@@ -72,7 +72,7 @@
                               { ?>
 
                                 <td align="center"><?php echo DateThai($row["date_modify"]);?></td>
-                                <td align="center"><?php echo $row["user"];?></td>
+                                <td align="center"><?php echo $row["user_modify"];?></td>
                                 <td align="center"><a href="edit_company_update.php?comp_id=<?php echo $row["comp_id"];?>">แก้ไข</a></td>
                               <?php 
                               } 
@@ -203,7 +203,7 @@
                                   if ($_SESSION["status"]== '1')
                                   { ?>
                                     <td align="center"><?php echo DateThai($row["date_modify"]);?></td>
-                                    <td align="center"><?php echo $row["user"];?></td>
+                                    <td align="center"><?php echo $row["user_modify"];?></td>
                                     <td align="center"><a href="edit_department_update.php?check_id=<?php echo $row["dep_comp_no"];?>">แก้ไข</a></td>
                                   <?php 
                                   } 

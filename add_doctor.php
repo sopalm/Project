@@ -8,7 +8,7 @@
 	$doclicense = mysqli_real_escape_string($con,$_POST['doc_license']);
 	if(isset($_POST['name'])&&isset($_POST['surname']))
 	{
-		$sqlCommand = "INSERT INTO `doctor`(`doc_title`,`doc_name`, `doc_surname`, `doc_license`,`date_modify`, `user`) 
+		$sqlCommand = "INSERT INTO `doctor`(`doc_title`,`doc_name`, `doc_surname`, `doc_license`,`date_modify`, `user_modify`) 
 					VALUES ('$title','$name','$surname','$doclicense','$_SESSION[date]','$_SESSION[user_name]')";
 		$result=mysqli_query($con,$sqlCommand)
 		or die("Failed db".mysqli_error());

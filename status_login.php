@@ -16,7 +16,7 @@
 						position:fixed;
 					   top:15px;
 					   right:130px;" 
-				data-toggle="modal" href="#editsup" class="edit-sup"  
+				data-toggle="modal" href="#edituser" class="edit-user"  
 				data-supID="<?php echo $info["user_id"];?>"               
             >เปลี่ยนรหัสผ่าน</a>
 			<a style="color: white;
@@ -27,7 +27,7 @@
 		<?php } ?>
 			<center>
             	<!-- Modal -->
-                <div class="modal fade" id="editsup" role="dialog" data-backdrop="false">
+                <div class="modal fade" id="edituser" role="dialog" data-backdrop="false">
 					<div class="modal-dialog modal-sm">
                         
                         <!-- Modal content-->

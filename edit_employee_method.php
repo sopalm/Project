@@ -18,7 +18,7 @@
 			emp_bd = '".$bd."' ,
 			emp_age = '".$age."',
 			date_modify ='$_SESSION[date]',
-			user ='$_SESSION[user_name]' 
+			user_modify ='$_SESSION[user_name]' 
 			WHERE emp_id = '".$id."' ";
 
 		$query = mysqli_query($con,$sql);

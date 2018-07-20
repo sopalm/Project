@@ -10,7 +10,7 @@
 			comp_id = '".$cid."' ,
 			dep_id = '".$did."',
 			date_modify ='$_SESSION[date]',
-			user ='$_SESSION[user_name]'
+			user_modify ='$_SESSION[user_name]'
 			WHERE dep_comp_no = '".$dcid."' ";
 
 		$query = mysqli_query($con,$sql);

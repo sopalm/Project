@@ -159,7 +159,7 @@
 				$csd=mysqli_fetch_array($resultcsd);
 				//echo $csd[0];echo "</br>";
 
-				$sqlCommand = "INSERT INTO `report_total` (`emp_id`, `csd_no`, `bmi_report`, `physical_examination`, `blood_pressure`, `cxr`, `ekg`, `ua`, `cbc`, `mammogram`, `thin_prep`, `upper_abdomen`, `lower_abdomen`, `whole_abdomen`, `exercise_stress_test`, `stool_occult_blood`, `bmd`, `fbs`, `bun`, `cr`, `chol`, `hdl`, `ldl`, `trig`, `total_blirubin`, `sgot`, `sgpt`, `alk`, `uric_acid`, `psa`, `total_protein`, `albumin`, `direct_bilirubin`, `globulin`, `cea`, `afp`, `cap19-9`, `date_modify`, `user`)  VALUES ('$id','$csd[0]','$c','$d','$e','$f','$g','$h','$zi','$j','$k','$l','$m','$n','$o','$p','$q','$r','$s','$t','$u','$v','$w','$x','$y','$z','$aa','$ab','$ac','$ad','$ae','$af','$ag','$ah','$ai','$aj','$ak','$_SESSION[date]','$_SESSION[user_name]')";
+				$sqlCommand = "INSERT INTO `report_total` (`emp_id`, `csd_no`, `bmi_report`, `physical_examination`, `blood_pressure`, `cxr`, `ekg`, `ua`, `cbc`, `mammogram`, `thin_prep`, `upper_abdomen`, `lower_abdomen`, `whole_abdomen`, `exercise_stress_test`, `stool_occult_blood`, `bmd`, `fbs`, `bun`, `cr`, `chol`, `hdl`, `ldl`, `trig`, `total_blirubin`, `sgot`, `sgpt`, `alk`, `uric_acid`, `psa`, `total_protein`, `albumin`, `direct_bilirubin`, `globulin`, `cea`, `afp`, `cap19-9`, `date_modify`, `user_modify`)  VALUES ('$id','$csd[0]','$c','$d','$e','$f','$g','$h','$zi','$j','$k','$l','$m','$n','$o','$p','$q','$r','$s','$t','$u','$v','$w','$x','$y','$z','$aa','$ab','$ac','$ad','$ae','$af','$ag','$ah','$ai','$aj','$ak','$_SESSION[date]','$_SESSION[user_name]')";
 		    	$result=mysqli_query($con,$sqlCommand)
 					or die("Failed db".mysqli_error());
 				echo "<script language=\"JavaScript\">";

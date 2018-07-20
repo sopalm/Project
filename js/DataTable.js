@@ -150,6 +150,16 @@
 
 
           $(document).ready(function() {
+            $('.edit-user').click(function(){
+                        var supID = $(this).attr('data-supID');
+                        var supName = $(this).attr('data-supName');
+                        var tag = $(this).attr('data-tag');
+                        $('#supID').val(supID);
+                        $('#supName').val(supName);
+                         $('#tag').val(tag);
+                } );
+            } );
+            $(document).ready(function() {
             $('.edit-sup').click(function(){
                         var supID = $(this).attr('data-supID');
                         var supName = $(this).attr('data-supName');
