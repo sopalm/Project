@@ -14,6 +14,7 @@
         array_push($response, $arr);
     }
     
+    
     echo json_encode($response, JSON_UNESCAPED_UNICODE);
     
 ?>
