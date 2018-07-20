@@ -135,7 +135,7 @@
 
 
                 <!-- Modal -->
-                <div class="modal fade" id="editpass" role="dialog" data-backdrop="false">
+                <div class="modal fade" id="editpass" role="dialog" >
                   <div class="modal-dialog modal-sm">
                     <!-- Modal content-->
                     <div class="modal-content">

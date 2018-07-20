@@ -1,4 +1,5 @@
 <footer>
+    <?php include('change_password_modal.php'); ?>
     <script src="js/bootstrap-auto-dismiss-alert.js"></script>
 
     <!-- นำเข้า Javascript jQuery -->
