@@ -40,10 +40,6 @@
                         <td ><input pattern="[a-zA-Z0-9-]+" required title="Character and Number Only" type="text" name="txtName" size="20" value="<?php echo $result["user_name"];?>"></td>
                     </tr>
                     <tr>
-                        <th width="200">รหัสผ่าน</th>
-                        <td ><input required type="text" name="txtPW" size="20" value="<?php echo $result["user_pass"];?>"></td>
-                    </tr>
-                    <tr>
                         <th width="200">สถานะ</th>
                         <td >
                             <select  required name="txtStatus">

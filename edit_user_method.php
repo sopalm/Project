@@ -8,7 +8,6 @@
 	if(isset($_POST['txtID']))
 	{$sql = "UPDATE user SET 
 			user_name = '".$uname."',
-			user_pass = '".$upass."',
 			user_status = '".$ustatus."',
 			date_modify ='$_SESSION[date]',
 			user_modify ='$_SESSION[user_name]'

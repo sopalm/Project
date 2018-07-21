@@ -37,6 +37,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 <style>
+
 input[name=Search]{
     width: 50px;
     height: 30px;
@@ -73,9 +74,23 @@ div.body{
     margin-bottom: 20px;
 }
 
-th, td {
+th{
 
     padding: 10px;
+}
+table[name=company] td{
+    padding: 10px;
+    white-space:pre;
+    overflow:hidden;
+    max-width : 50px;
+    text-overflow: ellipsis;
+}
+table[name=check_service] td{
+    padding: 10px;
+    white-space:pre;
+    overflow:hidden;
+    max-width : 200px;
+    text-overflow: ellipsis;
 }
 
 

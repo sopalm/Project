@@ -38,7 +38,7 @@
                     $result = mysqli_query($con,$query); 
                     ?>
 
-                    <table id="example" class="display" width="100%">
+                    <table name="company" id="example" class="display nowrap" width="100%" >
                       <thead>
                         <tr >
                           <th > <div align="center">รหัส </div></th>
@@ -57,7 +57,7 @@
                           <th align="center" style="border: 0px;"></th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody >
                         <?php
                         while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                         {
@@ -163,7 +163,7 @@
 
                         $result1 = mysqli_query($con,$query1);
                     ?>
-                    <table id="example2" class="display"  width="100%" >
+                    <table id="example2" name="company" class="display nowrap"  width="100%" >
                         <thead>
                             <tr >
 
@@ -317,13 +317,17 @@
     <?php 
         include("footer.php");
         include("js/DataTable.js");
+        include("js/popover.js");
     ?>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
-            $(".clickable-row").click(function() {
-                window.location = $(this).data("href");
-            });
+
+            $('#example').on( 'click', 'tbody tr', function () {
+            window.location.href = $(this).data('href');
+            } );
         });
+        
+
       </script>
 </body>
 </html>
