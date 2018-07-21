@@ -1,8 +1,8 @@
 <?php
     
 	include('../connection.php');
-    $username = mysqli_real_escape_string($con,$_POST['username']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
+    $username = $_POST['username'];
+    $password = $_POST['password'];
     
 	$result = mysqli_query($con, "SELECT * from user  
                                             join check_service_tag on user.cst_id = check_service_tag.cst_id 

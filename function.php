@@ -59,7 +59,10 @@
 	}
 	
 	function Age($birday){
-		
+		$bd = explode("-", $birday);
+		$d = $bd['0'];
+		$age = date("Y") - $d;
+		return $age;
 	}
 
 ?>
