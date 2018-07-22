@@ -71,10 +71,9 @@
 	}
 	
 	function Age($birday){
-		$bd = explode("-", $birday);
-		$d = $bd['0'];
-		$age = date("Y") - $d;
-		return $age;
+		
+		return intval(date('Y', time() - strtotime($birday))) - 1970;
+		
 	}
 
 ?>
