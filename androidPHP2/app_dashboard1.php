@@ -14,7 +14,7 @@
         $arr = array(
                 'no' => $rows['emp_no'],
                 'name' => $rows['emp_title']." ".$rows['emp_name']." ".$rows['emp_surname'],
-                'age' => $rows['emp_age'],
+                'age' => Age($rows['emp_bd']),
                 'bd' => DateThaietc($rows['emp_bd']),
                 'pro' => $rows['pro_name'],
                 'csd' => $rows['csd_no']
