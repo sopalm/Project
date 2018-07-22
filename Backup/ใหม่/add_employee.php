@@ -13,8 +13,9 @@
     $matrixPointSize = 8;
 
     if (isset($_POST["submit_emp"])) {
-		
-			$empid = mysqli_real_escape_string($con,$_POST['emp_id']);
+
+			$empid = randEmpID();
+	    	$hn = mysqli_real_escape_string($con,$_POST['emp_id']);
 	    	$vn = mysqli_real_escape_string($con,$_POST['vn']);
 	    	$title = mysqli_real_escape_string($con,$_POST['title']);
 	    	$ename = mysqli_real_escape_string($con,$_POST['emp_name']);
@@ -25,11 +26,17 @@
 			$dep = mysqli_real_escape_string($con,$_POST['dep']);
 	    	$comp = mysqli_real_escape_string($con,$_POST['comp']);
 
-		if (check_id($empid) == false ) {
-
+	    if (check_id($empid,$ecn) == false ) {
+	    	
+	    	echo "<script language=\"JavaScript\">";
+			echo "</script>";
 			header("Location: regis_emp.php?cs_no=".$_POST[emp_check_no]."");
 	    }
-	    else{
+		else
+		{
+			if(check_id($empid,$ecn) == 'new'){
+				echo "มีแล้ว แต่ตรวจคนละวัน";
+			}
 			$filename = $PNG_TEMP_DIR.md5($empid.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
 	    	QRcode::png($empid, $filename, $errorCorrectionLevel, $matrixPointSize, 2);      
 	         
@@ -43,8 +50,9 @@
             	$dep_comp = $row[0];
             }
 	    	
+	    	
 
-	    	$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user_modify`) VALUES ('$empid','$vn','$title','$ename','$esur','$date','$path_qr','$dep_comp','$enum','$_SESSION[date]','$_SESSION[user_name]')";
+	    	$sqlCommand = "INSERT INTO `employee`(`emp_id`,`HN`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user_modify`) VALUES ('$empid','$hn','$vn','$title','$ename','$esur','$date','$path_qr','$dep_comp','$enum','$_SESSION[date]','$_SESSION[user_name]')";
 			$result=mysqli_query($con,$sqlCommand)
 				or die("Failed db".mysqli_error());
 				
@@ -74,7 +82,7 @@
 	    	$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `regis`, `quantity_bf`, `quantity_at`, `date_modify`, `user_modify`) VALUES (NULL,'$empid','$keb',0,0,0,'$_SESSION[date]','$_SESSION[user_name]')";
 	    	$result=mysqli_query($con,$sqlCommand5)
 				or die("Failed db".mysqli_error());
-			$sqlcl = "SELECT check_id FROM check_list WHERE emp_id = '$_POST[emp_id]' AND csd_no = '$keb' ";
+			$sqlcl = "SELECT check_id FROM check_list WHERE emp_id = '$empid' AND csd_no = '$keb' ";
 			$resultcl = mysqli_query($con,$sqlcl);
 			$cl = mysqli_fetch_array($resultcl);
 
@@ -83,7 +91,7 @@
 						WHERE pcu.pro_id = '$ep' ";
 			$resultTag = mysqli_query($con,$sqlTag);
 			while ($row=mysqli_fetch_array($resultTag)) {
-            	$sqlct = "INSERT INTO check_tags(ct_id,check_id,tag,quantity,tag_status) VALUES(NULL,'$cl[check_id]','$row[checklist_name_tag]',NULL,0)";
+            	$sqlct = "INSERT INTO check_tags(ct_id,check_id,tag,quantity,tag_status,date_modify,user_modify) VALUES(NULL,'$cl[check_id]','$row[checklist_name_tag]',NULL,0,'$_SESSION[date]','$_SESSION[user_name]')";
             	$resultct = mysqli_query($con,$sqlct);
             }
 
@@ -99,15 +107,16 @@
 	if (isset($_POST["submit_excel"])) {
 		$ecn = mysqli_real_escape_string($con,$_POST['emp_check_no']);
 		for ($i=0; $i < $_POST['nub'] ; $i++) {
-			$a = mysqli_real_escape_string($con,$_POST['a'.$i]);
-			$b = mysqli_real_escape_string($con,$_POST['b'.$i]);
-			$c = mysqli_real_escape_string($con,$_POST['c'.$i]);
-			$d = mysqli_real_escape_string($con,$_POST['d'.$i]);
-			$e = mysqli_real_escape_string($con,$_POST['e'.$i]);
-			$f = mysqli_real_escape_string($con,$_POST['f'.$i]);
-			$g = mysqli_real_escape_string($con,$_POST['g'.$i]);
-			$dep = mysqli_real_escape_string($con,$_POST['emp_dep'.$i]);
-			$pro = mysqli_real_escape_string($con,$_POST['emp_pro'.$i]);
+			$a = mysqli_real_escape_string($con,$_POST['a$i']);
+			$b = mysqli_real_escape_string($con,$_POST['b$i']);
+			$c = mysqli_real_escape_string($con,$_POST['c$i']);
+			$d = mysqli_real_escape_string($con,$_POST['d$i']);
+			$e = mysqli_real_escape_string($con,$_POST['e$i']);
+			$f = mysqli_real_escape_string($con,$_POST['f$i']);
+			$g = mysqli_real_escape_string($con,$_POST['g$i']);
+			//$h = mysqli_real_escape_string($con,$_POST['h$i']);
+			$dep = mysqli_real_escape_string($con,$_POST['emp_dep$i']);
+			$pro = mysqli_real_escape_string($con,$_POST['emp_pro$i']);
 			$date = date("Y-m-d", strtotime($g) );
 			
 
@@ -128,9 +137,9 @@
 			$resultpro =mysqli_query($con,$sqlpro);
 			$proarray =mysqli_fetch_array($resultpro);
 			$pro=$proarray[0];
-
-			if (check_id($b) == false) {
-				$sql = "UPDATE `employee` SET `VN`='$c',`emp_title`='$d',`emp_name`='$e',`emp_surname`='$f',`dep_comp_no`='$dep,`emp_no`='$a',`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE emp_id = '$b' ";
+			//echo "step 1////";
+			if (check_id($b,$ecn) == 'new') {
+				$sql = "UPDATE `employee` SET `VN`='$c',`emp_title`='$d',`emp_name`='$e',`emp_surname`='$f',`emp_age`='$h',`dep_comp_no`='$dep,`emp_no`='$a',`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE emp_id = '$b' ";
 	    		$result=mysqli_query($con,$sql);
 			}
 			else{
@@ -139,14 +148,14 @@
 		         
 		    	$path_qr = $PNG_WEB_DIR.basename($filename);
 
-				$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user_modify`) VALUES ('$b','$c','$d','$e','$f','$date','$path_qr','$dep','$a','$_SESSION[date]','$_SESSION[user_name]')";
+				$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_age`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user_modify`) VALUES ('$b','$c','$d','$e','$f','$date','$h','$path_qr','$dep','$a','$_SESSION[date]','$_SESSION[user_name]')";
 				$result=mysqli_query($con,$sqlCommand)
 					or die("Failed db".mysqli_error());
-
+					//echo $sqlCommand;
 			}
-
+			//echo "step 2////";
 			if (check_cs_no($b,$ecn) == true) {
-
+				//echo "step 3////";
 				if (check_csd($ecn,$pro) == true ) {
 		    		$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user_modify`) VALUES (NULL,'$ecn','$pro','1','$_SESSION[date]','$_SESSION[user_name]')";
 		    			$result=mysqli_query($con,$sqlCommand1)
@@ -159,7 +168,7 @@
 							or die("Failed db".mysqli_error());
 							echo "som";
 		    	}
-
+		    	//echo "step 4////";
 		    	$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn'";
 		    	$result=mysqli_query($con,$sqlCommand3)
 							or die("Failed db".mysqli_error());
@@ -189,11 +198,9 @@
 	            }
 				
 				$_SESSION['alert']='emp_add';
-
 			}
 			else{
 				$r = $i+1;
-
 				$_SESSION['alert']='emp_add_false';
 			}
 		}
@@ -225,22 +232,30 @@
 		}
 	}
 
-	function check_id($number){
+	function check_id($number,$cs){
 		include('connection.php');
 		$a=0;
-		$sqlCommand = "SELECT * FROM employee ";
-        $result=mysqli_query($con,$sqlCommand);
-        while ($row=mysqli_fetch_array($result)) {
-        	if ($row[0] == $number) {
-        		$a = 1;
-        	}
-        }
-        if($a == 1){
-        	return false;
-        }
+		$sqlCommand = "SELECT emp.emp_id,cs.cs_no FROM employee as emp 
+		JOIN check_list as cl ON cl.emp_id = emp.emp_id
+		JOIN check_service_detail as csd ON csd.csd_no = cl.csd_no
+		JOIN check_service as cs ON csd.cs_no=cs.cs_no
+		WHERE emp.emp_id ='$number'";
+		$result=mysqli_query($con,$sqlCommand);
+		if(mysqli_num_rows($result)== 0){
+			return true;
+		}
         else{
-        	return true;
-        }
+        	while ($row=mysqli_fetch_array($result)){
+				if($cs==$row["cs_no"]){
+					$a=1;
+				}
+			}
+		}
+		if($a==1){
+			return false;
+		}else{
+			return 'new';
+		}
 	}
 
 	function check_csd($cs_no,$pro){
@@ -277,6 +292,20 @@
         else{
         	return true;
         }
+	}
+
+	function randEmpID(){
+		include('connection.php');
+		$emp_rand = uniqid();
+		$sqlCommand = "SELECT emp_id FROM employee WHERE emp_id = '$emp_rand' ";
+		$result=mysqli_query($con,$sqlCommand);
+		$row=mysqli_fetch_array($result);
+		if($row['emp_id']){
+			randEmpID();
+		}
+		else{
+			return $emp_rand;
+		}
 	}
 
 ?>

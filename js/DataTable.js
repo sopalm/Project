@@ -3,7 +3,10 @@
               $('#tablepage-span').DataTable();
           } );
           $('#tablepage-span').dataTable( {
-              searching: true
+              searching: true,
+              fnDrawCallback : function() {
+                $('[data-toggle="popover"]').popover(); 
+             }
           } );
 
           $(document).ready(function() {
@@ -11,6 +14,16 @@
           } );
           $('#tablepage').dataTable( {
               searching: true
+          } );
+          $(document).ready(function() {
+              $('#tablepage1').DataTable();
+              
+          } );
+          $('#tablepage1').dataTable( {
+              searching: true,
+              fnDrawCallback : function() {
+                $('[data-toggle="popover"]').popover(); 
+             }
           } );
           $(document).ready(function() {
               $('#tablepage-doctor').DataTable();
@@ -53,6 +66,9 @@
               var table = $('#example').DataTable({
                 searching: true,
                 "aaSorting": [],
+                fnDrawCallback : function() {
+                    $('[data-toggle="popover"]').popover(); 
+                 }
               });
            
               // Apply the search

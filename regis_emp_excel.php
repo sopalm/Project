@@ -52,7 +52,6 @@
         <th>ชื่อ</th>
         <th>นามสกุล</th>
         <th>วัน/เดือน/ปีเกิด</th>
-        <th>อายุ</th>
         <th>แผนก</th>
         <th>โปรแกรม</th>
     </tr>
@@ -91,9 +90,8 @@
                 //echo date("Y",$unix_date)." ";
             }
             echo "<td>"."<input style='max-width: 120px; ' type='date' name='g".$nub."' value='".$date."' required >"."</td>";
-            echo "<td>"."<input style='max-width: 30px; ' type='number' min='18' max='70' id='age' name='h".$nub."' value='".$result["H"]."'required >"."</td>";
-            echo "<td>"."<input style='max-width: 110px; ' type='text' name='emp_dep".$nub."' value='".$result["I"]."'>"."</td>";
-            echo "<td>"."<input style='max-width: 180px; ' type='text' name='emp_pro".$nub."' value='".$result["J"]."' required >"."</td>";
+            echo "<td>"."<input style='max-width: 110px; ' type='text' name='emp_dep".$nub."' value='".$result["H"]."'>"."</td>";
+            echo "<td>"."<input style='max-width: 180px; ' type='text' name='emp_pro".$nub."' value='".$result["I"]."' required >"."</td>";
             $nub++;
         }
         echo "</table>"."</br>";

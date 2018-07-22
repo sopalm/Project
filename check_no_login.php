@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	@session_start();
 	if ($_SESSION['login']!='1') {
 		echo "<script language=\"JavaScript\">";
 		//echo "alert('Please Log In!!!');";

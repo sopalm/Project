@@ -18,11 +18,6 @@
             <div class="box-header">
             <a class="path" href="edit_check-service.php">/ กำหนดการออกตรวจ</a><a style="color: black;text-decoration-line: none;" href=""> / ข้อมูลการออกตรวจ</a>
             <?php 
-              /*$sqlcheck = " SELECT c.cs_total_people
-                            FROM check_service as cs 
-                            WHERE cs.cs_no = '$_GET[cs_no]' ";
-              $resultcompany=mysqli_query($con,$sqlcompany);
-              $company=mysqli_fetch_array($resultcompany)*/
 
             if (isset($_GET['cs_no'])) { 
                 
@@ -43,10 +38,10 @@
                 <div name="emp">
                 <u>รายชื่อผู้เข้ารับการตรวจสุขภาพ</u> 
                 <a href="emp_list.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary">ใบลงทะเบียน</a>
-                <a href="report_check_list.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary">สถานะการตรวจสุขภาพ</a>
+                <a href="check_point.php?cs_no=<?php echo $company["cs_no"];?>&check=0" class="btn btn-primary">สถานะการตรวจสุขภาพ</a>
                 <a href="regis_lab.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary"  >เพิ่มผลการตรวจจากห้องปฏิบัติการ</a>
                 <a href="report_list.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary"  >ผลการตรวจภาพรวม</a>
-                <a href="check_point.php?cs_no=<?php echo $company["cs_no"];?>" class="btn btn-primary"  >จัดการเจ้าหน้าที่</a>
+                <a href="check_point.php?cs_no=<?php echo $company["cs_no"];?>&check=1" class="btn btn-primary"  >จัดการเจ้าหน้าที่</a>
                 <?php if($company[2]>0){ ?>
                         <table id="tablepage-span" class="display" width="100%" border="0">
                         <thead>
@@ -71,18 +66,18 @@
                   $result=mysqli_query($con,$sqlCommand);
                   while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                         { ?>
-                          <tr  >
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div align='center'><?php echo $row["emp_no"];?></div></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div align='center'><?php echo $row["emp_id"];?></div></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div align='center'><?php echo $row["VN"];?></div></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div><?php echo $row["emp_title"];?></div></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><?php echo $row["emp_name"];?></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><?php echo $row["emp_surname"];?></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div align='center'><?php echo thai_date($row["emp_bd"]);?></div></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div align='center'><?php echo $row["emp_age"];?></div></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div><?php echo $row["pro_name"];?></div></td>
-                          <td ><a target="_blank" href='emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div align='center'></div></td>
-                          <td ><a href='report_total_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>' style='display:block;height:100%;width:100%;text-decoration: none;color: black;'><div align='center'>ผลการตรวจ</div></td>
+                          <tr  data-href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>">
+                          <td ><div align='center'><?php echo $row["emp_no"];?></div></td>
+                          <td ><div align='center'><?php echo $row["emp_id"];?></div></td>
+                          <td ><div align='center'><?php echo $row["VN"];?></div></td>
+                          <td ><div><?php echo $row["emp_title"];?></div></td>
+                          <td ><?php echo $row["emp_name"];?></td>
+                          <td ><?php echo $row["emp_surname"];?></td>
+                          <td ><div align='center'><?php echo DateThaietc($row["emp_bd"]);?></div></td>
+                          <td ><div align='center'><?php echo Age($row["emp_bd"]);?></div></td>
+                          <td ><div><?php echo $row["pro_name"];?></div></td>
+                          <td ><div align='center'></div></td>
+                          <td ><div align='center'>ผลการตรวจ</div></td>
                           </tr>
                       <?php
                       }
@@ -151,7 +146,11 @@
                                 </div>
                                 <div class="modal-body">
                                 <?php 
-                                  $doctor = "SELECT * FROM doctor ";
+                                  $doctor = "SELECT * FROM doctor as d
+                                            WHERE NOT d.doc_id
+                                            IN (  SELECT dcs.doc_id FROM doctor_check_service as dcs 
+                                                  WHERE dcs.cs_no = '$get'
+                                                )";
                                   $list = mysqli_query($con,$doctor);
                                 ?>
                                   <form method='POST' action="add_doctor_service.php">
@@ -163,7 +162,6 @@
                                             <th><div>คำนำหน้า</div></th>
                                             <th><div>ชื่อ</div></th>
                                             <th><div>นามสกุล</div></th>
-                                            
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -249,5 +247,14 @@
         include("footer.php");
         include("js/DataTable.js");
     ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('#tablepage-span').on( 'click', 'tbody tr', function () {
+              window.open($(this).data('href'),'_blank');
+            } );
+        });
+        
+
+      </script>
 </body>
 </html>

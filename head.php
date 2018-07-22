@@ -37,7 +37,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 <style>
-
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
+}
 input[name=Search]{
     width: 50px;
     height: 30px;
@@ -79,6 +81,13 @@ th{
     padding: 10px;
 }
 table[name=company] td{
+    padding: 10px;
+    white-space:pre;
+    overflow:hidden;
+    max-width : 50px;
+    text-overflow: ellipsis;
+}
+table[name=employee] td{
     padding: 10px;
     white-space:pre;
     overflow:hidden;

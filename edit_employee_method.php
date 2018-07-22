@@ -5,7 +5,6 @@
 	$name = mysqli_real_escape_string($con,$_POST['txtName']);
 	$surname = mysqli_real_escape_string($con,$_POST['txtSurname']);
 	$bd = mysqli_real_escape_string($con,$_POST['txtBD']);
-	$age = mysqli_real_escape_string($con,$_POST['txtAge']);
 	$VN = mysqli_real_escape_string($con,$_POST['txtVN']);
 	$id = mysqli_real_escape_string($con,$_POST['txtID']);
 	if(isset($_POST['txtID']))
@@ -16,7 +15,6 @@
 			emp_name = '".$name."',
 			emp_surname = '".$surname."' ,
 			emp_bd = '".$bd."' ,
-			emp_age = '".$age."',
 			date_modify ='$_SESSION[date]',
 			user_modify ='$_SESSION[user_name]' 
 			WHERE emp_id = '".$id."' ";
@@ -25,9 +23,5 @@
 		$_SESSION['alert']='Edit';
 	}
 
-	echo "<script language=\"JavaScript\">";
-	//echo "alert('Upload Success');";
-	//echo "window.location='edit_company.php';";
-	echo "</script>";
 	header("Location: edit_company.php");
 ?>

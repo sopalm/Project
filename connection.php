@@ -19,7 +19,7 @@
 			die("Connection failed: " . mysqli_connect_error());
 				echo ' not connected';
 			  }
-
+		mysqli_set_charset($con, "utf8");
 		date_default_timezone_set("Asia/Bangkok");
 		$_SESSION['date'] = date("Y-m-d H:i:s");
 		$date = date("Y-m-d");

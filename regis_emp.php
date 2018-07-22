@@ -35,6 +35,10 @@
 
                    $sqltitle="SELECT DISTINCT emp_title FROM employee ";
                    $title=mysqli_query($con,$sqltitle);
+                   $check=1;
+                   if(mysqli_num_rows($title)== 0){
+                        $check=0;
+                    }
 
                    }
                    else{
@@ -66,13 +70,21 @@
                                 <label >เลข H.N</label>
                                 <input type="text" id="emp_id" name="emp_id"  maxlength="13" required>
                                 <label >เลข V.N</label>
-                                <input type="text" id="vn" name="vn"  maxlength="13" required >
+                                <input type="text" id="vn" name="vn"  maxlength="10" required >
                                 </br></br>
                                 <label >คำนำหน้า</label>
                                 <select name="title">
+                                    <option value="">--เลือก--</option>
                                 <?php 
-                                    while ($row=mysqli_fetch_array($title)) {
-                                        echo "<option value='".$row[0]."'>".$row[0]."</option>";
+                                    if($check==1)
+                                    {
+                                        while ($row=mysqli_fetch_array($title)) {
+                                            echo "<option value='".$row[0]."'>".$row[0]."</option>";
+                                        }
+                                    }else{
+                                        echo "<option value='นาย'>นาย</option>";
+                                        echo "<option value='นาง'>นาง</option>";
+                                        echo "<option value='นางสาว'>นางสาว</option>";
                                     }
                                 ?>
                                 </select>
@@ -86,8 +98,6 @@
                                 <br/>
                                 <label >วันเกิด</label>
                                 <input type="date" id="birthday" max="<?php echo date("Y-m-d"); ?>" name="birthday" required>
-                                <label >อายุ</label>
-                                <input type="number" min="18" max="70" id="age" name="age" required>
 
                                 <input type="hidden" required id="comp" name="comp" value="<?php echo $company[3]; ?>"><!--บริษัท-->
                                 <label >แผนก</label>

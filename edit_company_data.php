@@ -83,7 +83,7 @@
                         <td ><?php echo $row["emp_name"];?></td>
                         <td ><?php echo $row["emp_surname"];?></td>
                         <td align="center"><?php echo DateThaietc($row["emp_bd"]);?></td>
-                        <td align="center"><?php echo $row["emp_age"];?></td>
+                        <td align="center"><?php echo Age($row["emp_bd"]);?></td>
                         <td ><?php echo $row["dep_name"];?></td>
                         <?php
                         if ($_SESSION["status"]== '1')

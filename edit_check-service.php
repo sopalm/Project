@@ -61,7 +61,7 @@
                 <br>
                 <h3><u>กำหนดการออกตรวจสุขภาพที่ยังไม่ได้ดำเนินการ</u></h3>
                 <div name="table_UNuse">
-                <table id="example" class="display" width="100%" >
+                <table name="check_service" id="example" class="display" width="100%" >
                   <thead>
                     <tr >
                       <th > <div align="center">วันที่ออกตรวจ</div></th>
@@ -88,20 +88,19 @@
                     while($row=mysqli_fetch_array($result1,MYSQLI_ASSOC))
                     {
                     ?>
-                      <tr>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><div align="center"><?php echo thai_date($row["cs_date"]);?></div></a></td>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo $row["comp_name"];?></a></td>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo $row["address"];?><?php if($row["cs_date"]==$date){
-                          echo "<img src='images\livenow.gif' alt='animated' width='40' height='30' />";
-                          } ?></a>
-                        </td>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><div align="center"><?php echo $row["cs_total_people"];?></div></a></td>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><div align="center"><?php echo "ยังไม่ได้ตรวจ";?></div></a></td>
+                      <tr data-href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>">
+                        <td ><div align="center"><?php echo DateThaietc($row["cs_date"]);?></div></td>
+                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["comp_name"];?>"><?php echo $row["comp_name"];?></a></td>
+                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["address"];?>"><?php echo $row["address"];?></a></td>
+                        <td ><div align="center"><?php echo $row["cs_total_people"];?></div></td>
+                        <td ><div align="center"><?php if($row["cs_date"]==$date){
+                          echo "<img src='images\livenow.gif'  width='40' height='20'/>";
+                          }else{echo "ยังไม่ได้ตรวจ";}?></div></td>
                         <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td align="center"><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo DateThai($row["date_modify"]);?></a></td>
-                            <td align="center"><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo $row["user_modify"];?></a></td>
+                            <td align="center"><?php echo DateThaietc($row["date_modify"]);?></td>
+                            <td align="center"><?php echo $row["user_modify"];?></td>
                             <td align="center"><a href="edit_check-service_update.php?cs_no=<?php echo $row["cs_no"];?>">แก้ไข</a></td>
                           <?php 
                           } 
@@ -135,7 +134,7 @@
                 <!------------------------------------------------------------------------------------------>
                 <h3><u>กำหนดการออกตรวจสุขภาพที่ดำเนินการแล้ว</u></h3>
                 <div name="table_USE">
-                <table id="example2" class="display" width="100%">
+                <table name="check_service" id="example2" class="display" width="100%">
                   <thead>
                     <tr >
                       <th > <div align="center">วันที่ออกตรวจ</div></th>
@@ -162,17 +161,17 @@
                     while($row=mysqli_fetch_array($result2,MYSQLI_ASSOC))
                     {
                     ?>
-                      <tr>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><div align="center"><?php echo thai_date($row["cs_date"]);?></div></a></td>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo $row["comp_name"];?></a></td>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo $row["address"];?></a></td>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><div align="center"><?php echo $row["cs_total_people"];?></div></a></td>
-                        <td ><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><div align="center"><?php if($row["cs_status"]==1){echo "รอผลจากห้องปฏิบัติการ";}
-                                                    else{echo "เสร็จสิ้นการตรวจ";} ?></div></a></td>
+                      <tr data-href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>">
+                        <td ><div align="center"><?php echo DateThaietc($row["cs_date"]);?></div></td>
+                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["comp_name"];?>"><?php echo $row["comp_name"];?></a></td>
+                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["address"];?>"><?php echo $row["address"];?></a></td>
+                        <td ><div align="center"><?php echo $row["cs_total_people"];?></div></td>
+                        <td ><div align="center"><?php if($row["cs_status"]==1){echo "รอผลจากห้องปฏิบัติการ";}
+                                                    else{echo "เสร็จสิ้นการตรวจ";} ?></div></td>
                         <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td align="center"><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo DateThai($row["date_modify"]);?></a></td>
+                            <td align="center"><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo DateThaietc($row["date_modify"]);?></a></td>
                             <td align="center"><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo $row["user_modify"];?></a></td>
                             <td align="center"><a href="edit_check-service_update.php?cs_no=<?php echo $row["cs_no"];?>">แก้ไข</a></td>
                           <?php 
@@ -307,5 +306,19 @@
         include("footer.php");
         include("js/DataTable.js");
     ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('[data-toggle="popover"]').popover();
+
+            $('#example').on( 'click', 'tbody tr', function () {
+            window.location.href = $(this).data('href');
+            } );
+            $('#example2').on( 'click', 'tbody tr', function () {
+            window.location.href = $(this).data('href');
+            } );
+        });
+        
+
+      </script>
   </body>
 </html>

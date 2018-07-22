@@ -39,7 +39,7 @@
                         <td style="width: 75%; vertical-align: top;text-align: left; font-size: 25px;">
                             ชื่อ:&nbsp;&nbsp; <?php echo $row["emp_title"];?> &nbsp;<?php echo $row["emp_name"];?>&nbsp;<?php echo $row["emp_surname"];?>
                             </br></br>
-                            วัน/เดือน/ปี เกิด: <?php echo DateThaietc($row["emp_bd"]);?>&nbsp;&nbsp;อายุ:&nbsp; <?php echo $row["emp_age"];?>
+                            วัน/เดือน/ปี เกิด: <?php echo DateThaietc($row["emp_bd"]);?>&nbsp;&nbsp;อายุ:&nbsp; <?php echo Age($row["emp_bd"]);?> ปี
                             </br></br>
                             โปรแกรม: &nbsp;&nbsp; <?php echo $row["pro_id"];?>
                         </td>
