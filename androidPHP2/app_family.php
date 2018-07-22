@@ -22,7 +22,7 @@
                 or die("Failed db".mysqli_error());
     }  
     else{
-        $sqlCommand2 = "INSERT INTO `personal_family_information`(`pfi_id`, `emp_id`, `csd_no`, `heart`, `hypertension`, `dyslipidemia`, `diabetes_mellitus`, `cancer`, `date_modify`, `uuser_modify`) VALUES (NULL,'$emp_id','$csd_no','$x1','$x2,'$x3','$x4','$x5','$_SESSION[date]','$user')";
+        $sqlCommand2 = "INSERT INTO `personal_family_information`(`pfi_id`, `emp_id`, `csd_no`, `heart`, `hypertension`, `dyslipidemia`, `diabetes_mellitus`, `cancer`, `date_modify`, `user_modify`) VALUES (NULL,'$emp_id','$csd_no','$x1','$x2,'$x3','$x4','$x5','$_SESSION[date]','$user')";
             $result=mysqli_query($con,$sqlCommand2)
                 or die("Failed db".mysqli_error());
     }
