@@ -93,7 +93,7 @@
                       echo "<td align='center'><div>".$row['VN']."</div></td>";
                       echo "<td ><div>".$row['emp_title']." ".$row['emp_name']." ".$row['emp_surname']."</div></td>";
                       echo "<td ><div align='center'>".DateThaietc($row['emp_bd'])."</div></td>";
-                      echo "<td ><div align='center'>".$row["emp_age"]."</div></td>";
+                      echo "<td ><div align='center'>".Age($row['emp_bd'])."</div></td>";
                       echo "<td ><div>".$row["pro_name"]."</div></td>";
                       echo "<td ><div align='center'>"."</div></td>";
                       echo "<td ><div align='center'>"."</div></td>";

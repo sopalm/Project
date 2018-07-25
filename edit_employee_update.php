@@ -24,12 +24,16 @@
                 {
                     $strEmpID = $_GET["emp_id"];
                 }
+                
+                $sqltitle = "SELECT DISTINCT emp_title FROM employee  "; 
+                $querytitle = mysqli_query($con,$sqltitle);
 
                 $sql = "SELECT * FROM employee WHERE emp_id = '".$strEmpID."' "; 
                 $query = mysqli_query($con,$sql);
                 $result=mysqli_fetch_array($query,MYSQLI_ASSOC);
 
                 $strEmptitle =  $result["emp_title"];
+
                 ?>
 
                 <form action="edit_employee_method.php" name="frmAdd" method="post">
@@ -47,24 +51,18 @@
                         <th width="120">คำนำหน้า</th>
                         <td><select name="txtTitle" >
                             <?php 
-                                if($strEmptitle=='นาย')
-                                {
-                                    echo "<option selected value='นาย'>นาย</option>";
-                                    echo "<option value='นาง'>นาง</option>";
-                                    echo "<option value='นางสาว'>นางสาว</option>";
+                                while($title=mysqli_fetch_array($querytitle)){
+
+                                    if($strEmptitle==$title[0])
+                                    {
+                                        echo "<option selected value='".$title[0]."'>".$title[0]."</option>";
+                                    }else{
+                                        echo "<option value='".$title[0]."'>".$title[0]."</option>";
+                                    }
+
                                 }
-                                if($strEmptitle=='นาง')
-                                {
-                                    echo "<option value='นาย'>นาย</option>";
-                                    echo "<option selected value='นาง'>นาง</option>";
-                                    echo "<option value='นางสาว'>นางสาว</option>";
-                                }
-                                if($strEmptitle=='นางสาว')
-                                {
-                                    echo "<option value='นาย'>นาย</option>";
-                                    echo "<option value='นาง'>นาง</option>";
-                                    echo "<option selected value='นางสาว'>นางสาว</option>";
-                                }
+                                
+                                
                             ?>
 
                             </select>
@@ -77,10 +75,6 @@
                     <tr>
                         <th >นามสกุล</th>
                         <td><input type="text" name="txtSurname" size="20" value="<?php echo $result["emp_surname"];?>"></td>
-                    </tr>
-                    <tr>
-                        <th >วันเกิด</th>
-                        <td><input type="date" name="txtBD" size="20" value="<?php echo $result["emp_bd"];?>"></td>
                     </tr>
                     <tr>
                         <th >อายุ</th>

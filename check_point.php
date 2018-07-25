@@ -2,8 +2,6 @@
 	include('connection.php');
 	$get=$_GET['cs_no'];
 	$nub=0;
-	/*$sqldel="DELETE FROM check_service_tag WHERE cs_no=$get";
-    $del=mysqli_query($con,$sqldel);*/
     $sqlcheck="SELECT tag FROM check_service_tag WHERE cs_no=$get";
     $check=mysqli_query($con,$sqlcheck);
     if(mysqli_num_rows($check)== 0){
@@ -15,13 +13,6 @@
                                                    JOIN check_service_detail as csd ON csd.pro_id = pcu.pro_id
                 WHERE csd.cs_no = $get";
     $puttag=mysqli_query($con,$sqlputtag);
-    /*while ($row=mysqli_fetch_array($puttag)) 
-    {
-        if()
-        $sqlputdata ="INSERT INTO `check_service_tag`(`cst_id`,`cs_no`, `tag`,`date_modify`, `user_modify`) 
-                       VALUES (NULL,'$get','$row[0]','$_SESSION[date]','$_SESSION[user_name]') ";
-        $putdata=mysqli_query($con,$sqlputdata);
-    }*/
     if($nub==0)
     {
     	while ($new=mysqli_fetch_array($puttag)) {
@@ -50,9 +41,10 @@
 	        $putdata=mysqli_query($con,$sqlputdata);
 	    }
     }
-
-    echo "<script language=\"JavaScript\">";
-	//echo "window.location='user_check_point.php?cs_no=$get'";
-	echo "</script>";
-	header("Location: user_check_point.php?cs_no=$get");
+	if($_GET['check']==0){
+		header("Location: report_check_list.php?cs_no=$get");
+	}else{
+		header("Location: user_check_point.php?cs_no=$get");
+	}
+	
 ?>

@@ -32,17 +32,15 @@
                 <br>
                 <div class="row">
                 <div class="column">
-                 <form name="frmSearch" method="post" action="">
                           <!-- Trigger the modal with a button -->
                           <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">เพิ่มโปรแกรม</button>
-
-                </form>
+                </br>
                 </br>
                 <form action="" method='POST'>
-                <table id="tablepage" class="display" width="100%">
+                <table id="tablepage1" class="display nowrap" width="100%">
                   <thead>
                     <tr >
-                      <th > <div align="center">หมายเลขโปรแกรม</div></th>
+                      <th > <div align="center">โปรแกรม</div></th>
                       <th > <div align="center">ชื่อโปรแกรม</div></th>
                       <?php
                         if ($_SESSION["status"]== '1')
@@ -62,11 +60,11 @@
                     ?>
                       <tr >
                       <td ><div align="center"><input style="border: none;background: none;width: 100%;" type="submit" name="pro" id="pro" value='<?php echo $row["pro_id"];?>'></div></td>
-                        <td ><?php echo $row["pro_name"];?></td>
+                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["pro_name"];?>"><?php echo $row["pro_name"];?></a></td>
                         <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td ><?php echo DateThai($row["date_modify"]);?></td>
+                            <td align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
                             <td ><?php echo $row["user_modify"];?></td>
                             <td ><a href="edit_program_update.php?pro_id=<?php echo $row["pro_id"];?>">แก้ไข</a></td>
                           <?php 
@@ -85,11 +83,9 @@
 
                    <?php
                     if (isset($_POST['pro'])) { ?>
-                      <form name="frmSearch" method="post" action="">
                           <!-- Trigger the modal with a button -->
                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">เพิ่มรายการ</button>
-
-                </form>
+                </br>
                 </br>
                 <?php
                 $query = "SELECT * FROM program_check LEFT JOIN program_check_u ON program_check.pro_id = program_check_u.pro_id LEFT JOIN program_check_detail ON program_check_detail.checklist_id = program_check_u.checklist_id WHERE program_check.pro_id = '$_POST[pro]' ";
@@ -101,11 +97,11 @@
 
 
                 ?>
-                <table id="tablepage-span" class="display nowrap" width="100%">
+                <table name="company" id="tablepage-span" class="display nowrap" width="100%">
                   <thead>
                     <tr >
-                      <th > <div align="center">หมายเลขรายการ</div></th>
-                      <th > <div align="center">ชื่อรายการตรวจ</div></th>
+                      <th > <div align="center">ชื่อการตรวจ(TH)</div></th>
+                      <th > <div align="center">ชื่อการตรวจ(EN)</div></th>
                       <?php
                         if ($_SESSION["status"]== '1')
                         { ?>
@@ -125,12 +121,12 @@
                       if ($row["checklist_id"]!= NULL && $row["checklist_name_th"]!=NULL) {
                     ?>
                       <tr >
-                        <td ><div align="center"><?php echo $i; ?></div></td>
-                        <td ><?php echo $row["checklist_name_th"];?></td>
+                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["checklist_name_th"];?>"><?php echo $row["checklist_name_th"];?></a></td>
+                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["checklist_name_th"];?>"><?php echo $row["checklist_name_en"];?></a></td>
                         <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td align="center"><?php echo DateThai($row["date_modify"]);?></td>
+                            <td align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
                             <td align="center"><?php echo $row["user_modify"];?></td>
                             <td align="center"><a href="edit_checklist_update.php?checklist_id=<?php echo $row["checklist_id"];?>">แก้ไข</a></td>
                           <?php 
@@ -139,7 +135,6 @@
 
                       </tr>
                     <?php
-                    $i++;
                       }
                     }
                     ?>
@@ -160,10 +155,6 @@
                         <h4 class="modal-title">ลงทะเบียน โปรแกรมการตรวจสุขภาพ</h4>
                       </div>
                       <div class="modal-body">
-                        <?php 
-                          $query = "SELECT * FROM Company";
-                          $result = mysqli_query($con,$query);
-                        ?>
                         <form method='POST' action="add_program.php">
                             <label >หมายเลขโปรแกรม</label >
                             <br/>
@@ -191,7 +182,7 @@
                  <center>
                 <!-- Modal -->
                 <div class="modal fade" id="myModal2" role="dialog">
-                  <div class="modal-dialog modal-sm">
+                  <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -199,6 +190,13 @@
                       </div>
                       <div class="modal-body">
                         <?php
+                            $sqllist="SELECT * FROM program_check_detail as pc
+                                  WHERE NOT pc.checklist_id
+                                  IN (  SELECT pcu.checklist_id FROM program_check_u as pcu
+                                        WHERE pro_id = '$_POST[pro]'
+                                      )";
+                             $list = mysqli_query($con,$sqllist); 
+         
                             $query = "SELECT *
                                       FROM `program_check` WHERE pro_id = '$_POST[pro]' ";
                             $result = mysqli_query($con,$query); 
@@ -214,18 +212,47 @@
                               ?>
                            </label >
                             <br/>
+                            <table id="tablepage" class="display">
+                                        <thead>
+                                          <tr align="center">
+                                            <th><div>เลือก</div></th>
+                                            <th><div>ชื่อการตรวจ(TH)</div></th>
+                                            <th><div>ชื่อการตรวจ(EN)</div></th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php 
+                                          while($row=mysqli_fetch_array($list,MYSQLI_ASSOC)){ ?>
+
+                                          <tr  >
+                                            <td width="30">
+                                              <div align="center"><input type="checkbox" name="check_list[]" value="<?php echo $row["checklist_id"];?>"></div>
+                                            </td>
+                                            <td  >
+                                              <div><?php echo $row["checklist_name_th"];?></div>
+                                            </td>
+                                            <td  >
+                                              <div><?php echo $row["checklist_name_en"];?></div>
+                                            </td>
+                                          </tr>
+                                        <?php
+                                          }
+                                        ?>
+                                        </tbody>
+
+                                      </table>
                             <br/>
                             <label >ชื่อรายการตรวจไทย</label >
                             <br/>
-                            <input required="" type="text" id="cl_name" name="cl_name">
+                            <input type="text" id="cl_name" name="cl_name">
                             <br/>
                              <label >ชื่อรายการตรวจอังกฤษ</label >
                             <br/>
-                            <input required="" type="text" id="cl_name_en" name="cl_name_en">
+                            <input type="text" id="cl_name_en" name="cl_name_en">
                             <br/>
                              <label >อักษรย่อ</label >
                             <br/>
-                            <input required="" type="text" id="cl_name_tag" name="cl_name_tag">
+                            <input type="text" id="cl_name_tag" name="cl_name_tag">
                             <br/>
                             <input type="hidden" name="pro_no" value='<?php echo $_POST['pro']; ?>' >
                       </div>
@@ -247,5 +274,12 @@
         include("footer.php");
         include("js/DataTable.js");
     ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('[data-toggle="popover"]').popover();
+        });
+        
+
+      </script>
   </body>
 </html>

@@ -55,7 +55,7 @@
                     <tr>
                         <th>บริษัท</th>
                         <td>
-                            <select  id="comp" name="comp" >
+                            <select  id="comp" name="comp" required>
                                 <option id="comp_list" value=""> -- เลือก --</option>
                             </select>
                         </td>
@@ -63,14 +63,14 @@
                     <tr>
                         <th>ที่อยู่</th>
                         <td>
-                            <select  id="add" name="add" >
+                            <select  id="add" name="add" required>
                                 <option id="add_list" value=""> -- เลือก --</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th width="200">วันที่ทำการออกตรวจ</th>
-                        <td ><input required type="Date" name="txtDate" size="20" value="<?php echo $result["cs_date"];?>"></td>
+                        <td ><input required type="Date" name="txtDate" size="20" min="<?php echo date("Y-m-d"); ?>" value="<?php echo $result["cs_date"];?>"></td>
                     </tr>
 
                   </table>

@@ -30,7 +30,7 @@
                 $result = mysqli_query($con,$query); 
                 ?>
                 <div >
-                  <table id="example1" class="display" width="100%">
+                  <table name="employee" id="example" class="display" width="100%">
                   <thead>
                     <tr >
                       <th > <div align="center">H.N </div></th>
@@ -66,14 +66,13 @@
                       <td ><div align="center"><?php echo $row["emp_title"];?></div></td>
                       <td ><?php echo $row["emp_name"];?></td>
                       <td ><?php echo $row["emp_surname"];?></td>
-                      <td ><div align="center"><?php echo thai_date($row["emp_bd"]);?></div></td>
-                      <td ><div align="center"><?php echo $row["emp_age"];?></div></td>
-                      <td ><div align="center"><?php echo $row["comp_name"];?></div></td>
-   
+                      <td ><div align="center"><?php echo DateThaietc($row["emp_bd"]);?></div></td>
+                      <td ><div align="center"><?php echo Age($row["emp_bd"]);?></div></td>
+                      <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["comp_name"];?>"><?php echo $row["comp_name"];?></a></td>
                       <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td align="center"><?php echo DateThai($row["date_modify"]);?></td>
+                            <td align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
                             <td align="center"><?php echo $row["user_modify"];?></td>
                             <td align="center"><a href="edit_employee_update.php?emp_id=<?php echo $row["emp_id"];?>">แก้ไข</a></td>
                           <?php 
@@ -118,5 +117,10 @@
         include("footer.php");
         include("js/DataTable.js");
     ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('[data-toggle="popover"]').popover();
+        });
+      </script>
   </body>
 </html>
