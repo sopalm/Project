@@ -12,6 +12,7 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
          <!-- Main content -->
+         
         <div class="body">
             <div class="box-header">
                 <a class="path" href="edit_check-service.php">/ กำหนดการออกตรวจ</a><a class="path" href="check-service_list.php?cs_no=<?php echo $_GET['cs_no']; ?>">/ ข้อมูลการออกตรวจ</a><a style="color: black;text-decoration-line: none;" href=""> / เพิ่มรายชื่อผู้เข้ารับการตรวจ</a>
@@ -132,11 +133,12 @@
 
         <div>
             <br/>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data" >
             
             <input type="hidden" required name='emp_comp_excel' value="<?php echo $company[3]; ?>">
             <input type="hidden" required name='cs_no' value="<?php echo $company[2]; ?>">
             <label for="file">Filename:</label><br/>
+            <input name="file_src" type="hidden" value="">
             <input type="file" name="file" id="file"><br>
             <input type="submit" name="submitfile" value="เปิดไฟล์">
             <input type="submit" name="clear" value="ลบไฟล์">
@@ -170,8 +172,18 @@
     
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
+
+    <!-- <script language="javascript" type="text/javascript">
+            function getPath() {
+            var Form = document.forms['frm_upload'];
+            var inputName = Form.elements['file'].value;
+
+            var imgPath = inputName;
+            Form.elements['file_src'].value = imgPath;
+            }
+        </script>
     
-    <script>
+    <script> -->
             
             $(function(){
                 

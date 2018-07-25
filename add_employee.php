@@ -252,9 +252,7 @@
         $result=mysqli_query($con,$sqlCommand);
 		$row=mysqli_fetch_array($result) 
 		if($row['emp_id']){
-        	if ($row[0] == $number) {
         		$a = 1;
-        	}
 		}
         if($a == 1){
         	return false;

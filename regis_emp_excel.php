@@ -4,7 +4,6 @@
 /** PHPExcel */
     if(isset($_POST["submitfile"])&&$_FILES["file"]["name"]!=null)
     {
-        require_once 'Classes/PHPExcel.php';
         /** PHPExcel_IOFactory - Reader */
         include 'Classes/PHPExcel/IOFactory.php';
         $inputFileName = $_FILES["file"]["name"];
