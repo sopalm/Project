@@ -46,12 +46,11 @@
                         $queryemp=mysqli_query($con,$sqlemp);
         ?>
             <div style="overflow-x:auto;" >
-            <table id="tablepage-doctor" class="display" width="100%" >
+            <table id="print" class="display" width="100%" >
                  <thead >
                   <tr align="center">
                       <th align="center">ลำดับ</th>
                       <th align="center"> H.N</th>
-                      <th align="center">V.N</th>
                       <th align="center">ชื่อ-สกุล</th>
                       <th align="center">โปรแกรม</th>
                       <?php 
@@ -87,7 +86,6 @@
               <tr>
                   <td align="center"><?php echo $row["emp_no"]; ?></td>
                   <td align="center"><?php echo $row["emp_id"]; ?></td>
-                  <td align="center"><?php echo $row["VN"]; ?></td>
                   <td><?php echo $row["emp_title"]; ?>&nbsp;<?php echo $row["emp_name"]; ?>&nbsp;&nbsp;<?php echo $row["emp_surname"]; ?></td>
                   <td align="center"><?php echo $row["pro_id"]; ?></td>
 
@@ -151,71 +149,42 @@
                         
 
                   
-               <?php }
+               <?php }?>
+                    
+                </tbody>
+                <tfoot >
+                  <tr align="center">
+                      <th align="center">ลำดับ</th>
+                      <th align="center"> H.N</th>
+                      <th align="center">ชื่อ-สกุล</th>
+                      <th align="center">โปรแกรม</th>
+                      <?php 
+                        $querylist=mysqli_query($con,$sqllist);
+                        while ($row=mysqli_fetch_array($querylist)) {
+                          ?>
+                          <td align="center"></th>
+                      <?php    
+                        }
+                      ?>
+                      <td align="center"></th>
+                      
 
-                echo "</tbody>"; 
-             echo "</table>";
-             echo "</div>";       
-        }
-        /*for ($i=0; $i <$keb ; $i++) { 
-          echo $tagsum[$i]['tag'];
-          echo $tagsum[$i]['sum'];
-          echo "<br>";
-        }*/
-    ?>   
-        <div class="row">
-          <div class="column">
-          <h3>จำนวนผู้เข้ารับการตรวจทั้งหมด <?php echo $cp["cs_total_people"]; ?> คน</h3>
-            <table id="tablepage-page" width="100%" class="display">
-            <thead>
-              <th ><div align="center">จุดตรวจ</div></th>
-              <th ><div align="center">จำนวนคนที่ตรวจไปแล้ว</div></th>
-            </thead>
-            <tbody>
-              <?php 
-                for ($i=0; $i <$keb ; $i++) {
-                  $column++;
-              ?>
-                  <tr>
-                    <td align="center"><?php echo $tagsum[$i]['tag']; ?></td><td align="center"><?php echo $tagsum[$i]['sum']; ?> คน</td>
                   </tr>
-                  
-              <?php    
-                }
-              ?>
-              </tbody>
-            </table> 
-          </div>
-          <div class="column">
-            
-          </div> 
-        </div>    
+                </tfoot>
+             </table>
+             </div>
+      <?php      
+        }
+
+    ?>   
+  
+ 
+   
         
         </div>
      </div>
     </div>
 
-    <script type="text/javascript">
-        
-        function PrintDoc() {
-
-            var toPrint = document.getElementById('printarea');
-
-            var popupWin = window.open('', '_blank', 'width=350,height=150,location=no,left=200px');
-
-            popupWin.document.open();
-
-            popupWin.document.write('<html><head><title>::Preview::</title><link rel="stylesheet" type="text/css"  /><style type="text/css" media="print">@page { size: landscape; } table{border-collapse: collapse;border: 1px solid black;}</style></head><body onload="window.print()">')
-
-            popupWin.document.write(toPrint.innerHTML);
-
-            popupWin.document.write('</html>');
-
-            popupWin.document.close();
-
-        }
-
-    </script>
     <?php 
         include("footer.php");
         include("js/DataTable.js");

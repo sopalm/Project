@@ -31,7 +31,10 @@
             $p = 0;
             $sqlCommand = "SELECT employee.*,check_service_detail.* FROM `employee` LEFT JOIN check_list ON check_list.emp_id = employee.emp_id LEFT JOIN check_service_detail ON check_list.csd_no = check_service_detail.csd_no WHERE check_service_detail.cs_no = '$_GET[cs_no]' AND employee.emp_id = '$_GET[id]'";
             $result=mysqli_query($con,$sqlCommand);
-            while ($row=mysqli_fetch_array($result)) {
+            $row=mysqli_fetch_array($result);
+            $sqlpro ="SELECT * FROM program_check WHERE pro_id =$row[pro_id] ";
+            $resultpro=mysqli_query($con,$sqlpro);
+            $pro=mysqli_fetch_array($resultpro);
 
         ?>
                 <table class="A5" frame="box" style="width: 14.8cm;height: 21cm;">
@@ -39,9 +42,9 @@
                         <td style="width: 75%; vertical-align: top;text-align: left; font-size: 25px;">
                             ชื่อ:&nbsp;&nbsp; <?php echo $row["emp_title"];?> &nbsp;<?php echo $row["emp_name"];?>&nbsp;<?php echo $row["emp_surname"];?>
                             </br></br>
-                            วัน/เดือน/ปี เกิด: <?php echo DateThaietc($row["emp_bd"]);?>&nbsp;&nbsp;อายุ:&nbsp; <?php echo Age($row["emp_bd"]);?> ปี
+                            วันเกิด: <?php echo DateThaietc($row["emp_bd"]);?>&nbsp;&nbsp;อายุ:&nbsp; <?php echo Age($row["emp_bd"]);?> ปี
                             </br></br>
-                            โปรแกรม: &nbsp;&nbsp; <?php echo $row["pro_id"];?>
+                            โปรแกรม: &nbsp;&nbsp; <?php echo $pro["pro_name"];?>
                         </td>
                         <td style="width: 25%; vertical-align: top;text-align: right; font-size: 25px;+5">ลำดับที่&nbsp;&nbsp;<?php echo $row["emp_no"];?></td>
                     </tr>
@@ -51,17 +54,7 @@
                 </table>
                 <div class="page-break"></div>
     <?php
-                /*$c++;
-                $p++;
-                if ($c == 2) {
-                    echo "</tr>";
-                    $c = 0;
-                }
-                if ($p == 10) {
-                    echo "</table>";
-                    $p = 0;
-                }*/
-            }
+
                     
         }
 

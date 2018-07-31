@@ -26,8 +26,16 @@
 	    	$comp = mysqli_real_escape_string($con,$_POST['comp']);
 
 		if (check_id($empid) == false ) {
-
-			header("Location: regis_emp.php?cs_no=".$_POST[emp_check_no]."");
+			
+			$sqldep_check = "SELECT `dep_comp_no` FROM `dep_comp` WHERE dep_id='$dep' AND comp_id = '$comp' ";
+	    	$resultdep_check=mysqli_query($con,$sqldep_check);
+            while ($row=mysqli_fetch_array($resultdep_check)) {
+            	$dep_comp = $row[0];
+            }
+			$sql = "UPDATE `employee` SET `VN`='$vn', `emp_title`='$title' ,`emp_name`='$ename', `emp_surname`='$esur', `dep_comp_no`='$dep_comp', `emp_no`='$enum', `date_modify`='$_SESSION[date]', `user_modify`= '$_SESSION[user_name]' WHERE emp_id = '$empid' ";
+				$result=mysqli_query($con,$sql)
+					or die("Failed db".mysqli_error());
+				//var_dump($result);
 	    }
 	    else{
 			$filename = $PNG_TEMP_DIR.md5($empid.'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
@@ -47,7 +55,8 @@
 	    	$sqlCommand = "INSERT INTO `employee`(`emp_id`,`VN`, `emp_title`, `emp_name`, `emp_surname`, `emp_bd`, `emp_qrcode`, `dep_comp_no`,`emp_no`,`date_modify`, `user_modify`) VALUES ('$empid','$vn','$title','$ename','$esur','$date','$path_qr','$dep_comp','$enum','$_SESSION[date]','$_SESSION[user_name]')";
 			$result=mysqli_query($con,$sqlCommand)
 				or die("Failed db".mysqli_error());
-				
+		}
+		if (check_cs_no($empid,$ecn) == true){		
 			if (check_csd($ecn,$ep) == true ) {
 	    		$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user_modify`) VALUES (NULL,'$ecn','$ep','1','$_SESSION[date]','$_SESSION[user_name]')";
 	    		$result=mysqli_query($con,$sqlCommand1)
@@ -71,25 +80,30 @@
             }
 
 
-	    	$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `regis`, `quantity_bf`, `quantity_at`, `date_modify`, `user_modify`) VALUES (NULL,'$empid','$keb',0,0,0,'$_SESSION[date]','$_SESSION[user_name]')";
+	    	$sqlCommand5 = "INSERT INTO `check_list`(`check_id`, `emp_id`, `csd_no`, `regis`, `date_modify`, `user_modify`) VALUES (NULL,'$empid','$keb',0,'$_SESSION[date]','$_SESSION[user_name]')";
 	    	$result=mysqli_query($con,$sqlCommand5)
 				or die("Failed db".mysqli_error());
 			$sqlcl = "SELECT check_id FROM check_list WHERE emp_id = '$_POST[emp_id]' AND csd_no = '$keb' ";
 			$resultcl = mysqli_query($con,$sqlcl);
 			$cl = mysqli_fetch_array($resultcl);
-
+			echo "check_Tag";
 			$sqlTag ="SELECT DISTINCT `checklist_name_tag` 
 						FROM `program_check_detail`as pcd JOIN program_check_u as pcu ON pcd.checklist_id = pcu.checklist_id
 						WHERE pcu.pro_id = '$ep' ";
 			$resultTag = mysqli_query($con,$sqlTag);
 			while ($row=mysqli_fetch_array($resultTag)) {
-            	$sqlct = "INSERT INTO check_tags(ct_id,check_id,tag,quantity,tag_status) VALUES(NULL,'$cl[check_id]','$row[checklist_name_tag]',NULL,0)";
+            	$sqlct = "INSERT INTO check_tags(ct_id,check_id,tag,tag_status) VALUES(NULL,'$cl[check_id]','$row[checklist_name_tag]',0,'$_SESSION[date]','$_SESSION[user_name]')";
             	$resultct = mysqli_query($con,$sqlct);
             }
 
 			$_SESSION['alert']='emp_add';
 			header("Location: check-service_list.php?cs_no=".$ecn."");
-	    }
+		}
+		else{
+			$_SESSION['alert']='emp_add_false_person';
+			header("Location: regis_emp.php?cs_no=".$ecn."");
+
+		}
 		
 		
 	}
@@ -97,6 +111,7 @@
 //excel---------------------------------------------------------------------
 
 	if (isset($_POST["submit_excel"])) {
+
 		$ecn = mysqli_real_escape_string($con,$_POST['emp_check_no']);
 		for ($i=0; $i < $_POST['nub'] ; $i++) {
 			$a = mysqli_real_escape_string($con,$_POST['a'.$i]);
@@ -129,8 +144,13 @@
 			$proarray =mysqli_fetch_array($resultpro);
 			$pro=$proarray[0];
 
+			if(mysqli_num_rows($resultpro)== 0 ||mysqli_num_rows($resultdep)== 0){
+				$_SESSION['alert']='emp_add_false';
+				header("Location: regis_emp.php?cs_no=".$ecn."");
+			}
+
 			if (check_id($b) == false) {
-				$sql = "UPDATE `employee` SET `VN`='$c',`emp_title`='$d',`emp_name`='$e',`emp_surname`='$f',`dep_comp_no`='$dep,`emp_no`='$a',`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE emp_id = '$b' ";
+				$sql = "UPDATE `employee` SET `VN`='$c',`emp_title`='$d',`emp_name`='$e',`emp_surname`='$f',`dep_comp_no`='$dep',`emp_no`='$a',`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE emp_id = '$b' ";
 	    		$result=mysqli_query($con,$sql);
 			}
 			else{
@@ -151,13 +171,11 @@
 		    		$sqlCommand1 = "INSERT INTO `check_service_detail`(`csd_no`, `cs_no`, `pro_id`, `csd_pro_people`, `date_modify`, `user_modify`) VALUES (NULL,'$ecn','$pro','1','$_SESSION[date]','$_SESSION[user_name]')";
 		    			$result=mysqli_query($con,$sqlCommand1)
 							or die("Failed db".mysqli_error());
-							echo "mai som";
 		    	}
 		    	else{
 		    		$sqlCommand2 = "UPDATE `check_service_detail` SET `csd_pro_people` = csd_pro_people+1,`date_modify`= '$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn' AND `pro_id` = '$pro'";
 		    		$result=mysqli_query($con,$sqlCommand2)
 							or die("Failed db".mysqli_error());
-							echo "som";
 		    	}
 
 		    	$sqlCommand3 = "UPDATE `check_service` SET `cs_total_people`= cs_total_people+1,`date_modify`='$_SESSION[date]',`user_modify`= '$_SESSION[user_name]' WHERE `cs_no` = '$ecn'";
@@ -184,7 +202,7 @@
 							WHERE pcu.pro_id = '$pro' ";
 				$resultTag = mysqli_query($con,$sqlTag);
 				while ($row=mysqli_fetch_array($resultTag)) {
-	            	$sqlct = "INSERT INTO check_tags(ct_id,check_id,tag,quantity,tag_status,date_modify,user_modify) VALUES(NULL,'$cl[check_id]','$row[checklist_name_tag]',NULL,0,'$_SESSION[date]','$_SESSION[user_name]')";
+	            	$sqlct = "INSERT INTO check_tags(ct_id,check_id,tag,tag_status,date_modify,user_modify) VALUES(NULL,'$cl[check_id]','$row[checklist_name_tag]',0,'$_SESSION[date]','$_SESSION[user_name]')";
 	            	$resultct = mysqli_query($con,$sqlct);
 	            }
 				
@@ -228,9 +246,9 @@
 	function check_id($number){
 		include('connection.php');
 		$a=0;
-		$sqlCommand = "SELECT * FROM employee WHERE emp_id = "$number" ";
+		$sqlCommand = "SELECT * FROM employee WHERE emp_id = '$number' ";
         $result=mysqli_query($con,$sqlCommand);
-		$row=mysqli_fetch_array($result) 
+		$row=mysqli_fetch_array($result) ;
 		if($row['emp_id']){
         	if ($row[0] == $number) {
         		$a = 1;

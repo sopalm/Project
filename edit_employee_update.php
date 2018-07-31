@@ -18,7 +18,7 @@
             </div>
                 <?php
                 include_once('connection.php');
-
+                include('function.php');
                 $strEmpID = null;
                 if(isset($_GET["emp_id"]))
                 {
@@ -77,8 +77,8 @@
                         <td><input type="text" name="txtSurname" size="20" value="<?php echo $result["emp_surname"];?>"></td>
                     </tr>
                     <tr>
-                        <th >อายุ</th>
-                        <td><input type="number" min="1" max="100" name="txtAge" size="20" value="<?php echo $result["emp_age"];?>"></td>
+                        <th >วันเกิด</th>
+                        <td><input type="date"  name="txtBD" size="20" value="<?php echo $result["emp_bd"];?>"></td>
                     </tr>
                     <tr>
                         <th>

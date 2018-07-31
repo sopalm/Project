@@ -3,6 +3,7 @@
 
     <?php include("head.php"); ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
   <body class="skin-blue">
     <?php include("header.php"); ?>
       
@@ -41,12 +42,12 @@
               }
             ?>
 
-         <input type="button" value="Print" name="Search" class="btn btn-secondary" onclick="PrintDoc()"/>
+
          <div class="page-break" style="overflow-x:auto;" >
           <div id="printarea">
           <?php include('function.php'); ?>
           <center><h2>ผลการตรวจสุขภาพพนักงานบริษัท <?php echo $cp["comp_name"]; ?> ประจำปี <?php echo thai_year($cp["cs_date"]); ?></h2></center>
-                  <table class="" border="1" >
+              <table id="print" class="display nowrap" width="100%" >
                  <thead style="background-color: #47d147">
                   <tr align="center">
                       <th align="center">ชื่อ-สกุล</th>
@@ -114,10 +115,13 @@
             while($pro=mysqli_fetch_array($querypro))
                 { ?>
                   <tr>
-                    <td colspan="45" style="background-color: #4db8ff;"><?php echo $pro["pro_name"]; ?> / โปรแกรม <?php echo $pro["pro_id"]; ?></td>
-                  </tr>
+                    <td style="background-color: #4db8ff;"><?php echo $pro["pro_name"]; ?>/โปรแกรม <?php echo $pro["pro_id"]; ?></td>
+                    <?php for($i='0';$i<'35';$i++){ 
+                      echo"<td style='background-color: #4db8ff;'></td>";
+                    }?>
                   
-                    <?php 
+                    </tr>
+                    <?php
                     $queryreport = mysqli_query($con,$sqlreport);
                       while ( $row=mysqli_fetch_array($queryreport)) {
                         if($pro['pro_id']==$row['pro_id']){
@@ -179,9 +183,7 @@
                 echo "</tbody>"; 
              echo "</table>";       
         }
-        if (isset($_POST["clear"])) {
-        system('clear');
-        }
+
     ?>            
 
         </div>
@@ -190,7 +192,7 @@
 
     <script type="text/javascript">
         
-        function PrintDoc() {
+        /*function PrintDoc() {
 
             var toPrint = document.getElementById('printarea');
 
@@ -206,7 +208,7 @@
 
             popupWin.document.close();
 
-        }
+        }*/
 
     </script>
 

@@ -30,7 +30,7 @@
                 $result = mysqli_query($con,$query); 
                 ?>
                 <div >
-                  <table name="employee" id="example" class="display" width="100%">
+                  <table name="employee" id="example" class="display nowrap" width="100%">
                   <thead>
                     <tr >
                       <th > <div align="center">H.N </div></th>

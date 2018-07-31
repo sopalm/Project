@@ -90,7 +90,7 @@
                 //echo date("Y",$unix_date)." ";
             }
             echo "<td>"."<input style='max-width: 120px; ' type='date' name='g".$nub."' value='".$date."' required >"."</td>";
-            echo "<td>"."<input style='max-width: 110px; ' type='text' name='emp_dep".$nub."' value='".$result["H"]."'>"."</td>";
+            echo "<td>"."<input style='max-width: 180px; ' type='text' name='emp_dep".$nub."' value='".$result["H"]."'>"."</td>";
             echo "<td>"."<input style='max-width: 180px; ' type='text' name='emp_pro".$nub."' value='".$result["I"]."' required >"."</td>";
             $nub++;
         }

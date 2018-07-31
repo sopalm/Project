@@ -96,6 +96,14 @@
         //echo $_SESSION['alert'];
         $_SESSION['alert']=NULL;
     }
+    if($_SESSION['alert']=='emp_add_false_person'){
+        echo "<script language=\"JavaScript\">";
+        echo "alert('เพิ่มรายชื่อผู้เขารับการตรวจสุขภาพไม่สำเร็จ มีชื่ออยู่ในการตรวจแล้ว');";
+        //echo "window.location='index.php';";
+        echo "</script>";
+        //echo $_SESSION['alert'];
+        $_SESSION['alert']=NULL;
+    }
     if($_SESSION['alert']=='emp_add_false'){
         echo "<script language=\"JavaScript\">";
         echo "alert('เพิ่มรายชื่อผู้เขารับการตรวจสุขภาพไม่สำเร็จ ไฟล์รายชื่อไม่ถูกต้อง');";

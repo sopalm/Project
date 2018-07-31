@@ -27,11 +27,12 @@
         		}
         	}
         	if($nub==1){
-        		$sqlputdata ="INSERT INTO `check_service_tag`(`cst_id`,`cs_no`, `tag`,`date_modify`, `user_modify`) 
+				
+				$sqlputdata ="INSERT INTO `check_service_tag`(`cst_id`,`cs_no`, `tag`,`date_modify`, `user_modify`) 
                            VALUES (NULL,'$get','$new[0]','$_SESSION[date]',0) ";
             	$putdata=mysqli_query($con,$sqlputdata);
         	}
-        }
+		}
     }
     else{
     	while ($row=mysqli_fetch_array($puttag)) 
@@ -39,7 +40,7 @@
 	        $sqlputdata ="INSERT INTO `check_service_tag`(`cst_id`,`cs_no`, `tag`,`date_modify`, `user_modify`) 
 	                       VALUES (NULL,'$get','$row[0]','$_SESSION[date]',0) ";
 	        $putdata=mysqli_query($con,$sqlputdata);
-	    }
+		}
     }
 	if($_GET['check']==0){
 		header("Location: report_check_list.php?cs_no=$get");

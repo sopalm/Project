@@ -26,17 +26,6 @@
              }
           } );
           $(document).ready(function() {
-              $('#tablepage-doctor').DataTable();
-          } );
-          var tableexcel = $('#tablepage-doctor').dataTable( {
-              dom: 'lBrtip',
-                buttons: [
-                    'print',
-                    'excel'
-                ]
-              
-          } );
-          $(document).ready(function() {
               $('#tablepage-page').DataTable();
           } );
           $('#tablepage-page').dataTable( {
@@ -54,7 +43,40 @@
               ordering: true,
               info:     false
           } );
-          
+          $(document).ready(function() {
+              // Setup - add a text input to each footer cell
+              $('#print tfoot th').each( function () {
+                  var title = $(this).text();
+                  $(this).html( '<input class="dtb" type="text" placeholder="'+title+'" />' );
+              } );
+           
+              // DataTable
+              var table = $('#print').DataTable({
+                searching: true,
+                dom: 'lBrtip',
+                buttons: [
+                    'print',
+                    'excel'
+                ],
+                "aaSorting": [],
+                fnDrawCallback : function() {
+                    $('[data-toggle="popover"]').popover(); 
+                 }
+              });
+           
+              // Apply the search
+              table.columns().every( function () {
+                  var that = this;
+           
+                  $( 'input', this.footer() ).on( 'keyup change', function () {
+                      if ( that.search() !== this.value ) {
+                          that
+                              .search( this.value )
+                              .draw();
+                      }
+                  } );
+              } );
+              } );
           $(document).ready(function() {
               // Setup - add a text input to each footer cell
               $('#example tfoot th').each( function () {

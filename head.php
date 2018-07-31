@@ -76,7 +76,7 @@ div.body{
     margin-bottom: 20px;
 }
 
-th{
+th,td{
 
     padding: 10px;
 }
