@@ -6,10 +6,12 @@
 	$surname = mysqli_real_escape_string($con,$_POST['txtSurname']);
 	$bd = mysqli_real_escape_string($con,$_POST['txtBD']);
 	$VN = mysqli_real_escape_string($con,$_POST['txtVN']);
+	$HN = mysqli_real_escape_string($con,$_POST['txtHN']);
 	$id = mysqli_real_escape_string($con,$_POST['txtID']);
 	if(isset($_POST['txtID']))
 	{
 		$sql = "UPDATE employee SET 
+			HN = '".$HN."' ,
 			VN = '".$VN."' ,
 			emp_title = '".$title."' ,
 			emp_name = '".$name."',

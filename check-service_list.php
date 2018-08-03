@@ -68,7 +68,7 @@
                         { ?>
                           <tr  >
                           <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo $row["emp_no"];?></div></a></td>
-                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo $row["emp_id"];?></div></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo $row["HN"];?></div></a></td>
                           <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo $row["VN"];?></div></a></td>
                           <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div><?php echo $row["emp_title"];?></div></a></td>
                           <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><?php echo $row["emp_name"];?></a></td>

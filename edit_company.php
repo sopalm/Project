@@ -36,6 +36,7 @@
                               FROM company  ";
 
                     $result = mysqli_query($con,$query); 
+                    $color='';
                     ?>
 
                     <table name="company" id="example" class="display nowrap" width="100%" >
@@ -61,19 +62,29 @@
                         <?php
                         while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                         {
+                          if(isset($_POST["dep_s"]))
+                          {
+                            if($_POST["dep_s"]==$row["comp_id"]){
+                              $color='#e6ffff';
+                            }else{
+                              $color='';
+                            }
+                          }else{
+                            $color='';
+                          }
                         ?>
                           <tr data-href='edit_company_data.php?id=<?php echo $row["comp_id"];?>'>
-                            <td ><div align="center"><?php echo $row["comp_id"];?></div></td>
-                            <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["comp_name"];?>"><?php echo $row["comp_name"];?></a></td>
+                            <td bgcolor='<?php echo $color; ?>' ><div align="center"><?php echo $row["comp_id"];?></div></td>
+                            <td bgcolor='<?php echo $color; ?>' ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["comp_name"];?>"><?php echo $row["comp_name"];?></a></td>
                             
          
                             <?php
                               if ($_SESSION["status"]== '1')
                               { ?>
 
-                                <td align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
-                                <td align="center"><?php echo $row["user_modify"];?></td>
-                                <td align="center"><a href="edit_company_update.php?comp_id=<?php echo $row["comp_id"];?>">แก้ไข</a></td>
+                                <td bgcolor='<?php echo $color; ?>' align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
+                                <td bgcolor='<?php echo $color; ?>' align="center"><?php echo $row["user_modify"];?></td>
+                                <td bgcolor='<?php echo $color; ?>' align="center"><a href="edit_company_update.php?comp_id=<?php echo $row["comp_id"];?>">แก้ไข</a></td>
                               <?php 
                               } 
                               ?>
@@ -172,7 +183,6 @@
                         <thead>
                             <tr >
 
-                                <th > <div align="center">ชื่อบริษัท</div></th>
                                 <th > <div align="center">ชื่อแผนก</div></th>
                                 
                                 <?php
@@ -194,11 +204,7 @@
                             <input type="number" hidden  name="txtcomp_id" value="<?php echo $row["comp_id"];?>">
                             <input type="number" hidden name="txtdep_id" value="<?php echo $row["dep_id"];?>">
                               <tr >
-                                <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["comp_name"];?>">
-                                    <?php echo $row["comp_name"];?>
-                                    </a>
-                                </td>
-                                <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["dep_name"];?>">
+                                <td bgcolor='#e6ffff' ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["dep_name"];?>">
                                     <?php echo $row["dep_name"];?>
                                     </a>
                                 </td>
@@ -208,9 +214,9 @@
                                 <?php
                                   if ($_SESSION["status"]== '1')
                                   { ?>
-                                    <td align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
-                                    <td align="center"><?php echo $row["user_modify"];?></td>
-                                    <td align="center"><a href="edit_department_update.php?check_id=<?php echo $row["dep_comp_no"];?>">แก้ไข</a></td>
+                                    <td bgcolor='#e6ffff' align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
+                                    <td bgcolor='#e6ffff' align="center"><?php echo $row["user_modify"];?></td>
+                                    <td bgcolor='#e6ffff' align="center"><a href="edit_department_update.php?check_id=<?php echo $row["dep_comp_no"];?>">แก้ไข</a></td>
                                   <?php 
                                   } 
                                   ?>
@@ -221,8 +227,6 @@
                         </tbody>
                         <tfoot>
                             <tr >
-
-                                <th > <div align="center">ชื่อบริษัท</div></th>
                                 <th > <div align="center">ชื่อแผนก</div></th>
                                 
                                 <?php

@@ -61,7 +61,7 @@
                   {
                   ?>
                     <tr >
-                      <td ><div align="center"><?php echo $row["emp_id"];?></div></td>
+                      <td ><div align="center"><?php echo $row["HN"];?></div></td>
                       <td ><div align="center"><?php echo $row["VN"];?></div></td>
                       <td ><div align="center"><?php echo $row["emp_title"];?></div></td>
                       <td ><?php echo $row["emp_name"];?></td>

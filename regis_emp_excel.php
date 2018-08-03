@@ -4,14 +4,28 @@
 /** PHPExcel */
     if(isset($_POST["submitfile"])&&$_FILES["file"]["name"]!=null)
     {
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+        $target_dir = 'uploads/';
+        $target_file = $target_dir . basename($_FILES["file"]["name"]);
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+        //move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+        if(move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+            echo basename( $_FILES['file']['name'])." is now uploaded";
+         } 
+         else{
+            echo "Problenm in uploading";
+         }
+        
         require_once 'Classes/PHPExcel.php';
         /** PHPExcel_IOFactory - Reader */
         include 'Classes/PHPExcel/IOFactory.php';
-        $inputFileName = $_FILES["file"]["name"];
-        $inputFileType = PHPExcel_IOFactory::identify($inputFileName); 
+        //$inputFileName = $_FILES["file"]["name"];
+        $inputFileType = PHPExcel_IOFactory::identify($target_file); 
         $objReader = PHPExcel_IOFactory::createReader($inputFileType); 
         $objReader->setReadDataOnly(true); 
-        $objPHPExcel = $objReader->load($inputFileName); 
+        $objPHPExcel = $objReader->load($target_file); 
         
         $objWorksheet = $objPHPExcel->setActiveSheetIndex(0);
         $highestRow = $objWorksheet->getHighestRow();
@@ -25,6 +39,12 @@
                 ++$r;
                 $namedDataArray[$r] = $dataRow[$row];
             }
+        }
+
+        $files = glob('uploads/*'); // get all file names
+        foreach($files as $file){ // iterate files
+        if(is_file($file))
+            unlink($file); // delete file
         }
 ?>
 <style type="text/css">

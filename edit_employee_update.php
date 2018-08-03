@@ -40,12 +40,13 @@
 
                 <table width="284" border="0">
                     <tr>
+                        <input type="hidden" name="txtID" value="<?php echo $result["emp_id"];?>" ></input>
                         <th width="120">หมายเลข H.N</th>
-                        <td width="238"><input type="hidden" name="txtID" value="<?php echo $result["emp_id"];?>"><?php echo $result["emp_id"];?></td>
+                        <td width="238"><input type="text" name="txtHN" value="<?php echo $result["HN"];?>"></td>
                     </tr>
                     <tr>
                         <th width="120">หมายเลข V.N</th>
-                        <td width="238"><input type="hidden" name="txtVN" value="<?php echo $result["VN"];?>"><?php echo $result["VN"];?></td>
+                        <td width="238"><input type="text" name="txtVN" value="<?php echo $result["VN"];?>"></td>
                     </tr>
                     <tr>
                         <th width="120">คำนำหน้า</th>

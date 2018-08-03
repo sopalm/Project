@@ -5,16 +5,14 @@
 	if (isset($_POST['program'])) {
 		$proid = mysqli_real_escape_string($con,$_POST['pro_id']);
 		$proname = mysqli_real_escape_string($con,$_POST['pro_name']);
-
+		check_pro($proid,$proname);
 		$sqlCommand = "INSERT INTO `program_check`(`pro_id`, `pro_name`, `date_modify`, `user_modify`) VALUES ('$proid','$proname','$_SESSION[date]','$_SESSION[user_name]')";
 		//echo $sqlCommand;
 		$result=mysqli_query($con,$sqlCommand)
 			or die("Failed db".mysqli_error());
 
-		echo "<script language=\"JavaScript\">";
-		echo "alert('success');";
-		echo "window.location='edit_program.php';";
-		echo "</script>";
+		$_SESSION['alert']='pro_add';
+		header("Location: edit_program.php");
 	}
 	if (isset($_POST['checklist'])) {
 		$clname = mysqli_real_escape_string($con,$_POST['cl_name']);
@@ -61,4 +59,14 @@
 		$_SESSION['alert']='pro_add';
 		header("Location: edit_program.php");
 	}
+	function check_pro($number,$name){
+		include('connection.php');
+		$sqlpro ="SELECT pro_id,pro_name FROM program_check WHERE pro_id = '$number' OR pro_name ='$name'";
+		$resultpro=mysqli_query($con,$sqlpro);
+		if ($resultpro->num_rows > 0){
+			$_SESSION['alert']='pro_add_false';
+			header("Location: edit_program.php");
+		}
+	}
+
 ?>

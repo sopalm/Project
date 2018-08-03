@@ -38,11 +38,11 @@
             $sqllist = "SELECT tag FROM check_service_tag
                           WHERE cs_no = '$_GET[cs_no]'";
                         $querylist=mysqli_query($con,$sqllist);
-              $sqlemp ="SELECT emp.*,pc.pro_id ,csd.cs_no
+              $sqlemp ="SELECT emp.*,pc.pro_id ,csd.cs_no,cl.regis
                         FROM employee as emp JOIN check_list as cl ON emp.emp_id = cl.emp_id
                                               JOIN check_service_detail as csd ON cl.csd_no = csd.csd_no
                                               JOIN program_check as pc ON csd.pro_id = pc.pro_id
-                        WHERE csd.cs_no = '$_GET[cs_no]'";
+                        WHERE csd.cs_no = '$_GET[cs_no]' ORDER BY emp_no ";
                         $queryemp=mysqli_query($con,$sqlemp);
         ?>
             <div style="overflow-x:auto;" >
@@ -85,7 +85,7 @@
                 { ?>
               <tr>
                   <td align="center"><?php echo $row["emp_no"]; ?></td>
-                  <td align="center"><?php echo $row["emp_id"]; ?></td>
+                  <td align="center"><?php echo $row["HN"]; ?></td>
                   <td><?php echo $row["emp_title"]; ?>&nbsp;<?php echo $row["emp_name"]; ?>&nbsp;&nbsp;<?php echo $row["emp_surname"]; ?></td>
                   <td align="center"><?php echo $row["pro_id"]; ?></td>
 
@@ -177,10 +177,45 @@
         }
 
     ?>   
-  
- 
-   
+        <div class="row">
+        <?php 
+          $regis=0;
+          $queryemp=mysqli_query($con,$sqlemp);
+          while($row=mysqli_fetch_array($queryemp)){
+            if($row["regis"]==1){
+              $regis++;
+            }
+          }
+          ?>
+          <h3 style="margin-left:10px;";>จำนวนผู้เข้ารับการตรวจที่ลงทะเบียนแล้ว <?php echo $regis; ?> คน  จาก <?php echo $cp["cs_total_people"]; ?> คน</h3>
+          <div class="column">
         
+            <table id="tablepage-page" width="100%" class="display">
+            <thead>
+              <th ><div align="center">จุดตรวจ</div></th>
+              <th ><div align="center">จำนวนคนที่ตรวจไปแล้ว</div></th>
+            </thead>
+            <tbody>
+              <?php 
+                for ($i=0; $i <$keb ; $i++) {
+                  $column++;
+              ?>
+                  <tr>
+                    <td align="center"><?php echo $tagsum[$i]['tag']; ?></td><td align="center"><?php echo $tagsum[$i]['sum']; ?> คน</td>
+                  </tr>
+                  
+              <?php    
+                }
+              ?>
+              </tbody>
+            </table> 
+          </div>
+          <div class="column">
+            
+          </div> 
+        </div>    
+
+
         </div>
      </div>
     </div>
