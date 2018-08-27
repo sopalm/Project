@@ -14,13 +14,15 @@
 		$check_pass =mysqli_fetch_array($result_pass);
 		//echo "DB: ".$check_pass[2];
 		//echo "input: ".$passold;
-		if($check_pass['user_pass']==$passold)
+		$pass = $check_pass['user_pass'];
+		if(password_verify($passold,$pass))
 		{
 			if($passnew==$passconfirm)
 			{
 				if($passnew!=$passold)
 				{
-					$sqlCommand = "UPDATE `user` SET user_pass = '$passnew' ,date_modify ='$_SESSION[date]',user_modify ='$_SESSION[user_name]' WHERE user_id = $supID ";
+					$hashed_password = password_hash($passnew, PASSWORD_DEFAULT);
+					$sqlCommand = "UPDATE `user` SET user_pass = '$hashed_password' ,date_modify ='$_SESSION[date]',user_modify ='$_SESSION[user_name]' WHERE user_id = $supID ";
 					$result=mysqli_query($con,$sqlCommand)
 						or die("Failed db".mysqli_error());
 					$_SESSION['alert']='Edit_Pass';
@@ -48,11 +50,13 @@
 		$check_pass =mysqli_fetch_array($result_pass);
 		//echo "DB: ".$check_pass[2];
 		//echo "input: ".$passold;
-		if($check_pass['user_pass']==$passadmin)
+		$pass = $check_pass['user_pass'];
+		if(password_verify($passadmin,$pass))
 		{
 			if($passnew==$passconfirm)
 			{
-				$sqlCommand = "UPDATE `user` SET user_pass = '$passnew',date_modify ='$_SESSION[date]',user_modify ='$_SESSION[user_name]' WHERE user_id = $supName ";
+				$hashed_password = password_hash($passnew, PASSWORD_DEFAULT);
+				$sqlCommand = "UPDATE `user` SET user_pass = '$hashed_password',date_modify ='$_SESSION[date]',user_modify ='$_SESSION[user_name]' WHERE user_id = $supName ";
 				$result=mysqli_query($con,$sqlCommand)
 					or die("Failed db".mysqli_error());
 				$_SESSION['alert']='Edit_Pass';

@@ -4,11 +4,17 @@
 	$uname = mysqli_real_escape_string($con,$_POST['username']);
 	$upass = mysqli_real_escape_string($con,$_POST['password']);
 	
-	$result=mysqli_query($con,"SELECT * from user where user_name ='$uname' and user_pass = '$upass'")
+	$result=mysqli_query($con,"SELECT * from user where user_name ='$uname' ")
 		or die("Failed db".mysqli_error());
 	$row=mysqli_fetch_array($result);
 
-	if($row['user_name']==$uname && $row['user_pass']==$upass 
+	$pass = $row['user_pass'];
+
+	if(password_verify($upass,$pass)) {
+		echo "kuy";
+	}
+
+	if($row['user_name']  && password_verify($upass,$pass)
 		&& $uname!='' &&$upass!='' )
 	{
 		if ($row['user_status']=='admin') {
@@ -32,7 +38,7 @@
 	{	
 		echo "<script language=\"JavaScript\">";
 		echo "alert('Invalid username or password!!!');";
-		echo "window.location='index.php';";
+		// echo "window.location='index.php';";
 		echo "</script>";
 		$_SESSION['alert']='loginFalse';
 		//header('Location: index.php');
