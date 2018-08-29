@@ -18,7 +18,7 @@
             </div>
                 <?php
                 include_once('connection.php');
-
+                include('function.php');
                 $strEmpID = null;
                 if(isset($_GET["emp_id"]))
                 {
@@ -40,12 +40,13 @@
 
                 <table width="284" border="0">
                     <tr>
+                        <input type="hidden" name="txtID" value="<?php echo $result["emp_id"];?>" ></input>
                         <th width="120">หมายเลข H.N</th>
-                        <td width="238"><input type="hidden" name="txtID" value="<?php echo $result["emp_id"];?>"><?php echo $result["emp_id"];?></td>
+                        <td width="238"><input type="text" name="txtHN" value="<?php echo $result["HN"];?>"></td>
                     </tr>
                     <tr>
                         <th width="120">หมายเลข V.N</th>
-                        <td width="238"><input type="hidden" name="txtVN" value="<?php echo $result["VN"];?>"><?php echo $result["VN"];?></td>
+                        <td width="238"><input type="text" name="txtVN" value="<?php echo $result["VN"];?>"></td>
                     </tr>
                     <tr>
                         <th width="120">คำนำหน้า</th>
@@ -77,8 +78,8 @@
                         <td><input type="text" name="txtSurname" size="20" value="<?php echo $result["emp_surname"];?>"></td>
                     </tr>
                     <tr>
-                        <th >อายุ</th>
-                        <td><input type="number" min="1" max="100" name="txtAge" size="20" value="<?php echo $result["emp_age"];?>"></td>
+                        <th >วันเกิด</th>
+                        <td><input type="date"  name="txtBD" size="20" value="<?php echo $result["emp_bd"];?>"></td>
                     </tr>
                     <tr>
                         <th>

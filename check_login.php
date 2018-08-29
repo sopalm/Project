@@ -37,7 +37,7 @@
 		// echo "window.location='index.php';";
 		echo "</script>";
 		$_SESSION['alert']='loginFalse';
-		//header('Location: index.php');
+		header('Location: index.php');
 	}
 ?>
   

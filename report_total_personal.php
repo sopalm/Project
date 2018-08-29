@@ -20,19 +20,14 @@
             $resultemp=mysqli_fetch_array($queryemp,MYSQLI_ASSOC);
 
             include('function.php');
-            $sqllab = "SELECT cs.cs_date ,rt.*,pi.*,pe.*
+            $sqllab = "SELECT cs.cs_date ,rt.*,pi.*,pe.*,pfi.*
                     FROM report_total as rt LEFT JOIN check_service_detail as csd ON rt.csd_no=csd.csd_no
                                             LEFT JOIN check_service as cs ON csd.cs_no=cs.cs_no 
                                             LEFT JOIN personal_information as pi ON pi.csd_no=rt.csd_no
                                             LEFT JOIN personal_physical_examination as pe ON pe.csd_no=rt.csd_no
+                                            LEFT JOIN personal_family_information as pfi ON pfi.csd_no=rt.csd_no
                     WHERE rt.emp_id = '".$strID."' "; 
             $querylab = mysqli_query($con,$sqllab);
-
-            $sqlfam =" SELECT pfi.*,rt.emp_id
-                        FROM personal_family_information as pfi LEFT JOIN report_total as rt ON pfi.emp_id=rt.emp_id
-                        WHERE pfi.emp_id= '".$strID."'   ";
-            $queryfam = mysqli_query($con,$sqlfam);
-            $fam=mysqli_fetch_array($queryfam,MYSQLI_ASSOC)
 
 	?>
 
@@ -45,50 +40,7 @@
             <a class="path" href="edit_check-service.php">/ กำหนดการออกตรวจ</a><a class="path" href="check-service_list.php?cs_no=<?php echo $_GET['cs_no']; ?>">/ ข้อมูลการออกตรวจ</a><a style="color: black;text-decoration-line: none;" href=""> / ผลการตรวจรายบุคคล</a>
                 <h2>ผลการตรวจสุขภาพ ของ <?php echo $resultemp["emp_title"];?> <?php echo $resultemp["emp_name"];?> <?php echo $resultemp["emp_surname"];?> </h2>
             </div>
-            <h4>ประวัติครอบครัว</h4>
-            <?php 
-                echo "</br>";
-                if($fam["heart"]!=NULL)
-                {
-                    echo "โรคหัวใจ: ".$fam["heart"]."</br>";
-                }
-                else
-                {
-                    echo "โรคหัวใจ: -</br>";
-                }
-                if($fam["hypertension"]!=NULL)
-                {
-                    echo "โรคความดันโลหิตสูง: ".$fam["hypertension"]."</br>";
-                }
-                else
-                {
-                    echo "โรคความดันโลหิตสูง: -</br>";
-                }
-                if($fam["dyslipidemia"]!=NULL)
-                {
-                    echo "โรคไขมันในเลือดสูง: ".$fam["dyslipidemia"]."</br>";
-                }
-                else
-                {
-                    echo "โรคไขมันในเลือดสูง: -</br>";
-                }
-                if($fam["diabetes_mellitus"]!=NULL)
-                {
-                    echo "โรคเบาหวาน: ".$fam["diabetes_mellitus"]."</br>";
-                }
-                else
-                {
-                    echo "โรคเบาหวาน: -</br>";
-                }
-                if($fam["cancer"]!=NULL)
-                {
-                    echo "โรคมะเร็ง: ".$fam["cancer"]."</br>";
-                }
-                else
-                {
-                    echo "โรคมะเร็ง: -</br>";
-                }
-            ?>
+        
             </br>
             	<?php
                 while($row=mysqli_fetch_array($querylab,MYSQLI_ASSOC))
@@ -105,17 +57,65 @@
 					      	<div id="collapse<?php echo $check;?>" class="panel-collapse collapse">
 					        	<div class="panel-body">
                                     <h4>ข้อมูลทั่วไป</h4><br>
-                                    <table>
+                                    <table >
                                         <tr>
-                                            <td>น้ำหนัก:&nbsp;<?php echo $row["weight"];?></td><td>ความดันโลหิต ครั้งที่ 1 :&nbsp;<?php echo $row["blood_pressure"];?></td>
+                                            <td>น้ำหนัก:&nbsp;<?php echo $row["weight"];?>&nbsp;&nbsp;&nbsp;</td><td>ความดันโลหิต ครั้งที่ 1 :&nbsp;<?php echo $row["blood_pressure"];?></td>
                                             <td>ชีพจร ครั้งที่ 1 :&nbsp;<?php echo $row["pulsation"];?></td>
                                         </tr>
                                         <tr>
-                                            <td>ส่วนสูง:&nbsp;<?php echo $row["height"];?></td><td>ความดันโลหิต ครั้งที่ 2 :&nbsp;<?php echo $row["blood_pressure_extra"];?></td>
+                                            <td>ส่วนสูง:&nbsp;<?php echo $row["height"];?>&nbsp;&nbsp;&nbsp;</td><td>ความดันโลหิต ครั้งที่ 2 :&nbsp;<?php echo $row["blood_pressure_extra"];?></td>
                                             <td>ชีพจร ครั้งที่ 2 :&nbsp;<?php echo $row["pulsation_extra"];?></td>
                                         </tr>
                                     </table>
                                     <br>
+                                    <div class="row">
+                                    <div class="column">
+                                    <h4>ประวัติครอบครัว</h4>
+                                    <?php 
+                                        echo "</br>";
+                                        if($row["heart"]!=NULL)
+                                        {
+                                            echo "โรคหัวใจ: ".$row["heart"]."</br>";
+                                        }
+                                        else
+                                        {
+                                            echo "โรคหัวใจ: -</br>";
+                                        }
+                                        if($row["hypertension"]!=NULL)
+                                        {
+                                            echo "โรคความดันโลหิตสูง: ".$row["hypertension"]."</br>";
+                                        }
+                                        else
+                                        {
+                                            echo "โรคความดันโลหิตสูง: -</br>";
+                                        }
+                                        if($row["dyslipidemia"]!=NULL)
+                                        {
+                                            echo "โรคไขมันในเลือดสูง: ".$row["dyslipidemia"]."</br>";
+                                        }
+                                        else
+                                        {
+                                            echo "โรคไขมันในเลือดสูง: -</br>";
+                                        }
+                                        if($row["diabetes_mellitus"]!=NULL)
+                                        {
+                                            echo "โรคเบาหวาน: ".$row["diabetes_mellitus"]."</br>";
+                                        }
+                                        else
+                                        {
+                                            echo "โรคเบาหวาน: -</br>";
+                                        }
+                                        if($row["cancer"]!=NULL)
+                                        {
+                                            echo "โรคมะเร็ง: ".$row["cancer"]."</br>";
+                                        }
+                                        else
+                                        {
+                                            echo "โรคมะเร็ง: -</br>";
+                                        }
+                                    ?>
+                                    </div>
+                                    <div class="column">
                                     <h4>ประวัติส่วนตัว</h4>
                                     <table>
                                         <tr>
@@ -210,6 +210,8 @@
                                             </td>
                                         </tr>
                                     </table>
+                                    </div>
+                                    </div>
                                     <hr>
                                     </br>
                                     <h4>สภาพร่างกายทั่วไป</h4>

@@ -30,7 +30,7 @@
                 $result = mysqli_query($con,$query); 
                 ?>
                 <div >
-                  <table name="employee" id="example" class="display" width="100%">
+                  <table name="employee" id="example" class="display nowrap" width="100%">
                   <thead>
                     <tr >
                       <th > <div align="center">H.N </div></th>
@@ -61,7 +61,7 @@
                   {
                   ?>
                     <tr >
-                      <td ><div align="center"><?php echo $row["emp_id"];?></div></td>
+                      <td ><div align="center"><?php echo $row["HN"];?></div></td>
                       <td ><div align="center"><?php echo $row["VN"];?></div></td>
                       <td ><div align="center"><?php echo $row["emp_title"];?></div></td>
                       <td ><?php echo $row["emp_name"];?></td>

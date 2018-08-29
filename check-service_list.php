@@ -66,18 +66,18 @@
                   $result=mysqli_query($con,$sqlCommand);
                   while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                         { ?>
-                          <tr  data-href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>">
-                          <td ><div align='center'><?php echo $row["emp_no"];?></div></td>
-                          <td ><div align='center'><?php echo $row["emp_id"];?></div></td>
-                          <td ><div align='center'><?php echo $row["VN"];?></div></td>
-                          <td ><div><?php echo $row["emp_title"];?></div></td>
-                          <td ><?php echo $row["emp_name"];?></td>
-                          <td ><?php echo $row["emp_surname"];?></td>
-                          <td ><div align='center'><?php echo DateThaietc($row["emp_bd"]);?></div></td>
-                          <td ><div align='center'><?php echo Age($row["emp_bd"]);?></div></td>
-                          <td ><div><?php echo $row["pro_name"];?></div></td>
+                          <tr  >
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo $row["emp_no"];?></div></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo $row["HN"];?></div></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo $row["VN"];?></div></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div><?php echo $row["emp_title"];?></div></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><?php echo $row["emp_name"];?></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><?php echo $row["emp_surname"];?></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo DateThaietc($row["emp_bd"]);?></div></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div align='center'><?php echo Age($row["emp_bd"]);?></div></a></td>
+                          <td ><a style="color:black;" href="emp_card_personal.php?cs_no=<?php echo $company["cs_no"];?>&id=<?php echo $row["emp_id"];?>" target="_blank"><div><?php echo $row["pro_name"];?></div></a></td>
                           <td ><div align='center'></div></td>
-                          <td ><div align='center'>ผลการตรวจ</div></td>
+                          <td ><div align='center'><a href="report_total_personal.php?id=<?php echo $row["emp_id"]; ?>&cs_no=<?php echo $get; ?>">ผลการตรวจ</a></div></td>
                           </tr>
                       <?php
                       }
@@ -247,14 +247,6 @@
         include("footer.php");
         include("js/DataTable.js");
     ?>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $('#tablepage-span').on( 'click', 'tbody tr', function () {
-              window.open($(this).data('href'),'_blank');
-            } );
-        });
-        
 
-      </script>
 </body>
 </html>

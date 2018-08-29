@@ -96,9 +96,17 @@
         //echo $_SESSION['alert'];
         $_SESSION['alert']=NULL;
     }
+    if($_SESSION['alert']=='emp_add_false_person'){
+        echo "<script language=\"JavaScript\">";
+        echo "alert('เพิ่มรายชื่อผู้เขารับการตรวจสุขภาพไม่สำเร็จ มีชื่ออยู่ในการตรวจแล้ว');";
+        //echo "window.location='index.php';";
+        echo "</script>";
+        //echo $_SESSION['alert'];
+        $_SESSION['alert']=NULL;
+    }
     if($_SESSION['alert']=='emp_add_false'){
         echo "<script language=\"JavaScript\">";
-        echo "alert('เพิ่มรายชื่อผู้เขารับการตรวจสุขภาพไม่สำเร็จ ไฟล์รายชื่อไม่ถูกต้อง');";
+        echo "alert('เพิ่มรายชื่อผู้เขารับการตรวจสุขภาพไม่สำเร็จ ไฟล์รายชื่อลำดับที่ ".$_GET['no']." ไม่ถูกต้อง');";
         //echo "window.location='index.php';";
         echo "</script>";
         //echo $_SESSION['alert'];
@@ -118,6 +126,12 @@
         //echo "window.location='index.php';";
         echo "</script>";
         //echo $_SESSION['alert'];
+        $_SESSION['alert']=NULL;
+    }
+    if($_SESSION['alert']=='pro_add_false'){
+        echo "<script language=\"JavaScript\">";
+        echo "alert('เพิ่มโปรแกรมการตรวจสุขภาพwไม่สำเร็จ ข้อมูลซ้ำ');";
+        echo "</script>";
         $_SESSION['alert']=NULL;
     }
     if($_SESSION['alert']=='user_add'){

@@ -99,7 +99,7 @@
                         <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td align="center"><?php echo DateThaietc($row["date_modify"]);?></td>
+                            <td align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
                             <td align="center"><?php echo $row["user_modify"];?></td>
                             <td align="center"><a href="edit_check-service_update.php?cs_no=<?php echo $row["cs_no"];?>">แก้ไข</a></td>
                           <?php 
@@ -171,7 +171,7 @@
                         <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td align="center"><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo DateThaietc($row["date_modify"]);?></a></td>
+                            <td align="center"><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo DateThaimod($row["date_modify"]);?></a></td>
                             <td align="center"><a href="check-service_list.php?cs_no=<?php echo $row["cs_no"];?>" style="display:block;height:100%;width:100%;text-decoration: none;color: black;"><?php echo $row["user_modify"];?></a></td>
                             <td align="center"><a href="edit_check-service_update.php?cs_no=<?php echo $row["cs_no"];?>">แก้ไข</a></td>
                           <?php 

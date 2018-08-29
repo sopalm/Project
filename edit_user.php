@@ -106,15 +106,15 @@
                         <form method='POST' action="add_user.php">
                             <label >ชื่อผู้ใช้</label >
                             <br/>
-                            <input type="text" id="user_name" name="user_name" pattern="[A-Za-z0-9]{6,20}" minlength="6" maxlength="20" required >
+                            <input type="text" id="user_name" name="user_name" pattern="[A-Za-z0-9]{5,20}" minlength="6" maxlength="20" required >
                             <br/>
-                            <font color="red" size="2">*ตัวเลขและตัวอักษร a-z,A-Z จำนวน 6-20 ตัว</font>
+                            <font color="red" size="2">*ตัวเลขและตัวอักษร a-z,A-Z จำนวน 5-20 ตัว</font>
                             <br/>
                             <label >รหัสผ่าน</label >
                             <br/>
-                            <input required="" type="password" id="user_pass" name="user_pass" pattern="[A-Za-z0-9]{8,16}"  minlength="8" maxlength="16">
+                            <input required="" type="password" id="user_pass" name="user_pass" pattern="[A-Za-z0-9]{5,16}"  minlength="5" maxlength="16">
                             <br/>
-                            <font color="red" size="2">*ตัวเลขและตัวอักษร a-z,A-Z จำนวน 8-16 ตัว</font>
+                            <font color="red" size="2">*ตัวเลขและตัวอักษร a-z,A-Z จำนวน 5-16 ตัว</font>
                             <br/>
                             <label >สถานะ</label >
                             <br/>

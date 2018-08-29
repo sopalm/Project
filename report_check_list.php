@@ -38,20 +38,19 @@
             $sqllist = "SELECT tag FROM check_service_tag
                           WHERE cs_no = '$_GET[cs_no]'";
                         $querylist=mysqli_query($con,$sqllist);
-              $sqlemp ="SELECT emp.*,pc.pro_id ,csd.cs_no
+              $sqlemp ="SELECT emp.*,pc.pro_id ,csd.cs_no,cl.regis
                         FROM employee as emp JOIN check_list as cl ON emp.emp_id = cl.emp_id
                                               JOIN check_service_detail as csd ON cl.csd_no = csd.csd_no
                                               JOIN program_check as pc ON csd.pro_id = pc.pro_id
-                        WHERE csd.cs_no = '$_GET[cs_no]'";
+                        WHERE csd.cs_no = '$_GET[cs_no]' ORDER BY emp_no ";
                         $queryemp=mysqli_query($con,$sqlemp);
         ?>
             <div style="overflow-x:auto;" >
-            <table id="tablepage-doctor" class="display" width="100%" >
+            <table id="print" class="display" width="100%" >
                  <thead >
                   <tr align="center">
                       <th align="center">ลำดับ</th>
                       <th align="center"> H.N</th>
-                      <th align="center">V.N</th>
                       <th align="center">ชื่อ-สกุล</th>
                       <th align="center">โปรแกรม</th>
                       <?php 
@@ -86,8 +85,7 @@
                 { ?>
               <tr>
                   <td align="center"><?php echo $row["emp_no"]; ?></td>
-                  <td align="center"><?php echo $row["emp_id"]; ?></td>
-                  <td align="center"><?php echo $row["VN"]; ?></td>
+                  <td align="center"><?php echo $row["HN"]; ?></td>
                   <td><?php echo $row["emp_title"]; ?>&nbsp;<?php echo $row["emp_name"]; ?>&nbsp;&nbsp;<?php echo $row["emp_surname"]; ?></td>
                   <td align="center"><?php echo $row["pro_id"]; ?></td>
 
@@ -151,21 +149,47 @@
                         
 
                   
-               <?php }
+               <?php }?>
+                    
+                </tbody>
+                <tfoot >
+                  <tr align="center">
+                      <th align="center">ลำดับ</th>
+                      <th align="center"> H.N</th>
+                      <th align="center">ชื่อ-สกุล</th>
+                      <th align="center">โปรแกรม</th>
+                      <?php 
+                        $querylist=mysqli_query($con,$sqllist);
+                        while ($row=mysqli_fetch_array($querylist)) {
+                          ?>
+                          <td align="center"></th>
+                      <?php    
+                        }
+                      ?>
+                      <td align="center"></th>
+                      
 
-                echo "</tbody>"; 
-             echo "</table>";
-             echo "</div>";       
+                  </tr>
+                </tfoot>
+             </table>
+             </div>
+      <?php      
         }
-        /*for ($i=0; $i <$keb ; $i++) { 
-          echo $tagsum[$i]['tag'];
-          echo $tagsum[$i]['sum'];
-          echo "<br>";
-        }*/
+
     ?>   
         <div class="row">
+        <?php 
+          $regis=0;
+          $queryemp=mysqli_query($con,$sqlemp);
+          while($row=mysqli_fetch_array($queryemp)){
+            if($row["regis"]==1){
+              $regis++;
+            }
+          }
+          ?>
+          <h3 style="margin-left:10px;";>จำนวนผู้เข้ารับการตรวจที่ลงทะเบียนแล้ว <?php echo $regis; ?> คน  จาก <?php echo $cp["cs_total_people"]; ?> คน</h3>
           <div class="column">
-          <h3>จำนวนผู้เข้ารับการตรวจทั้งหมด <?php echo $cp["cs_total_people"]; ?> คน</h3>
+        
             <table id="tablepage-page" width="100%" class="display">
             <thead>
               <th ><div align="center">จุดตรวจ</div></th>
@@ -190,32 +214,12 @@
             
           </div> 
         </div>    
-        
+
+
         </div>
      </div>
     </div>
 
-    <script type="text/javascript">
-        
-        function PrintDoc() {
-
-            var toPrint = document.getElementById('printarea');
-
-            var popupWin = window.open('', '_blank', 'width=350,height=150,location=no,left=200px');
-
-            popupWin.document.open();
-
-            popupWin.document.write('<html><head><title>::Preview::</title><link rel="stylesheet" type="text/css"  /><style type="text/css" media="print">@page { size: landscape; } table{border-collapse: collapse;border: 1px solid black;}</style></head><body onload="window.print()">')
-
-            popupWin.document.write(toPrint.innerHTML);
-
-            popupWin.document.write('</html>');
-
-            popupWin.document.close();
-
-        }
-
-    </script>
     <?php 
         include("footer.php");
         include("js/DataTable.js");

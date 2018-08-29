@@ -57,16 +57,26 @@
                     <?php
                     while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                     {
+                      if(isset($_POST["pro"]))
+                          {
+                            if($_POST["pro"]==$row["pro_id"]){
+                              $color='#e6ffff';
+                            }else{
+                              $color='';
+                            }
+                          }else{
+                            $color='';
+                          }
                     ?>
                       <tr >
-                      <td ><div align="center"><input style="border: none;background: none;width: 100%;" type="submit" name="pro" id="pro" value='<?php echo $row["pro_id"];?>'></div></td>
-                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["pro_name"];?>"><?php echo $row["pro_name"];?></a></td>
+                      <td bgcolor='<?php echo $color; ?>' ><div align="center"><input style="border: none;background: none;width: 100%;" type="submit" name="pro" id="pro" value='<?php echo $row["pro_id"];?>'></div></td>
+                        <td bgcolor='<?php echo $color; ?>' ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["pro_name"];?>"><?php echo $row["pro_name"];?></a></td>
                         <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
-                            <td ><?php echo $row["user_modify"];?></td>
-                            <td ><a href="edit_program_update.php?pro_id=<?php echo $row["pro_id"];?>">แก้ไข</a></td>
+                            <td bgcolor='<?php echo $color; ?>' align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
+                            <td bgcolor='<?php echo $color; ?>' ><?php echo $row["user_modify"];?></td>
+                            <td bgcolor='<?php echo $color; ?>' ><a href="edit_program_update.php?pro_id=<?php echo $row["pro_id"];?>">แก้ไข</a></td>
                           <?php 
                           } 
                           ?>
@@ -121,14 +131,14 @@
                       if ($row["checklist_id"]!= NULL && $row["checklist_name_th"]!=NULL) {
                     ?>
                       <tr >
-                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["checklist_name_th"];?>"><?php echo $row["checklist_name_th"];?></a></td>
-                        <td ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["checklist_name_th"];?>"><?php echo $row["checklist_name_en"];?></a></td>
+                        <td bgcolor='#e6ffff' ><a  class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["checklist_name_th"];?>"><?php echo $row["checklist_name_th"];?></a></td>
+                        <td bgcolor='#e6ffff' ><a class="btn" style="color:black;" data-placement="top" data-toggle="popover" data-trigger="hover" data-content="<?php echo $row["checklist_name_en"];?>"><?php echo $row["checklist_name_en"];?></a></td>
                         <?php
                           if ($_SESSION["status"]== '1')
                           { ?>
-                            <td align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
-                            <td align="center"><?php echo $row["user_modify"];?></td>
-                            <td align="center"><a href="edit_checklist_update.php?checklist_id=<?php echo $row["checklist_id"];?>">แก้ไข</a></td>
+                            <td bgcolor='#e6ffff' align="center"><?php echo DateThaimod($row["date_modify"]);?></td>
+                            <td bgcolor='#e6ffff' align="center"><?php echo $row["user_modify"];?></td>
+                            <td bgcolor='#e6ffff' align="center"><a href="edit_checklist_update.php?checklist_id=<?php echo $row["checklist_id"];?>">แก้ไข</a></td>
                           <?php 
                           } 
                           ?>
