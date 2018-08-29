@@ -10,10 +10,6 @@
 
 	$pass = $row['user_pass'];
 
-	if(password_verify($upass,$pass)) {
-		echo "kuy";
-	}
-
 	if($row['user_name']  && password_verify($upass,$pass)
 		&& $uname!='' &&$upass!='' )
 	{
