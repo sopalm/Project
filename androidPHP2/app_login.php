@@ -10,8 +10,10 @@
         or die("Failed db".mysqli_error());
     $row = mysqli_fetch_array($result);
 
+    $pass = $row['user_pass'];
+
     $response = array();
-    if($row['user_name']==$username && $row['user_pass']==$password && $username!='' &&$password!='' )  {
+    if($row['user_name']==$username && password_verify($password,$pass) && $username!='' &&$password!='' )  {
         $arr = array(
                 'status' => "true",
                 'user' => $row['user_name'],

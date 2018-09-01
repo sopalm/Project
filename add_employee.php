@@ -264,17 +264,11 @@
 		$a=0;
 		$sqlCommand = "SELECT * FROM employee WHERE HN = '$number' ";
         $result=mysqli_query($con,$sqlCommand);
-<<<<<<< HEAD
-		$row=mysqli_fetch_array($result) 
-		if($row['emp_id']){
-        		$a = 1;
-		}
-=======
+		
 		$row=mysqli_fetch_array($result) ;
         if ($row['HN'] == $number) {
         	$a = 1;
         }
->>>>>>> a13210d7834da49a8c782199cb83119f22786799
         if($a == 1){
         	return false;
         }
